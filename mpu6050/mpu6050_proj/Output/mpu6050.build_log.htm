@@ -27,12 +27,16 @@ Project File Date:  01/23/2017
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'D:\Program Files (x86)\Keil\ARM\ARMCC\Bin'
 Build target 'mpu6050'
-compiling main.c...
-compiling i2c1.c...
+compiling mpu6050.c...
+..\User\iic\mpu6050.c(21): warning:  #223-D: function "printf" declared implicitly
+        printf("%-6d %-6d %-6d\t", AccelData[0], AccelData[1], AccelData[2]);
+..\User\iic\mpu6050.c(48): warning:  #223-D: function "printf" declared implicitly
+        printf("%-6d %-6d %-6d\r\n", GyroData[0], GyroData[1], GyroData[2]);
+..\User\iic\mpu6050.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=4204 RO-data=336 RW-data=56 ZI-data=1024  
+Program Size: Code=7992 RO-data=336 RW-data=84 ZI-data=1028  
 FromELF: creating hex file...
-"..\Output\mpu6050.axf" - 0 Error(s), 0 Warning(s).
+"..\Output\mpu6050.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE

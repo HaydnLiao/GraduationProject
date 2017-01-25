@@ -14,4 +14,5 @@
 ..\output\main.o: ..\User\systick\systick.h
 ..\output\main.o: ..\User\uart\uart1.h
 ..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\main.o: ..\User\iic\mpu6050.h
 ..\output\main.o: ..\User\iic\i2c1.h

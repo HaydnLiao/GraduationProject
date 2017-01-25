@@ -30,7 +30,6 @@
 #define I2C1_DELAY		2
 #define ACK_SIGNAL		0
 #define NACK_SIGNAL		1
-#define DEVICE_ADDRESS	0x68
 
 static GPIO_InitTypeDef i2c1GPIOInitStruct;
 
