@@ -163,6 +163,7 @@ uint8_t Mpu6050_SetSampleRate(uint16_t sampleRate, uint8_t flagDLPF)
 		sampleRate = INTERVAL_CONSTRAINT(sampleRate, 8000, 32);
 	}
 	divider = gyroOutputRate / sampleRate - 1;
+	//printf("divider: %d \r\n", divider);
 	if(I2C1_WriteData(MPU6050_ADDRESS, SMPRT_DIV, &divider, 1))
 	{
 		return 1;
@@ -204,6 +205,7 @@ uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 	{
 		data = 0;
 	}
+	//printf("bandWidth: %d %d \r\n", bandWidth, data);
 	if(I2C1_WriteData(MPU6050_ADDRESS, CONFIG, &data, 1))
 	{
 		return 1;
