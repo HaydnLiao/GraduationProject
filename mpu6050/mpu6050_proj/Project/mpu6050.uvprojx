@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\User;..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User\uart;..\User\led;..\User\systick</IncludePath>
+              <IncludePath>..\User;..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User\uart;..\User\led;..\User\systick;..\User\iic</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -586,6 +586,16 @@
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\systick\systick.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\iic\i2c1.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpu6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\iic\mpu6050.c</FilePath>
             </File>
           </Files>
         </Group>
