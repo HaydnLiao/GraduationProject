@@ -1,14 +1,16 @@
 
 #include "mpu6050.h"
 
-uint8_t Mpu6050_ID;			//Identity of device
-int16_t Mpu6050_Accel_X;	//Aceeleration x-axis
-int16_t Mpu6050_Accel_Y;	//Aceeleration y-axis
-int16_t Mpu6050_Accel_Z;	//Aceeleration z-axis
-float Mpu6050_Temp;			//Temperature calculated result
-int16_t Mpu6050_Gyro_X;		//Angular rate x-axis
-int16_t Mpu6050_Gyro_Y;		//Angular rate y-axis
-int16_t Mpu6050_Gyro_Z;		//Angular rate z-axis
+uint8_t Mpu6050_ID;		//Identity of device
+float Mpu6050_Accel_X;	//Aceeleration x-axis
+float Mpu6050_Accel_Y;	//Aceeleration y-axis
+float Mpu6050_Accel_Z;	//Aceeleration z-axis
+float Mpu6050_Temp;		//Temperature calculated result
+float Mpu6050_Gyro_X;	//Angular rate x-axis
+float Mpu6050_Gyro_Y;	//Angular rate y-axis
+float Mpu6050_Gyro_Z;	//Angular rate z-axis
+float Mpu6050_Pitch;	//Pitch angle
+float Mpu6050_Roll;		//Roll angle
 
 uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 {
@@ -68,8 +70,8 @@ uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 	{
 		return 10;
 	}
-	/**
-	data = 0x00;//gyroscope full scale range ¡À250¡ã/s
+	
+	data = 0x03<<3;//gyroscope full scale range ¡À2000¡ã/s
 	if(I2C1_WriteData(MPU6050_ADDRESS, GYRO_CONFIG, &data, 1))
 	{
 		return 11;
@@ -79,7 +81,7 @@ uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 	{
 		return 12;
 	}
-	*/
+	
 	if(Mpu6050_SetSampleRate(sampleRate, flagDLPF))
 	{
 		return 13;
@@ -111,9 +113,9 @@ uint8_t Mpu6050_GetAccelData(void)
 	AccelData[0] = (buff[0] & 0x00ff)<<8 | buff[1];
 	AccelData[1] = (buff[2] & 0x00ff)<<8 | buff[3];
 	AccelData[2] = (buff[4] & 0x00ff)<<8 | buff[5];
-	Mpu6050_Accel_X = AccelData[0];	
-	Mpu6050_Accel_Y = AccelData[1];	
-	Mpu6050_Accel_Z = AccelData[2];
+	Mpu6050_Accel_X = AccelData[0]/FACTOR_ACCEL_RANGE_2;//¡À2g	
+	Mpu6050_Accel_Y = AccelData[1]/FACTOR_ACCEL_RANGE_2;//¡À2g	
+	Mpu6050_Accel_Z = AccelData[2]/FACTOR_ACCEL_RANGE_2;//¡À2g
 	//printf("%-5d %-5d %-5d\r\n", AccelData[0], AccelData[1], AccelData[2]);
 	return 0;
 }
@@ -141,9 +143,9 @@ uint8_t Mpu6050_GetGyroData(void)
 	GyroData[0] = (buff[0] & 0x00ff)<<8 | buff[1];
 	GyroData[1] = (buff[2] & 0x00ff)<<8 | buff[3];
 	GyroData[2] = (buff[4] & 0x00ff)<<8 | buff[5];
-	Mpu6050_Gyro_X = GyroData[0];	
-	Mpu6050_Gyro_Y = GyroData[1];	
-	Mpu6050_Gyro_Z = GyroData[2];
+	Mpu6050_Gyro_X = GyroData[0]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
+	Mpu6050_Gyro_Y = GyroData[1]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
+	Mpu6050_Gyro_Z = GyroData[2]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
 	//printf("%-5d %-5d %-5d\r\n", GyroData[0], GyroData[1], GyroData[2]);
 	return 0;
 }
@@ -211,5 +213,11 @@ uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 		return 1;
 	}
 	return 0;
+}
+
+void Mpu6050_CalPitchRoll(void)
+{
+	Mpu6050_Pitch = atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/3.14;//range -PI~PI
+	Mpu6050_Roll = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/3.14;//range -PI~PI
 }
 

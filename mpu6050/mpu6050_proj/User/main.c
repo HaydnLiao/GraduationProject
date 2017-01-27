@@ -43,7 +43,7 @@ int main(void)
 		}
 		else
 		{
-			printf("ax: %-5d ay: %-5d az: %-5d\t", Mpu6050_Accel_X, Mpu6050_Accel_Y, Mpu6050_Accel_Z);
+			//printf("ax: %-5.4f ay: %-5.4f az: %-5.4f\t", Mpu6050_Accel_X, Mpu6050_Accel_Y, Mpu6050_Accel_Z);
 		}
 		if(Mpu6050_GetTempData())
 		{
@@ -51,7 +51,7 @@ int main(void)
 		}
 		else
 		{
-			printf("%-5.2f¡æ\t", Mpu6050_Temp);
+			//printf("%-5.4f¡æ\t", Mpu6050_Temp);
 		}
 		if(Mpu6050_GetGyroData())
 		{
@@ -59,7 +59,7 @@ int main(void)
 		}
 		else
 		{
-			printf("gx: %-5d gy: %-5d gz: %-5d\r\n", Mpu6050_Gyro_X, Mpu6050_Gyro_Y, Mpu6050_Gyro_Z);
+			//printf("gx: %-5.4f gy: %-5.4f gz: %-5.4f\r\n", Mpu6050_Gyro_X, Mpu6050_Gyro_Y, Mpu6050_Gyro_Z);
 		}
 
 #if DEVIATION_TEST			
@@ -83,7 +83,8 @@ int main(void)
 		printf("%d: %f %f %f %f %f %f %f \t", cntCal, ax, ay, az, t, gx, gy, gz);
 		printf("%d: %f %f %f %f %f %f %f \r\n", cntCal, axx, ayy, azz, tt, gxx, gyy, gzz);
 #endif
-
+		Mpu6050_CalPitchRoll();
+		printf("pitch: %-10f roll: %-10f \r\n", Mpu6050_Pitch, Mpu6050_Roll);
 		//LEDG_ON;
 		//Delay_ms(1000);
 		//LEDG_OFF;

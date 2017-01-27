@@ -2,6 +2,7 @@
 #ifndef __MPU6050_H
 #define __MPU6050_H
 
+#include <math.h>
 #include "stm32f10x.h"
 #include "i2c1.h"
 
@@ -36,6 +37,15 @@
 #define PWR_MGMT_2		0x6C	//wake-up frequency in Accelerometer only low power mode
 #define WHO_AM_I		0x75	//the identity of device b-110 100-
 
+#define FACTOR_GYRO_RANGE_250	(13.107)
+#define FACTOR_GYRO_RANGE_500	(65.536)
+#define FACTOR_GYRO_RANGE_1000	(32.768)
+#define FACTOR_GYRO_RANGE_2000	(16.384)
+#define FACTOR_ACCEL_RANGE_2	(16384.0)
+#define FACTOR_ACCEL_RANGE_4	(8192.0)
+#define FACTOR_ACCEL_RANGE_8	(4096.0)
+#define FACTOR_ACCEL_RANGE_16	(2048.0)
+
 #define INTERVAL_CONSTRAINT(x, max, min)	((x)>(max)?(max):((x)<(min)?(min):(x)))
 
 static int16_t AccelData[3];	//Accelerometer data
@@ -43,13 +53,15 @@ static int16_t TempData;		//Temperature data
 static int16_t GyroData[3];		//Gyroscope data
 
 extern uint8_t Mpu6050_ID;		//Identity of device
-extern int16_t Mpu6050_Accel_X;	//Aceeleration x-axis
-extern int16_t Mpu6050_Accel_Y;	//Aceeleration y-axis
-extern int16_t Mpu6050_Accel_Z;	//Aceeleration z-axis
+extern float Mpu6050_Accel_X;	//Aceeleration x-axis
+extern float Mpu6050_Accel_Y;	//Aceeleration y-axis
+extern float Mpu6050_Accel_Z;	//Aceeleration z-axis
 extern float Mpu6050_Temp;		//Temperature calculated result
-extern int16_t Mpu6050_Gyro_X;	//Angular rate x-axis
-extern int16_t Mpu6050_Gyro_Y;	//Angular rate y-axis
-extern int16_t Mpu6050_Gyro_Z;	//Angular rate z-axis
+extern float Mpu6050_Gyro_X;	//Angular rate x-axis
+extern float Mpu6050_Gyro_Y;	//Angular rate y-axis
+extern float Mpu6050_Gyro_Z;	//Angular rate z-axis
+extern float Mpu6050_Pitch;		//Pitch angle
+extern float Mpu6050_Roll;		//Roll angle
 
 uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF);
 uint8_t Mpu6050_GetDevID(void);
@@ -58,6 +70,7 @@ uint8_t Mpu6050_GetTempData(void);
 uint8_t Mpu6050_GetGyroData(void);
 uint8_t Mpu6050_SetSampleRate(uint16_t sampleRate, uint8_t flagDLPF);
 uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF);
+void Mpu6050_CalPitchRoll(void);
 
 #endif
 

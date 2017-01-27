@@ -1,5 +1,6 @@
 ..\output\mpu6050.o: ..\User\iic\mpu6050.c
 ..\output\mpu6050.o: ..\User\iic\mpu6050.h
+..\output\mpu6050.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\mpu6050.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\mpu6050.o: ..\Libraries\CMSIS\core_cm3.h
 ..\output\mpu6050.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdint.h
