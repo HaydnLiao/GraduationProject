@@ -39,6 +39,7 @@
 
 #define FACTOR_GYRO_RANGE_250	(13.107)
 #define FACTOR_GYRO_RANGE_500	(65.536)
+
 #define FACTOR_GYRO_RANGE_1000	(32.768)
 #define FACTOR_GYRO_RANGE_2000	(16.384)
 #define FACTOR_ACCEL_RANGE_2	(16384.0)
@@ -46,6 +47,7 @@
 #define FACTOR_ACCEL_RANGE_8	(4096.0)
 #define FACTOR_ACCEL_RANGE_16	(2048.0)
 
+#define MATH_PI	3.1416
 #define INTERVAL_CONSTRAINT(x, max, min)	((x)>(max)?(max):((x)<(min)?(min):(x)))
 
 static int16_t AccelData[3];	//Accelerometer data

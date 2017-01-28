@@ -27,11 +27,14 @@ Project File Date:  01/25/2017
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'D:\Program Files (x86)\Keil\ARM\ARMCC\Bin'
 Build target 'mpu6050'
-compiling mpu6050.c...
+compiling hmc5883l.c...
+..\User\iic\hmc5883l.c(91): warning:  #550-D: variable "z" was set but never used
+        float x, y, z;
+..\User\iic\hmc5883l.c: 1 warning, 0 errors
 linking...
-Program Size: Code=9632 RO-data=496 RW-data=116 ZI-data=1028  
+Program Size: Code=10088 RO-data=496 RW-data=152 ZI-data=1024  
 FromELF: creating hex file...
-"..\Output\mpu6050.axf" - 0 Error(s), 0 Warning(s).
+"..\Output\mpu6050.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE

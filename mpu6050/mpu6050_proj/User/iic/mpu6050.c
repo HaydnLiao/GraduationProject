@@ -15,7 +15,6 @@ float Mpu6050_Roll;		//Roll angle
 uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 {
 	uint8_t data;
-	I2C1_Init(400000);//400kHz frequency is unused
 	Delay_ms(10);//must delay
 	if(Mpu6050_GetDevID())//mpu6050 WHO_AM_I register
 	{
@@ -217,7 +216,9 @@ uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 
 void Mpu6050_CalPitchRoll(void)
 {
-	Mpu6050_Pitch = atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/3.14;//range -PI~PI
-	Mpu6050_Roll = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/3.14;//range -PI~PI
+	//2017-01-27 when pitch is greater than 90¡ãroll is abnormal
+	//2017-01-28 in dynamic environment angles are incorrect 
+	Mpu6050_Pitch = atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
+	Mpu6050_Roll = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
 }
 
