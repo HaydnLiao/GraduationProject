@@ -62,6 +62,7 @@ extern float Mpu6050_Temp;		//Temperature calculated result
 extern float Mpu6050_Gyro_X;	//Angular rate x-axis
 extern float Mpu6050_Gyro_Y;	//Angular rate y-axis
 extern float Mpu6050_Gyro_Z;	//Angular rate z-axis
+
 extern float Mpu6050_Pitch;		//Pitch angle
 extern float Mpu6050_Roll;		//Roll angle
 
@@ -72,7 +73,7 @@ uint8_t Mpu6050_GetTempData(void);
 uint8_t Mpu6050_GetGyroData(void);
 uint8_t Mpu6050_SetSampleRate(uint16_t sampleRate, uint8_t flagDLPF);
 uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF);
-void Mpu6050_CalPitchRoll(void);
+void Mpu6050_CalPitchRoll(float calWeight, float calPeriod);
 
 #endif
 

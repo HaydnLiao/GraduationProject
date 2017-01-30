@@ -597,6 +597,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\iic\mpu6050.c</FilePath>
             </File>
+            <File>
+              <FileName>hmc5883l.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\iic\hmc5883l.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

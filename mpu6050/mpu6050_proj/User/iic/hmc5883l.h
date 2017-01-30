@@ -39,6 +39,12 @@
 static int16_t XData;
 static int16_t YData;
 static int16_t ZData;
+static int16_t XData_Offset;
+static int16_t YData_Offset;
+static int16_t ZData_Offset;
+static float XData_K;
+static float YData_K;
+static float ZData_K;
 
 extern uint8_t Hmc5883l_ID_A;
 extern uint8_t Hmc5883l_ID_B;
@@ -46,12 +52,14 @@ extern uint8_t Hmc5883l_ID_C;
 extern float Hmc5883l_Gauss_X;
 extern float Hmc5883l_Gauss_Y;
 extern float Hmc5883l_Gauss_Z;
+
 extern float Hmc5883l_Yaw;
 
 uint8_t Hmc5883l_Init(void);
 uint8_t Hmc5883l_GetDevID(void);
 uint8_t Hmc5883l_GetData(void);
 void Hmc5883l_CalYaw(float pitch, float roll);
+void Hmc5883l_Calibrate(uint8_t calSeconds, float reliablity);
 
 #endif
 

@@ -214,11 +214,16 @@ uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 	return 0;
 }
 
-void Mpu6050_CalPitchRoll(void)
+void Mpu6050_CalPitchRoll(float calWeight, float calPeriod)
 {
 	//2017-01-27 when pitch is greater than 90°roll is abnormal
 	//2017-01-28 in dynamic environment angles are incorrect 
-	Mpu6050_Pitch = atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
-	Mpu6050_Roll = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
+	Mpu6050_GetAccelData();
+	Mpu6050_GetGyroData();
+	//Mpu6050_Pitch = atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
+	//Mpu6050_Roll = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
+	//一阶互补滤波算法 数据融合
+	Mpu6050_Pitch = calWeight*atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Pitch+Mpu6050_Gyro_X*calPeriod);
+	Mpu6050_Roll = calWeight*atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Roll+Mpu6050_Gyro_Y*calPeriod);	
 }
 
