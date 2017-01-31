@@ -34,7 +34,8 @@
 #define FACTOR_FIELD_RANGE_5_6	(330.0)
 #define FACTOR_FIELD_RANGE_8_1	(230.0)
 
-#define MATH_PI	3.1416
+#define MATH_PI		3.1416
+#define CALI_DELAY	3
 
 static int16_t XData;
 static int16_t YData;

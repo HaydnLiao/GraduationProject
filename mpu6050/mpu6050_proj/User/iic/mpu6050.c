@@ -9,8 +9,8 @@ float Mpu6050_Temp;		//Temperature calculated result
 float Mpu6050_Gyro_X;	//Angular rate x-axis
 float Mpu6050_Gyro_Y;	//Angular rate y-axis
 float Mpu6050_Gyro_Z;	//Angular rate z-axis
-float Mpu6050_Pitch;	//Pitch angle
-float Mpu6050_Roll;		//Roll angle
+float Mpu6050_Pitch;	//Pitch angle (degree)
+float Mpu6050_Roll;		//Roll angle (degree)
 
 uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 {

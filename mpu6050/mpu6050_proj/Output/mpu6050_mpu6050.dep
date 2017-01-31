@@ -284,7 +284,7 @@ I (..\Libraries\FWlib\inc\stm32f10x_i2c.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
-F (..\User\main.c)(0x588F5E8C)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\User -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User\uart -I..\User\led -I..\User\systick -I..\User\iic-I D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
+F (..\User\main.c)(0x58907858)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\User -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User\uart -I..\User\led -I..\User\systick -I..\User\iic-I D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x588602BE)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
@@ -302,7 +302,7 @@ I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 I (..\User\iic\mpu6050.h)(0x588D5C35)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
 I (..\User\iic\i2c1.h)(0x5889B6E6)
-I (..\User\iic\hmc5883l.h)(0x588F5B6C)
+I (..\User\iic\hmc5883l.h)(0x5890730F)
 F (..\User\stm32f10x_it.c)(0x5886043D)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\User -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User\uart -I..\User\led -I..\User\systick -I..\User\iic-I D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\stm32f10x_it.o --omf_browse ..\output\stm32f10x_it.crf --depend ..\output\stm32f10x_it.d)
 I (..\User\stm32f10x_it.h)(0x570B719F)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x588602BE)
@@ -369,7 +369,7 @@ I (..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
 I (..\User\systick\systick.h)(0x5886DACD)
-F (..\User\iic\mpu6050.c)(0x588D6969)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\User -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User\uart -I..\User\led -I..\User\systick -I..\User\iic-I D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\mpu6050.o --omf_browse ..\output\mpu6050.crf --depend ..\output\mpu6050.d)
+F (..\User\iic\mpu6050.c)(0x58907C3D)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\User -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User\uart -I..\User\led -I..\User\systick -I..\User\iic-I D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\mpu6050.o --omf_browse ..\output\mpu6050.crf --depend ..\output\mpu6050.d)
 I (..\User\iic\mpu6050.h)(0x588D5C35)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x588602BE)
@@ -384,8 +384,8 @@ I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
 I (..\User\iic\i2c1.h)(0x5889B6E6)
 I (..\User\systick\systick.h)(0x5886DACD)
-F (..\User\iic\hmc5883l.c)(0x588F5B42)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\User -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User\uart -I..\User\led -I..\User\systick -I..\User\iic-I D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\hmc5883l.o --omf_browse ..\output\hmc5883l.crf --depend ..\output\hmc5883l.d)
-I (..\User\iic\hmc5883l.h)(0x588F5B6C)
+F (..\User\iic\hmc5883l.c)(0x58907C6E)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\User -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User\uart -I..\User\led -I..\User\systick -I..\User\iic-I D:\Documents\我的文档\本科毕业设计\Local\mpu6050\mpu6050_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\hmc5883l.o --omf_browse ..\output\hmc5883l.crf --depend ..\output\hmc5883l.d)
+I (..\User\iic\hmc5883l.h)(0x5890730F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x588602BE)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)

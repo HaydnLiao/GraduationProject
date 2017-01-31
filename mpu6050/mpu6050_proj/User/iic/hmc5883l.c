@@ -90,16 +90,19 @@ uint8_t Hmc5883l_GetData(void)
 void Hmc5883l_CalYaw(float pitch, float roll)
 {
 	float x, y, z;
-	x = XData;
-	y = YData;
+	//deviation corrections
+	x = XData_K*XData + XData_Offset;
+	y = YData_K*YData + YData_Offset;
 	z = ZData;
-	/**
-	x = x*cos(pitch) + y*sin(roll)*sin(pitch) - z*cos(roll)*sin(pitch);
-	y = y*cos(roll) + z*sin(roll);	
-	*/
+	//degree to radian
+	pitch = pitch*MATH_PI/180;
+	roll = roll*MATH_PI/180;
+	//attitude corrections	
+	x = x*cos(pitch) + z*sin(pitch);
+	y = y*cos(roll) + x*sin(roll)*sin(pitch) - z*cos(pitch)*sin(roll);
+	//y = y*cos(roll) + z*sin(roll);
+	
 	//2017-01-28 when pitch and roll don't equal zero yaw is not true
-	x = XData_K*x + XData_Offset;
-	y = YData_K*y + YData_Offset;
 	Hmc5883l_Yaw = atan2(y, x)*180/MATH_PI;//-PI~PI
 	//printf("yaw: %f\r\n", Hmc5883l_Yaw);
 }
@@ -109,7 +112,8 @@ void Hmc5883l_Calibrate(uint8_t calSeconds, float reliablity)
 	uint16_t cntLoop;
 	int16_t XData_Max, XData_Min, YData_Max, YData_Min;
 	XData_Max = XData_Min = YData_Max = YData_Min = 0;
-	for(cntLoop=calSeconds*500; cntLoop>0; cntLoop-=1)
+	cntLoop=calSeconds*1000/(CALI_DELAY+1);
+	for(; cntLoop>0; cntLoop-=1)
 	{
 		Hmc5883l_GetData();
 		if(XData > XData_Max)
@@ -128,13 +132,13 @@ void Hmc5883l_Calibrate(uint8_t calSeconds, float reliablity)
 		{
 			YData_Min = YData*reliablity + YData_Min*(1-reliablity);
 		}
-		printf("%d %d %d %d \r\n", XData_Max, XData_Min, YData_Max, YData_Min);
-		Delay_ms(2);
+		//printf("%d %d %d %d \r\n", XData_Max, XData_Min, YData_Max, YData_Min);
+		Delay_ms(CALI_DELAY);
 	}
 	XData_K = 1.0;
 	YData_K = (XData_Max - XData_Min)*1.0 / (YData_Max - YData_Min);
 	XData_Offset = (XData_Max - XData_Min)/2 -XData_Max;
 	YData_Offset = (YData_Max - YData_Min)/2 -YData_Max;
-	printf("%d %d %d %d %f %f %d %d \r\n", XData_Max, XData_Min, YData_Max, YData_Min, XData_K, YData_K, XData_Offset, YData_Offset);
+	//printf("%d %d %d %d %f %f %d %d \r\n", XData_Max, XData_Min, YData_Max, YData_Min, XData_K, YData_K, XData_Offset, YData_Offset);
 }
 

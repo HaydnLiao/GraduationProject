@@ -6,10 +6,12 @@
 #include "mpu6050.h"
 #include "hmc5883l.h"
 
-#define SENSOR_DATA_TEST 0
-#define DEVIATION_TEST 0
-#define GYRO_ANGLE_TEST 0
-#define OFFSET_TEST 0
+#define SENSOR_DATA_TEST	0
+#define DEVIATION_TEST		0
+#define GYRO_ANGLE_TEST		0
+#define OFFSET_TEST			0
+
+#define SYSTEM_DELAY		5
 
 int main(void)
 {
@@ -50,7 +52,7 @@ int main(void)
 		Delay_ms(200);
 		rtnValue = Hmc5883l_Init();
 	}
-	Hmc5883l_Calibrate(20, 0.8);//calibrate 20s and new values' reliability are 80%
+	Hmc5883l_Calibrate(10, 0.8);//calibrate 10s and new values' reliability are 80%
 	LEDR_OFF;
 
 #if DEVIATION_TEST	
@@ -179,14 +181,13 @@ int main(void)
 			}
 		}
 #endif
-		Mpu6050_CalPitchRoll(0.1, 5/1000);
+		Mpu6050_CalPitchRoll(0.1, SYSTEM_DELAY/1000);
 		Hmc5883l_GetData();
-		//Hmc5883l_CalYaw(Mpu6050_Pitch, Mpu6050_Roll);
-		Hmc5883l_CalYaw(0, 0);
-		//Hmc5883l_Yaw = 0.1*Hmc5883l_Yaw + (1-0.1)*(Hmc5883l_Yaw+Mpu6050_Gyro_Z*5/1000);
+		Hmc5883l_CalYaw(Mpu6050_Pitch, Mpu6050_Roll);
+		//Hmc5883l_Yaw = 0.1*Hmc5883l_Yaw + (1-0.1)*(Hmc5883l_Yaw+Mpu6050_Gyro_Z*SYSTEM_DELAY/1000);
 		//printf("%f %f\t ", Mpu6050_Accel_Y, Mpu6050_Accel_Z);
 		printf("pitch: %f roll: %f yaw: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll, Hmc5883l_Yaw);
-		Delay_ms(5);
+		Delay_ms(SYSTEM_DELAY);
 	}
 }
 
