@@ -8,3 +8,5 @@
 ..\output\stm32f10x_dbgmcu.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\stm32f10x_dbgmcu.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\stm32f10x_dbgmcu.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\output\stm32f10x_dbgmcu.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
+..\output\stm32f10x_dbgmcu.o: ..\Libraries\FWlib\inc\misc.h
