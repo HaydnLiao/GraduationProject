@@ -4,8 +4,9 @@
 #include "systick.h"
 #include "usart1.h"
 #include "mpu6050.h"
+#include "motor.h"
 
-#define SYSTEM_PERIOD		(20)	//unit: ms
+#define SYSTEM_PERIOD		(10)	//unit: ms
 #define LED_BLINK_PERIOD	(500)	//unit: ms
 #define MPU_SAMPLE_RATE		(50)	//unit: Hz
 #define MPU_DLPF_SWITCH		(1)
@@ -23,14 +24,15 @@ int main(void)
 
 	LED0_ON;
 	LED1_ON;
-
+/**
 	rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
 		printf("Error-mpu6050-%d\r\n", rtnValue);
 		Delay_ms(200);
 		rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
-	}
+	}*/
+	Motor_Init();
 
 	while(1)
 	{
@@ -42,9 +44,12 @@ int main(void)
 		{
 			cntValue = 0;
 			LED0_TOGGLE;
-		}
+		}/**
 		Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
-		printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+		printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);*/
+
+		Motor0_Run((mdir_t)1, 1);
+
 		Delay_ms(SYSTEM_PERIOD);
 	}
 }

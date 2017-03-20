@@ -1,0 +1,230 @@
+---- PB Matches (270 in 0 files) ----
+{anonRCC_TypeDef} in stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) :   __IO uint32_t APB2RSTR;
+{anonRCC_TypeDef} in stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) :   __IO uint32_t APB1RSTR;
+{anonRCC_TypeDef} in stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) :   __IO uint32_t APB2ENR;
+{anonRCC_TypeDef} in stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) :   __IO uint32_t APB1ENR;
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1282 : #define APB1PERIPH_BASE       PERIPH_BASE
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1283 : #define APB2PERIPH_BASE       (PERIPH_BASE + 0x10000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1286 : #define TIM2_BASE             (APB1PERIPH_BASE + 0x0000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1287 : #define TIM3_BASE             (APB1PERIPH_BASE + 0x0400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1288 : #define TIM4_BASE             (APB1PERIPH_BASE + 0x0800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1289 : #define TIM5_BASE             (APB1PERIPH_BASE + 0x0C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1290 : #define TIM6_BASE             (APB1PERIPH_BASE + 0x1000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1291 : #define TIM7_BASE             (APB1PERIPH_BASE + 0x1400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1292 : #define TIM12_BASE            (APB1PERIPH_BASE + 0x1800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1293 : #define TIM13_BASE            (APB1PERIPH_BASE + 0x1C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1294 : #define TIM14_BASE            (APB1PERIPH_BASE + 0x2000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1295 : #define RTC_BASE              (APB1PERIPH_BASE + 0x2800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1296 : #define WWDG_BASE             (APB1PERIPH_BASE + 0x2C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1297 : #define IWDG_BASE             (APB1PERIPH_BASE + 0x3000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1298 : #define SPI2_BASE             (APB1PERIPH_BASE + 0x3800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1299 : #define SPI3_BASE             (APB1PERIPH_BASE + 0x3C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1300 : #define USART2_BASE           (APB1PERIPH_BASE + 0x4400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1301 : #define USART3_BASE           (APB1PERIPH_BASE + 0x4800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1302 : #define UART4_BASE            (APB1PERIPH_BASE + 0x4C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1303 : #define UART5_BASE            (APB1PERIPH_BASE + 0x5000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1304 : #define I2C1_BASE             (APB1PERIPH_BASE + 0x5400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1305 : #define I2C2_BASE             (APB1PERIPH_BASE + 0x5800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1306 : #define CAN1_BASE             (APB1PERIPH_BASE + 0x6400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1307 : #define CAN2_BASE             (APB1PERIPH_BASE + 0x6800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1308 : #define BKP_BASE              (APB1PERIPH_BASE + 0x6C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1309 : #define PWR_BASE              (APB1PERIPH_BASE + 0x7000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1310 : #define DAC_BASE              (APB1PERIPH_BASE + 0x7400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1311 : #define CEC_BASE              (APB1PERIPH_BASE + 0x7800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1313 : #define AFIO_BASE             (APB2PERIPH_BASE + 0x0000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1314 : #define EXTI_BASE             (APB2PERIPH_BASE + 0x0400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1315 : #define GPIOA_BASE            (APB2PERIPH_BASE + 0x0800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1316 : #define GPIOB_BASE            (APB2PERIPH_BASE + 0x0C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1317 : #define GPIOC_BASE            (APB2PERIPH_BASE + 0x1000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1318 : #define GPIOD_BASE            (APB2PERIPH_BASE + 0x1400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1319 : #define GPIOE_BASE            (APB2PERIPH_BASE + 0x1800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1320 : #define GPIOF_BASE            (APB2PERIPH_BASE + 0x1C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1321 : #define GPIOG_BASE            (APB2PERIPH_BASE + 0x2000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1322 : #define ADC1_BASE             (APB2PERIPH_BASE + 0x2400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1323 : #define ADC2_BASE             (APB2PERIPH_BASE + 0x2800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1324 : #define TIM1_BASE             (APB2PERIPH_BASE + 0x2C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1325 : #define SPI1_BASE             (APB2PERIPH_BASE + 0x3000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1326 : #define TIM8_BASE             (APB2PERIPH_BASE + 0x3400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1327 : #define USART1_BASE           (APB2PERIPH_BASE + 0x3800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1328 : #define ADC3_BASE             (APB2PERIPH_BASE + 0x3C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1329 : #define TIM15_BASE            (APB2PERIPH_BASE + 0x4000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1330 : #define TIM16_BASE            (APB2PERIPH_BASE + 0x4400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1331 : #define TIM17_BASE            (APB2PERIPH_BASE + 0x4800)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1332 : #define TIM9_BASE             (APB2PERIPH_BASE + 0x4C00)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1333 : #define TIM10_BASE            (APB2PERIPH_BASE + 0x5000)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1334 : #define TIM11_BASE            (APB2PERIPH_BASE + 0x5400)
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1736 : #define  RCC_CFGR_PPRE1                      ((uint32_t)0x00000700)        /*!< PRE1[2:0] bits (APB1 prescaler) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1748 : #define  RCC_CFGR_PPRE2                      ((uint32_t)0x00003800)        /*!< PRE2[2:0] bits (APB2 prescaler) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1912 : /*****************  Bit definition for RCC_APB2RSTR register  *****************/
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1913 : #define  RCC_APB2RSTR_AFIORST                ((uint32_t)0x00000001)        /*!< Alternate Function I/O reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1914 : #define  RCC_APB2RSTR_IOPARST                ((uint32_t)0x00000004)        /*!< I/O port A reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1915 : #define  RCC_APB2RSTR_IOPBRST                ((uint32_t)0x00000008)        /*!< I/O port B reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1916 : #define  RCC_APB2RSTR_IOPCRST                ((uint32_t)0x00000010)        /*!< I/O port C reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1917 : #define  RCC_APB2RSTR_IOPDRST                ((uint32_t)0x00000020)        /*!< I/O port D reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1918 : #define  RCC_APB2RSTR_ADC1RST                ((uint32_t)0x00000200)        /*!< ADC 1 interface reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1921 : #define  RCC_APB2RSTR_ADC2RST                ((uint32_t)0x00000400)        /*!< ADC 2 interface reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1924 : #define  RCC_APB2RSTR_TIM1RST                ((uint32_t)0x00000800)        /*!< TIM1 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1925 : #define  RCC_APB2RSTR_SPI1RST                ((uint32_t)0x00001000)        /*!< SPI 1 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1926 : #define  RCC_APB2RSTR_USART1RST              ((uint32_t)0x00004000)        /*!< USART1 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1929 : #define  RCC_APB2RSTR_TIM15RST               ((uint32_t)0x00010000)        /*!< TIM15 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1930 : #define  RCC_APB2RSTR_TIM16RST               ((uint32_t)0x00020000)        /*!< TIM16 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1931 : #define  RCC_APB2RSTR_TIM17RST               ((uint32_t)0x00040000)        /*!< TIM17 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1935 :  #define  RCC_APB2RSTR_IOPERST               ((uint32_t)0x00000040)        /*!< I/O port E reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1939 :  #define  RCC_APB2RSTR_IOPFRST               ((uint32_t)0x00000080)        /*!< I/O port F reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1940 :  #define  RCC_APB2RSTR_IOPGRST               ((uint32_t)0x00000100)        /*!< I/O port G reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1941 :  #define  RCC_APB2RSTR_TIM8RST               ((uint32_t)0x00002000)        /*!< TIM8 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1942 :  #define  RCC_APB2RSTR_ADC3RST               ((uint32_t)0x00008000)        /*!< ADC3 interface reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1946 :  #define  RCC_APB2RSTR_IOPFRST               ((uint32_t)0x00000080)        /*!< I/O port F reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1947 :  #define  RCC_APB2RSTR_IOPGRST               ((uint32_t)0x00000100)        /*!< I/O port G reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1951 :  #define  RCC_APB2RSTR_TIM9RST               ((uint32_t)0x00080000)         /*!< TIM9 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1952 :  #define  RCC_APB2RSTR_TIM10RST              ((uint32_t)0x00100000)         /*!< TIM10 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1953 :  #define  RCC_APB2RSTR_TIM11RST              ((uint32_t)0x00200000)         /*!< TIM11 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1956 : /*****************  Bit definition for RCC_APB1RSTR register  *****************/
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1957 : #define  RCC_APB1RSTR_TIM2RST                ((uint32_t)0x00000001)        /*!< Timer 2 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1958 : #define  RCC_APB1RSTR_TIM3RST                ((uint32_t)0x00000002)        /*!< Timer 3 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1959 : #define  RCC_APB1RSTR_WWDGRST                ((uint32_t)0x00000800)        /*!< Window Watchdog reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1960 : #define  RCC_APB1RSTR_USART2RST              ((uint32_t)0x00020000)        /*!< USART 2 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1961 : #define  RCC_APB1RSTR_I2C1RST                ((uint32_t)0x00200000)        /*!< I2C 1 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1964 : #define  RCC_APB1RSTR_CAN1RST                ((uint32_t)0x02000000)        /*!< CAN1 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1967 : #define  RCC_APB1RSTR_BKPRST                 ((uint32_t)0x08000000)        /*!< Backup interface reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1968 : #define  RCC_APB1RSTR_PWRRST                 ((uint32_t)0x10000000)        /*!< Power interface reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1971 :  #define  RCC_APB1RSTR_TIM4RST               ((uint32_t)0x00000004)        /*!< Timer 4 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1972 :  #define  RCC_APB1RSTR_SPI2RST               ((uint32_t)0x00004000)        /*!< SPI 2 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1973 :  #define  RCC_APB1RSTR_USART3RST             ((uint32_t)0x00040000)        /*!< USART 3 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1974 :  #define  RCC_APB1RSTR_I2C2RST               ((uint32_t)0x00400000)        /*!< I2C 2 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1978 :  #define  RCC_APB1RSTR_USBRST                ((uint32_t)0x00800000)        /*!< USB Device reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1982 :  #define  RCC_APB1RSTR_TIM5RST                ((uint32_t)0x00000008)        /*!< Timer 5 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1983 :  #define  RCC_APB1RSTR_TIM6RST                ((uint32_t)0x00000010)        /*!< Timer 6 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1984 :  #define  RCC_APB1RSTR_TIM7RST                ((uint32_t)0x00000020)        /*!< Timer 7 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1985 :  #define  RCC_APB1RSTR_SPI3RST                ((uint32_t)0x00008000)        /*!< SPI 3 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1986 :  #define  RCC_APB1RSTR_UART4RST               ((uint32_t)0x00080000)        /*!< UART 4 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1987 :  #define  RCC_APB1RSTR_UART5RST               ((uint32_t)0x00100000)        /*!< UART 5 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1988 :  #define  RCC_APB1RSTR_DACRST                 ((uint32_t)0x20000000)        /*!< DAC interface reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1992 :  #define  RCC_APB1RSTR_TIM6RST                ((uint32_t)0x00000010)        /*!< Timer 6 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1993 :  #define  RCC_APB1RSTR_TIM7RST                ((uint32_t)0x00000020)        /*!< Timer 7 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1994 :  #define  RCC_APB1RSTR_DACRST                 ((uint32_t)0x20000000)        /*!< DAC interface reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1995 :  #define  RCC_APB1RSTR_CECRST                 ((uint32_t)0x40000000)        /*!< CEC interface reset */ 
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 1999 :  #define  RCC_APB1RSTR_TIM5RST                ((uint32_t)0x00000008)        /*!< Timer 5 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2000 :  #define  RCC_APB1RSTR_TIM12RST               ((uint32_t)0x00000040)        /*!< TIM12 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2001 :  #define  RCC_APB1RSTR_TIM13RST               ((uint32_t)0x00000080)        /*!< TIM13 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2002 :  #define  RCC_APB1RSTR_TIM14RST               ((uint32_t)0x00000100)        /*!< TIM14 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2003 :  #define  RCC_APB1RSTR_SPI3RST                ((uint32_t)0x00008000)        /*!< SPI 3 reset */ 
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2004 :  #define  RCC_APB1RSTR_UART4RST               ((uint32_t)0x00080000)        /*!< UART 4 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2005 :  #define  RCC_APB1RSTR_UART5RST               ((uint32_t)0x00100000)        /*!< UART 5 reset */ 
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2009 :  #define  RCC_APB1RSTR_CAN2RST                ((uint32_t)0x04000000)        /*!< CAN2 reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2013 :  #define  RCC_APB1RSTR_TIM12RST               ((uint32_t)0x00000040)         /*!< TIM12 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2014 :  #define  RCC_APB1RSTR_TIM13RST               ((uint32_t)0x00000080)         /*!< TIM13 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2015 :  #define  RCC_APB1RSTR_TIM14RST               ((uint32_t)0x00000100)         /*!< TIM14 Timer reset */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2044 : /******************  Bit definition for RCC_APB2ENR register  *****************/
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2045 : #define  RCC_APB2ENR_AFIOEN                  ((uint32_t)0x00000001)         /*!< Alternate Function I/O clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2046 : #define  RCC_APB2ENR_IOPAEN                  ((uint32_t)0x00000004)         /*!< I/O port A clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2047 : #define  RCC_APB2ENR_IOPBEN                  ((uint32_t)0x00000008)         /*!< I/O port B clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2048 : #define  RCC_APB2ENR_IOPCEN                  ((uint32_t)0x00000010)         /*!< I/O port C clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2049 : #define  RCC_APB2ENR_IOPDEN                  ((uint32_t)0x00000020)         /*!< I/O port D clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2050 : #define  RCC_APB2ENR_ADC1EN                  ((uint32_t)0x00000200)         /*!< ADC 1 interface clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2053 : #define  RCC_APB2ENR_ADC2EN                  ((uint32_t)0x00000400)         /*!< ADC 2 interface clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2056 : #define  RCC_APB2ENR_TIM1EN                  ((uint32_t)0x00000800)         /*!< TIM1 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2057 : #define  RCC_APB2ENR_SPI1EN                  ((uint32_t)0x00001000)         /*!< SPI 1 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2058 : #define  RCC_APB2ENR_USART1EN                ((uint32_t)0x00004000)         /*!< USART1 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2061 : #define  RCC_APB2ENR_TIM15EN                 ((uint32_t)0x00010000)         /*!< TIM15 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2062 : #define  RCC_APB2ENR_TIM16EN                 ((uint32_t)0x00020000)         /*!< TIM16 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2063 : #define  RCC_APB2ENR_TIM17EN                 ((uint32_t)0x00040000)         /*!< TIM17 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2067 :  #define  RCC_APB2ENR_IOPEEN                 ((uint32_t)0x00000040)         /*!< I/O port E clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2071 :  #define  RCC_APB2ENR_IOPFEN                 ((uint32_t)0x00000080)         /*!< I/O port F clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2072 :  #define  RCC_APB2ENR_IOPGEN                 ((uint32_t)0x00000100)         /*!< I/O port G clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2073 :  #define  RCC_APB2ENR_TIM8EN                 ((uint32_t)0x00002000)         /*!< TIM8 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2074 :  #define  RCC_APB2ENR_ADC3EN                 ((uint32_t)0x00008000)         /*!< DMA1 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2078 :  #define  RCC_APB2ENR_IOPFEN                 ((uint32_t)0x00000080)         /*!< I/O port F clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2079 :  #define  RCC_APB2ENR_IOPGEN                 ((uint32_t)0x00000100)         /*!< I/O port G clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2083 :  #define  RCC_APB2ENR_TIM9EN                 ((uint32_t)0x00080000)         /*!< TIM9 Timer clock enable  */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2084 :  #define  RCC_APB2ENR_TIM10EN                ((uint32_t)0x00100000)         /*!< TIM10 Timer clock enable  */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2085 :  #define  RCC_APB2ENR_TIM11EN                ((uint32_t)0x00200000)         /*!< TIM11 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2088 : /*****************  Bit definition for RCC_APB1ENR register  ******************/
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2089 : #define  RCC_APB1ENR_TIM2EN                  ((uint32_t)0x00000001)        /*!< Timer 2 clock enabled*/
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2090 : #define  RCC_APB1ENR_TIM3EN                  ((uint32_t)0x00000002)        /*!< Timer 3 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2091 : #define  RCC_APB1ENR_WWDGEN                  ((uint32_t)0x00000800)        /*!< Window Watchdog clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2092 : #define  RCC_APB1ENR_USART2EN                ((uint32_t)0x00020000)        /*!< USART 2 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2093 : #define  RCC_APB1ENR_I2C1EN                  ((uint32_t)0x00200000)        /*!< I2C 1 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2096 : #define  RCC_APB1ENR_CAN1EN                  ((uint32_t)0x02000000)        /*!< CAN1 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2099 : #define  RCC_APB1ENR_BKPEN                   ((uint32_t)0x08000000)        /*!< Backup interface clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2100 : #define  RCC_APB1ENR_PWREN                   ((uint32_t)0x10000000)        /*!< Power interface clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2103 :  #define  RCC_APB1ENR_TIM4EN                 ((uint32_t)0x00000004)        /*!< Timer 4 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2104 :  #define  RCC_APB1ENR_SPI2EN                 ((uint32_t)0x00004000)        /*!< SPI 2 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2105 :  #define  RCC_APB1ENR_USART3EN               ((uint32_t)0x00040000)        /*!< USART 3 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2106 :  #define  RCC_APB1ENR_I2C2EN                 ((uint32_t)0x00400000)        /*!< I2C 2 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2110 :  #define  RCC_APB1ENR_USBEN                  ((uint32_t)0x00800000)        /*!< USB Device clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2114 :  #define  RCC_APB1ENR_TIM5EN                 ((uint32_t)0x00000008)        /*!< Timer 5 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2115 :  #define  RCC_APB1ENR_TIM6EN                 ((uint32_t)0x00000010)        /*!< Timer 6 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2116 :  #define  RCC_APB1ENR_TIM7EN                 ((uint32_t)0x00000020)        /*!< Timer 7 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2117 :  #define  RCC_APB1ENR_SPI3EN                 ((uint32_t)0x00008000)        /*!< SPI 3 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2118 :  #define  RCC_APB1ENR_UART4EN                ((uint32_t)0x00080000)        /*!< UART 4 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2119 :  #define  RCC_APB1ENR_UART5EN                ((uint32_t)0x00100000)        /*!< UART 5 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2120 :  #define  RCC_APB1ENR_DACEN                  ((uint32_t)0x20000000)        /*!< DAC interface clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2124 :  #define  RCC_APB1ENR_TIM6EN                 ((uint32_t)0x00000010)        /*!< Timer 6 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2125 :  #define  RCC_APB1ENR_TIM7EN                 ((uint32_t)0x00000020)        /*!< Timer 7 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2126 :  #define  RCC_APB1ENR_DACEN                  ((uint32_t)0x20000000)        /*!< DAC interface clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2127 :  #define  RCC_APB1ENR_CECEN                  ((uint32_t)0x40000000)        /*!< CEC interface clock enable */ 
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2131 :  #define  RCC_APB1ENR_TIM5EN                 ((uint32_t)0x00000008)        /*!< Timer 5 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2132 :  #define  RCC_APB1ENR_TIM12EN                ((uint32_t)0x00000040)         /*!< TIM12 Timer clock enable  */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2133 :  #define  RCC_APB1ENR_TIM13EN                ((uint32_t)0x00000080)         /*!< TIM13 Timer clock enable  */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2134 :  #define  RCC_APB1ENR_TIM14EN                ((uint32_t)0x00000100)         /*!< TIM14 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2135 :  #define  RCC_APB1ENR_SPI3EN                 ((uint32_t)0x00008000)        /*!< SPI 3 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2136 :  #define  RCC_APB1ENR_UART4EN                ((uint32_t)0x00080000)        /*!< UART 4 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2137 :  #define  RCC_APB1ENR_UART5EN                ((uint32_t)0x00100000)        /*!< UART 5 clock enable */ 
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2141 :  #define  RCC_APB1ENR_CAN2EN                  ((uint32_t)0x04000000)        /*!< CAN2 clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2145 :  #define  RCC_APB1ENR_TIM12EN                ((uint32_t)0x00000040)         /*!< TIM12 Timer clock enable  */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2146 :  #define  RCC_APB1ENR_TIM13EN                ((uint32_t)0x00000080)         /*!< TIM13 Timer clock enable  */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2147 :  #define  RCC_APB1ENR_TIM14EN                ((uint32_t)0x00000100)         /*!< TIM14 Timer clock enable */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2587 : #define AFIO_EVCR_PORT_PB                    ((uint8_t)0x10)               /*!< Port B selected */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2605 : #define AFIO_MAPR_USART3_REMAP_NOREMAP       ((uint32_t)0x00000000)        /*!< No remap (TX/PB10, RX/PB11, CK/PB12, CTS/PB13, RTS/PB14) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2606 : #define AFIO_MAPR_USART3_REMAP_PARTIALREMAP  ((uint32_t)0x00000010)        /*!< Partial remap (TX/PC10, RX/PC11, CK/PC12, CTS/PB13, RTS/PB14) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2614 : #define AFIO_MAPR_TIM1_REMAP_NOREMAP         ((uint32_t)0x00000000)        /*!< No remap (ETR/PA12, CH1/PA8, CH2/PA9, CH3/PA10, CH4/PA11, BKIN/PB12, CH1N/PB13, CH2N/PB14, CH3N/PB15) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2615 : #define AFIO_MAPR_TIM1_REMAP_PARTIALREMAP    ((uint32_t)0x00000040)        /*!< Partial remap (ETR/PA12, CH1/PA8, CH2/PA9, CH3/PA10, CH4/PA11, BKIN/PA6, CH1N/PA7, CH2N/PB0, CH3N/PB1) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2624 : #define AFIO_MAPR_TIM2_REMAP_PARTIALREMAP1   ((uint32_t)0x00000100)        /*!< Partial remap (CH1/ETR/PA15, CH2/PB3, CH3/PA2, CH4/PA3) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2625 : #define AFIO_MAPR_TIM2_REMAP_PARTIALREMAP2   ((uint32_t)0x00000200)        /*!< Partial remap (CH1/ETR/PA0, CH2/PA1, CH3/PB10, CH4/PB11) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2626 : #define AFIO_MAPR_TIM2_REMAP_FULLREMAP       ((uint32_t)0x00000300)        /*!< Full remap (CH1/ETR/PA15, CH2/PB3, CH3/PB10, CH4/PB11) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2633 : #define AFIO_MAPR_TIM3_REMAP_NOREMAP         ((uint32_t)0x00000000)        /*!< No remap (CH1/PA6, CH2/PA7, CH3/PB0, CH4/PB1) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2634 : #define AFIO_MAPR_TIM3_REMAP_PARTIALREMAP    ((uint32_t)0x00000800)        /*!< Partial remap (CH1/PB4, CH2/PB5, CH3/PB0, CH4/PB1) */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2645 : #define AFIO_MAPR_CAN_REMAP_REMAP2           ((uint32_t)0x00004000)        /*!< CANRX mapped to PB8, CANTX mapped to PB9 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2694 : #define AFIO_EXTICR1_EXTI0_PB                ((uint16_t)0x0001)            /*!< PB[0] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2703 : #define AFIO_EXTICR1_EXTI1_PB                ((uint16_t)0x0010)            /*!< PB[1] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2712 : #define AFIO_EXTICR1_EXTI2_PB                ((uint16_t)0x0100)            /*!< PB[2] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2721 : #define AFIO_EXTICR1_EXTI3_PB                ((uint16_t)0x1000)            /*!< PB[3] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2736 : #define AFIO_EXTICR2_EXTI4_PB                ((uint16_t)0x0001)            /*!< PB[4] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2745 : #define AFIO_EXTICR2_EXTI5_PB                ((uint16_t)0x0010)            /*!< PB[5] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2754 : #define AFIO_EXTICR2_EXTI6_PB                ((uint16_t)0x0100)            /*!< PB[6] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2763 : #define AFIO_EXTICR2_EXTI7_PB                ((uint16_t)0x1000)            /*!< PB[7] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2778 : #define AFIO_EXTICR3_EXTI8_PB                ((uint16_t)0x0001)            /*!< PB[8] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2787 : #define AFIO_EXTICR3_EXTI9_PB                ((uint16_t)0x0010)            /*!< PB[9] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2796 : #define AFIO_EXTICR3_EXTI10_PB               ((uint16_t)0x0100)            /*!< PB[10] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2805 : #define AFIO_EXTICR3_EXTI11_PB               ((uint16_t)0x1000)            /*!< PB[11] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2820 : #define AFIO_EXTICR4_EXTI12_PB               ((uint16_t)0x0001)            /*!< PB[12] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2829 : #define AFIO_EXTICR4_EXTI13_PB               ((uint16_t)0x0010)            /*!< PB[13] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2838 : #define AFIO_EXTICR4_EXTI14_PB               ((uint16_t)0x0100)            /*!< PB[14] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 2847 : #define AFIO_EXTICR4_EXTI15_PB               ((uint16_t)0x1000)            /*!< PB[15] pin */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 4982 : #define  FSMC_PCR2_PBKEN                     ((uint32_t)0x00000004)        /*!< PC Card/NAND Flash memory bank enable bit */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 5010 : #define  FSMC_PCR3_PBKEN                     ((uint32_t)0x00000004)        /*!< PC Card/NAND Flash memory bank enable bit */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 5038 : #define  FSMC_PCR4_PBKEN                     ((uint32_t)0x00000004)        /*!< PC Card/NAND Flash memory bank enable bit */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 7893 : #define ETH_MACCR_LM      ((uint32_t)0x00001000)  /* loopback mode */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8137 : #define ETH_DMABMR_FPM        ((uint32_t)0x01000000)  /* 4xPBL mode */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8138 : #define ETH_DMABMR_USP       ((uint32_t)0x00800000)  /* Use separate PBL */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8139 : #define ETH_DMABMR_RDP       ((uint32_t)0x007E0000)  /* RxDMA PBL */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8146 :   #define ETH_DMABMR_RDP_4xPBL_4Beat   ((uint32_t)0x01020000)  /* maximum number of beats to be transferred in one RxDMA transaction is 4 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8147 :   #define ETH_DMABMR_RDP_4xPBL_8Beat   ((uint32_t)0x01040000)  /* maximum number of beats to be transferred in one RxDMA transaction is 8 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8148 :   #define ETH_DMABMR_RDP_4xPBL_16Beat  ((uint32_t)0x01080000)  /* maximum number of beats to be transferred in one RxDMA transaction is 16 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8149 :   #define ETH_DMABMR_RDP_4xPBL_32Beat  ((uint32_t)0x01100000)  /* maximum number of beats to be transferred in one RxDMA transaction is 32 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8150 :   #define ETH_DMABMR_RDP_4xPBL_64Beat  ((uint32_t)0x01200000)  /* maximum number of beats to be transferred in one RxDMA transaction is 64 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8151 :   #define ETH_DMABMR_RDP_4xPBL_128Beat ((uint32_t)0x01400000)  /* maximum number of beats to be transferred in one RxDMA transaction is 128 */  
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8158 : #define ETH_DMABMR_PBL    ((uint32_t)0x00003F00)  /* Programmable burst length */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8159 :   #define ETH_DMABMR_PBL_1Beat    ((uint32_t)0x00000100)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 1 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8160 :   #define ETH_DMABMR_PBL_2Beat    ((uint32_t)0x00000200)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 2 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8161 :   #define ETH_DMABMR_PBL_4Beat    ((uint32_t)0x00000400)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 4 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8162 :   #define ETH_DMABMR_PBL_8Beat    ((uint32_t)0x00000800)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 8 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8163 :   #define ETH_DMABMR_PBL_16Beat   ((uint32_t)0x00001000)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 16 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8164 :   #define ETH_DMABMR_PBL_32Beat   ((uint32_t)0x00002000)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 32 */                
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8165 :   #define ETH_DMABMR_PBL_4xPBL_4Beat   ((uint32_t)0x01000100)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 4 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8166 :   #define ETH_DMABMR_PBL_4xPBL_8Beat   ((uint32_t)0x01000200)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 8 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8167 :   #define ETH_DMABMR_PBL_4xPBL_16Beat  ((uint32_t)0x01000400)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 16 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8168 :   #define ETH_DMABMR_PBL_4xPBL_32Beat  ((uint32_t)0x01000800)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 32 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8169 :   #define ETH_DMABMR_PBL_4xPBL_64Beat  ((uint32_t)0x01001000)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 64 */
+stm32f10x.h (D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Libraries\CMSIS) line 8170 :   #define ETH_DMABMR_PBL_4xPBL_128Beat ((uint32_t)0x01002000)  /* maximum number of beats to be transferred in one TxDMA (or both) transaction is 128 */

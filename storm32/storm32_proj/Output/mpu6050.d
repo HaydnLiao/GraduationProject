@@ -9,6 +9,7 @@
 ..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\mpu6050.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\mpu6050.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\mpu6050.o: ..\User\i2c\i2c1.h

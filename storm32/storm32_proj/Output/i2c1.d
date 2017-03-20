@@ -8,6 +8,7 @@
 ..\output\i2c1.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\i2c1.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\i2c1.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\output\i2c1.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\i2c1.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\i2c1.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\i2c1.o: ..\User\systick\systick.h

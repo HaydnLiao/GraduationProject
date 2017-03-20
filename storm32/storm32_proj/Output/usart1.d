@@ -9,5 +9,6 @@
 ..\output\usart1.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\usart1.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\usart1.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\output\usart1.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\usart1.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\usart1.o: ..\Libraries\FWlib\inc\misc.h

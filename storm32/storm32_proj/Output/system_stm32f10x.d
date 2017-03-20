@@ -7,5 +7,6 @@
 ..\output\system_stm32f10x.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\system_stm32f10x.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\system_stm32f10x.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\output\system_stm32f10x.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\system_stm32f10x.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\system_stm32f10x.o: ..\Libraries\FWlib\inc\misc.h
