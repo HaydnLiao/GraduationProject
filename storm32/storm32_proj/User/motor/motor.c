@@ -1,15 +1,26 @@
 
 #include "motor.h"
+//#include <stdio.h>
 
 void Motor_Init(void)
 {
-	sineArraySize = sizeof(pwmSin)/sizeof(uint8_t);
+	SineArray_Init();
+	Motor0_Init();
+}
+
+void SineArray_Init(void)
+{
+	uint16_t cntL = 0;
+	sineArraySize = 1000 / SYSTEM_PERIOD / MOTOR_MAX_SPEED;
+	for(cntL = 0; cntL < sineArraySize; cntL++)
+	{
+		pwmSin[cntL] = (uint16_t)( ( sin( (cntL+1)*1.0/sineArraySize*2*MATH_PI )+1 )*TIM_PERIOD/2 );
+		//printf("%d %d\r\n", sineArraySize, pwmSin[cntL]);
+	}
 	phaseShift = sineArraySize / 3;
 	currentStepA = 0;
 	currentStepB = currentStepA + phaseShift;
 	currentStepC = currentStepB + phaseShift;
-	
-	Motor0_Init();
 }
 
 void Motor0_Init(void)
@@ -62,16 +73,56 @@ void Motor0_Init(void)
 	TIM_Cmd(TIM3, ENABLE);
 }
 
-void Motor0_Run(mdir_t mdir, uint8_t speed)
+void Motor0_Run(mdir_t mdir, uint16_t speed)
 {
+	static uint16_t timeout = 0;
+	static uint16_t cntTime = 0;
 	uint8_t increment = 1;
-	//TIM_Cmd(TIM3, DISABLE);
-	TIM_SetCompare2(TIM3, (uint16_t)(pwmSin[currentStepA]));
-	currentStepA = (currentStepA + increment) % sineArraySize;
-	TIM_SetCompare3(TIM3, (uint16_t)(pwmSin[currentStepB]));
-	currentStepB = (currentStepB + increment) % sineArraySize;
-	TIM_SetCompare4(TIM3, (uint16_t)(pwmSin[currentStepC]));
-	currentStepC = (currentStepC + increment) % sineArraySize;
-	//TIM_Cmd(TIM3, ENABLE);
+
+	if(speed^timeout != 0xff)
+	{
+		timeout = ~speed;
+		cntTime = 0;
+	}
+	if(speed == 0)
+	{
+		
+	}
+	else
+	{
+		if(cntTime < timeout)
+		{
+			cntTime += 1;
+		}
+		else
+		{
+			cntTime = 0;	
+			//TIM_Cmd(TIM3, DISABLE);
+			//Motor0_Disable();
+			TIM_SetCompare2(TIM3, pwmSin[currentStepA]);
+			TIM_SetCompare3(TIM3, pwmSin[currentStepB]);
+			TIM_SetCompare4(TIM3, pwmSin[currentStepC]);
+			//Motor0_Enable();
+			//TIM_Cmd(TIM3, ENABLE);
+			currentStepA = (currentStepA + increment) % sineArraySize;
+			currentStepB = (currentStepB + increment) % sineArraySize;
+			currentStepC = (currentStepC + increment) % sineArraySize;
+		}
+	}
 }
+
+void Motor0_Disable(void)
+{
+	TIM_CCxCmd(TIM3, TIM_Channel_2, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM3, TIM_Channel_3, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM3, TIM_Channel_4, TIM_CCx_Disable);
+}
+
+void Motor0_Enable(void)
+{
+	TIM_CCxCmd(TIM3, TIM_Channel_2, TIM_CCx_Enable);
+	TIM_CCxCmd(TIM3, TIM_Channel_3, TIM_CCx_Enable);
+	TIM_CCxCmd(TIM3, TIM_Channel_4, TIM_CCx_Enable);
+}
+
 

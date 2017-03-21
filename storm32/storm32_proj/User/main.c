@@ -6,7 +6,6 @@
 #include "mpu6050.h"
 #include "motor.h"
 
-#define SYSTEM_PERIOD		(10)	//unit: ms
 #define LED_BLINK_PERIOD	(500)	//unit: ms
 #define MPU_SAMPLE_RATE		(50)	//unit: Hz
 #define MPU_DLPF_SWITCH		(1)
@@ -15,7 +14,7 @@
 
 int main(void)
 {
-	uint8_t rtnValue = 0;
+	/**uint8_t rtnValue = 0;*/
 	uint32_t cntValue = 0;
 
 	Led_Init();
@@ -48,7 +47,7 @@ int main(void)
 		Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
 		printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);*/
 
-		Motor0_Run((mdir_t)1, 1);
+		Motor0_Run((mdir_t)1, (uint16_t)(65535));
 
 		Delay_ms(SYSTEM_PERIOD);
 	}

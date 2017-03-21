@@ -2,8 +2,9 @@
 #ifndef __MPU6050_H
 #define __MPU6050_H
 
-#include <math.h>
+//#include <math.h>
 #include "stm32f10x.h"
+#include "global_math.h"
 #include "i2c1.h"
 
 #define MPU6050_ADDRESS	0x68	//mpu6050 I2C address AD0=0
@@ -46,9 +47,6 @@
 #define FACTOR_ACCEL_RANGE_4	(8192.0)
 #define FACTOR_ACCEL_RANGE_8	(4096.0)
 #define FACTOR_ACCEL_RANGE_16	(2048.0)
-
-#define MATH_PI	3.141592
-#define INTERVAL_CONSTRAINT(x, max, min)	((x)>(max)?(max):((x)<(min)?(min):(x)))
 
 static int16_t AccelData[3];	//Accelerometer data
 static int16_t TempData;		//Temperature data
