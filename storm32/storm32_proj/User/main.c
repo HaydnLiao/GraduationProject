@@ -1,5 +1,6 @@
 
 #include "stm32f10x.h"
+#include "global_math.h"
 #include "led.h"
 #include "systick.h"
 #include "usart1.h"
@@ -11,10 +12,11 @@
 #define MPU_DLPF_SWITCH		(1)
 #define MPU_ACCEL_WEIGHT	(0.1)
 #define MPU_CAL_PERIOD		(SYSTEM_PERIOD/1000)	//unit: s
+#define MPU_DEAD_BAND		(0.1)
 
 int main(void)
 {
-	/**uint8_t rtnValue = 0;*/
+	uint8_t rtnValue = 0;
 	uint32_t cntValue = 0;
 
 	Led_Init();
@@ -23,14 +25,14 @@ int main(void)
 
 	LED0_ON;
 	LED1_ON;
-/**
+
 	rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
 		printf("Error-mpu6050-%d\r\n", rtnValue);
 		Delay_ms(200);
 		rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
-	}*/
+	}
 	Motor_Init();
 
 	while(1)
@@ -43,11 +45,14 @@ int main(void)
 		{
 			cntValue = 0;
 			LED0_TOGGLE;
-		}/**
+		}
 		Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
-		printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);*/
+		printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
 
-		Motor0_Run((mdir_t)1, (uint16_t)(65535));
+		//if(fabs(Mpu6050_Pitch) > MPU_DEAD_BAND)
+		{
+			Motor0_Run((mdir_t)(Mpu6050_Pitch>0), (uint16_t)(fabs(Mpu6050_Pitch)));
+		}
 
 		Delay_ms(SYSTEM_PERIOD);
 	}

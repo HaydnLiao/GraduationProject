@@ -1,6 +1,6 @@
 
 #include "motor.h"
-//#include <stdio.h>
+#include <stdio.h>
 
 void Motor_Init(void)
 {
@@ -12,15 +12,16 @@ void SineArray_Init(void)
 {
 	uint16_t cntL = 0;
 	sineArraySize = 1000 / SYSTEM_PERIOD / MOTOR_MAX_SPEED;
-	for(cntL = 0; cntL < sineArraySize; cntL++)
-	{
-		pwmSin[cntL] = (uint16_t)( ( sin( (cntL+1)*1.0/sineArraySize*2*MATH_PI )+1 )*TIM_PERIOD/2 );
-		//printf("%d %d\r\n", sineArraySize, pwmSin[cntL]);
-	}
 	phaseShift = sineArraySize / 3;
 	currentStepA = 0;
 	currentStepB = currentStepA + phaseShift;
 	currentStepC = currentStepB + phaseShift;
+	//printf("%d %d %d %d %d\r\n", sineArraySize, phaseShift, currentStepA, currentStepB, currentStepC);
+	for(cntL = 0; cntL < sineArraySize; cntL++)
+	{
+		pwmSin[cntL] = (uint16_t)( ( sin( (cntL+1)*1.0/sineArraySize*2*MATH_PI )+1 )*TIM_PERIOD/2 );
+		//printf("[%d]%d\r\n", cntL, pwmSin[cntL]);
+	}
 }
 
 void Motor0_Init(void)
@@ -73,16 +74,16 @@ void Motor0_Init(void)
 	TIM_Cmd(TIM3, ENABLE);
 }
 
-void Motor0_Run(mdir_t mdir, uint16_t speed)
+void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 {
+	static uint16_t preSpeed = 0;
 	static uint16_t timeout = 0;
 	static uint16_t cntTime = 0;
-	uint8_t increment = 1;
 
-	if(speed^timeout != 0xff)
+	if(speed != preSpeed)
 	{
-		timeout = ~speed;
-		cntTime = 0;
+		timeout = MOTOR_MAX_SPEED * 360 / speed / sineArraySize;	//faster speed shorter timeout
+		preSpeed = speed;
 	}
 	if(speed == 0)
 	{
@@ -92,6 +93,7 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)
 	{
 		if(cntTime < timeout)
 		{
+			printf("[%d]%d %d\r\n", cntTime, timeout, speed);
 			cntTime += 1;
 		}
 		else
@@ -104,9 +106,12 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)
 			TIM_SetCompare4(TIM3, pwmSin[currentStepC]);
 			//Motor0_Enable();
 			//TIM_Cmd(TIM3, ENABLE);
-			currentStepA = (currentStepA + increment) % sineArraySize;
-			currentStepB = (currentStepB + increment) % sineArraySize;
-			currentStepC = (currentStepC + increment) % sineArraySize;
+		
+			//uint16_t has not negative so add sineArraySize
+			currentStepA = (currentStepA + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
+			currentStepB = (currentStepB + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
+			currentStepC = (currentStepC + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
+			//printf("%d %d %d\r\n", pwmSin[currentStepA], pwmSin[currentStepB], pwmSin[currentStepC]);
 		}
 	}
 }

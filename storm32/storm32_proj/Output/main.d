@@ -10,12 +10,12 @@
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\main.o: ..\Libraries\FWlib\inc\misc.h
+..\output\main.o: ..\User\global_math.h
+..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\main.o: ..\User\led\led.h
 ..\output\main.o: ..\User\systick\systick.h
 ..\output\main.o: ..\User\uart\usart1.h
 ..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\main.o: ..\User\i2c\mpu6050.h
-..\output\main.o: ..\User\global_math.h
-..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\main.o: ..\User\i2c\i2c1.h
 ..\output\main.o: ..\User\motor\motor.h

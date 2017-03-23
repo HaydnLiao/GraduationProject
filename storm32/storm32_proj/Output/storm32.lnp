@@ -29,10 +29,10 @@
 "..\output\stm32f10x_it.o"
 "..\output\led.o"
 "..\output\systick.o"
-"..\output\usart1.o"
-"..\output\mpu6050.o"
 "..\output\i2c1.o"
+"..\output\mpu6050.o"
 "..\output\motor.o"
+"..\output\usart1.o"
 --library_type=microlib --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "..\Listing\storm32.map" -o ..\Output\storm32.axf
