@@ -46,13 +46,16 @@ int main(void)
 			cntValue = 0;
 			LED0_TOGGLE;
 		}
+
 		Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
-		printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+		//printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
 
 		//if(fabs(Mpu6050_Pitch) > MPU_DEAD_BAND)
 		{
-			Motor0_Run((mdir_t)(Mpu6050_Pitch>0), (uint16_t)(fabs(Mpu6050_Pitch)));
+			Motor0_Run((mdir_t)(Mpu6050_Pitch>0), (uint16_t)(fabs(Mpu6050_Pitch)*20));
 		}
+		Motor1_Run((mdir_t)(Mpu6050_Roll>0), (uint16_t)(fabs(Mpu6050_Roll)*20));
+		//Motor2_Run((mdir_t)1, (uint16_t)(360));
 
 		Delay_ms(SYSTEM_PERIOD);
 	}

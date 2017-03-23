@@ -5,14 +5,14 @@
 #include "stm32f10x.h"
 #include "global_math.h"
 
-#define TIM_PERIOD		((uint16_t)(1024-1))	//1ms
+#define TIM_PERIOD		((uint16_t)(50-1))	//50us
 #define TIM_PRESCALER	((uint16_t)(72-1))		//72MHz/72=1MHz 1us
 //#define TIM_PERIOD		((uint16_t)(256-1))		//7.96875ms
 //#define TIM_PRESCALER	((uint16_t)(2250-1))	//72MHz/2250=32kHz 31.25us
 #define TIM_DEADTIME	((uint8_t)(0x08))
 #define MOTOR_MAX_SPEED	((uint8_t)(10))		//unit: r/s 10r/s = 3600°/s
 
-typedef enum { mdir_pos = 0, mdir_neg} mdir_t;
+typedef enum {mdir_pos = 0, mdir_neg} mdir_t;
 const static int8_t mdir_cal_factor[] = {1, -1};
 
 //const static uint8_t pwmSin[] = {128, 147, 166, 185, 203, 221, 238, 243, 248, 251, 253, 255, 255, 255, 253, 251, 248, 243, 238, 243, 248, 251, 253, 255, 255, 255, 253, 251, 248, 243, 238, 221, 203, 185, 166, 147, 128, 109, 90, 71, 53, 35, 18, 13, 8, 5, 3, 1, 1, 1, 3, 5, 8, 13, 18, 13, 8, 5, 3, 1, 1, 1, 3, 5, 8, 13, 18, 35, 53, 71, 90, 109};
@@ -25,17 +25,24 @@ static uint16_t pwmSin[SINE_ARRAY_MAX_LEN];
 
 static uint16_t sineArraySize;
 static uint16_t phaseShift;
-static uint16_t currentStepA;
-static uint16_t currentStepB;
-static uint16_t currentStepC;
+
+typedef struct
+{
+	uint16_t stepA;
+	uint16_t stepB;
+	uint16_t stepC;
+}mphase_t;
+static mphase_t mPitch, mRoll, mYaw;
 
 void Motor_Init(void);
 void SineArray_Init(void);
-void Motor0_Init(void);
+void MotorPWM_Init(void);
 void Motor0_Run(mdir_t mdir, uint16_t speed);
+/**
 void Motor0_Disable(void);
 void Motor0_Enable(void);
-
-
+*/
+void Motor1_Run(mdir_t mdir, uint16_t speed);
+void Motor2_Run(mdir_t mdir, uint16_t speed);
 #endif
 

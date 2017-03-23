@@ -284,7 +284,7 @@ I (..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
-F (..\User\main.c)(0x58D31A89)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
+F (..\User\main.c)(0x58D37268)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
@@ -303,7 +303,7 @@ I (..\User\uart\usart1.h)(0x58C7F266)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 I (..\User\i2c\mpu6050.h)(0x58D1487E)
 I (..\User\i2c\i2c1.h)(0x58C80ECA)
-I (..\User\motor\motor.h)(0x58D3197E)
+I (..\User\motor\motor.h)(0x58D371F9)
 F (..\User\stm32f10x_conf.h)(0x58CFC119)()
 F (..\User\stm32f10x_it.c)(0x58C7ECDB)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\stm32f10x_it.o --omf_browse ..\output\stm32f10x_it.crf --depend ..\output\stm32f10x_it.d)
 I (..\User\stm32f10x_it.h)(0x570B719F)
@@ -370,8 +370,8 @@ I (..\User\global_math.h)(0x58D14AC3)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
 I (..\User\i2c\i2c1.h)(0x58C80ECA)
 I (..\User\systick\systick.h)(0x58C7EEDA)
-F (..\User\motor\motor.c)(0x58D320CF)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\motor.o --omf_browse ..\output\motor.crf --depend ..\output\motor.d)
-I (..\User\motor\motor.h)(0x58D3197E)
+F (..\User\motor\motor.c)(0x58D375B8)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\motor.o --omf_browse ..\output\motor.crf --depend ..\output\motor.d)
+I (..\User\motor\motor.h)(0x58D371F9)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
