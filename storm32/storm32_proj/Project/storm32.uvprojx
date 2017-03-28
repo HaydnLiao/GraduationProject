@@ -133,7 +133,7 @@
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
             <RestoreFunctions>1</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
-            <LimitSpeedToRealTime>1</LimitSpeedToRealTime>
+            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
             <RestoreSysVw>1</RestoreSysVw>
           </Simulator>
           <Target>
@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\led;..\User\systick;..\User\uart;..\User\i2c;..\User\motor</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\led;..\User\systick;..\User\uart;..\User\i2c;..\User\motor;..\User\pid</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -606,6 +606,11 @@
               <FileName>global_math.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\User\global_math.h</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\pid\pid.c</FilePath>
             </File>
           </Files>
         </Group>

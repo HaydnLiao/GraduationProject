@@ -3,6 +3,9 @@
 //#include "stm32f10x.h"
 //#include <stdio.h>
 
+uint8_t usart1RxBuff[USART1_RX_LEN] = {0};
+volatile uint16_t cntUsart1RxBuff = 0;
+
 void Usart1_Init(uint32_t bps)
 {
 	GPIO_InitTypeDef gpioInitStruct;
@@ -39,10 +42,20 @@ void Usart1_Init(uint32_t bps)
 	USART_Cmd(USART1, ENABLE);
 }
 
+void USART1_IRQHandler(void)
+{
+	if(USART_GetITStatus(USART1, USART_IT_RXNE) == SET)
+	{
+		usart1RxBuff[cntUsart1RxBuff] = USART_ReceiveData(USART1) & 0xff;
+		cntUsart1RxBuff = (cntUsart1RxBuff+1) % USART1_RX_LEN;
+		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+	}
+}
+
 int fputc(int ch, FILE *f)
 {
 	USART_SendData(USART1, (uint8_t)ch);
-	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);		
+	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
 	return (int)ch;
 }
 

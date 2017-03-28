@@ -6,18 +6,19 @@
 #include "usart1.h"
 #include "mpu6050.h"
 #include "motor.h"
+#include "pid.h"
 
-#define LED_BLINK_PERIOD	(500)	//unit: ms
-#define MPU_SAMPLE_RATE		(50)	//unit: Hz
-#define MPU_DLPF_SWITCH		(1)
-#define MPU_ACCEL_WEIGHT	(0.1)
-#define MPU_CAL_PERIOD		(SYSTEM_PERIOD/1000)	//unit: s
-#define MPU_DEAD_BAND		(0.1)
+#define LED_BLINK_PERIOD	((uint16_t)(500))	//unit: ms
+#define MPU_SAMPLE_RATE		((uint16_t)(50))	//unit: Hz
+#define MPU_DLPF_SWITCH		((uint8_t)(1))		//1:on 0:off
+#define MPU_ACCEL_WEIGHT	((float)(0.1))
+#define MPU_CAL_PERIOD		((float)(SYSTEM_PERIOD/1000.0))		//unit: s
 
 int main(void)
 {
 	uint8_t rtnValue = 0;
 	uint32_t cntValue = 0;
+	float pidPitch = 0.0, pidRoll = 0.0;
 
 	Led_Init();
 	Systick_Init();
@@ -50,11 +51,13 @@ int main(void)
 		Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
 		//printf("pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
 
-		//if(fabs(Mpu6050_Pitch) > MPU_DEAD_BAND)
-		{
-			Motor0_Run((mdir_t)(Mpu6050_Pitch>0), (uint16_t)(fabs(Mpu6050_Pitch)*20));
-		}
-		Motor1_Run((mdir_t)(Mpu6050_Roll>0), (uint16_t)(fabs(Mpu6050_Roll)*20));
+	#if DEBUG_USART1_PID
+		Usart1StringToFloat();	//usart1-debug-pid parameters
+	#endif
+		pidPitch = PID_Motor0(Mpu6050_Pitch, 0.0);
+		Motor0_Run((mdir_t)(pidPitch > 0), (uint16_t)(fabs(pidPitch)));
+		pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
+		Motor1_Run((mdir_t)(pidRoll>0), (uint16_t)(fabs(pidRoll)));
 		//Motor2_Run((mdir_t)1, (uint16_t)(360));
 
 		Delay_ms(SYSTEM_PERIOD);

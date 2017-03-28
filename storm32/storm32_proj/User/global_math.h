@@ -4,8 +4,8 @@
 
 #include <math.h>
 
-#define SYSTEM_PERIOD		((uint8_t)(10))	//unit: ms
-#define MATH_PI				((double)(3.141592653589793))
+#define SYSTEM_PERIOD		((10))	//unit: ms
+#define MATH_PI				((3.141592653589793))
 #define INTERVAL_CONSTRAINT(x, max, min)	((x)>(max)?(max):((x)<(min)?(min):(x)))
 
 #endif
