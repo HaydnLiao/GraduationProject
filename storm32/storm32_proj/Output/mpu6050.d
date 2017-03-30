@@ -5,8 +5,9 @@
 ..\output\mpu6050.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 ..\output\mpu6050.o: ..\Libraries\CMSIS\system_stm32f10x.h
 ..\output\mpu6050.o: ..\User\stm32f10x_conf.h
-..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
+..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\mpu6050.o: ..\Libraries\CMSIS\stm32f10x.h
+..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\mpu6050.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h

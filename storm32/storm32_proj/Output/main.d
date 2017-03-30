@@ -4,8 +4,9 @@
 ..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 ..\output\main.o: ..\Libraries\CMSIS\system_stm32f10x.h
 ..\output\main.o: ..\User\stm32f10x_conf.h
-..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
+..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\main.o: ..\Libraries\CMSIS\stm32f10x.h
+..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
@@ -22,3 +23,4 @@
 ..\output\main.o: ..\User\pid\pid.h
 ..\output\main.o: ..\User\i2c\boardmpu.h
 ..\output\main.o: ..\User\i2c\i2c1.h
+..\output\main.o: ..\User\lipo\lipo.h

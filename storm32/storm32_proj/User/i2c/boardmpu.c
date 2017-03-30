@@ -147,7 +147,7 @@ uint8_t BoardMpu_GetGyroData(void)
 	BoardMpu_Gyro_Y = GyroData[1]/FACTOR_GYRO_RANGE_2000;//б└2000бу/s
 	BoardMpu_Gyro_Z = GyroData[2]/FACTOR_GYRO_RANGE_2000;//б└2000бу/s
 	//printf("%-5d %-5d %-5d\r\n", GyroData[0], GyroData[1], GyroData[2]);
-	printf("[#2]%f\r\n", BoardMpu_Gyro_Y);
+	//printf("[#2]%f\r\n", BoardMpu_Gyro_Y);
 	return 0;
 }
 

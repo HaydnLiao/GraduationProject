@@ -5,8 +5,9 @@
 ..\output\misc.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 ..\output\misc.o: ..\Libraries\CMSIS\system_stm32f10x.h
 ..\output\misc.o: ..\User\stm32f10x_conf.h
-..\output\misc.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
+..\output\misc.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\misc.o: ..\Libraries\CMSIS\stm32f10x.h
+..\output\misc.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\misc.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\misc.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\misc.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h

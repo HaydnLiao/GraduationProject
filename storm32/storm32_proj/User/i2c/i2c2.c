@@ -3,7 +3,6 @@
 
 void I2C2_Init(uint32_t clkSpeed)
 {
-	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	
 	i2c2GPIOInitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;

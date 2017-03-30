@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\led;..\User\systick;..\User\uart;..\User\i2c;..\User\motor;..\User\pid</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\led;..\User\systick;..\User\uart;..\User\i2c;..\User\motor;..\User\pid;..\User\lipo</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -621,6 +621,11 @@
               <FileName>i2c2.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\i2c\i2c2.c</FilePath>
+            </File>
+            <File>
+              <FileName>lipo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\lipo\lipo.c</FilePath>
             </File>
           </Files>
         </Group>

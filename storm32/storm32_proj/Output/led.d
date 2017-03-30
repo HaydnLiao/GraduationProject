@@ -5,8 +5,9 @@
 ..\output\led.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 ..\output\led.o: ..\Libraries\CMSIS\system_stm32f10x.h
 ..\output\led.o: ..\User\stm32f10x_conf.h
-..\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
+..\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\led.o: ..\Libraries\CMSIS\stm32f10x.h
+..\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\led.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h

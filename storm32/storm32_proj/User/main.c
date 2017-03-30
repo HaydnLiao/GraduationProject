@@ -8,8 +8,9 @@
 #include "motor.h"
 #include "pid.h"
 #include "boardmpu.h"
+#include "lipo.h"
 
-#define LED_BLINK_PERIOD	((uint16_t)(500))	//unit: ms
+#define LED_BLINK_PERIOD	((uint16_t)(250))	//unit: ms
 #define MPU_SAMPLE_RATE		((uint16_t)(50))	//unit: Hz
 #define MPU_DLPF_SWITCH		((uint8_t)(1))		//1:on 0:off
 #define MPU_ACCEL_WEIGHT	((float)(0.1))
@@ -30,6 +31,7 @@ int main(void)
 	LED0_ON;
 	LED1_ON;
 
+	Lipo_Init();
 	rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
@@ -57,12 +59,14 @@ int main(void)
 			cntValue = 0;
 			LED0_TOGGLE;
 		}
+		Lipo_CalVoltage();
+		printf("lipo:%fv\r\n", Lipo_Voltage);
 
 		//position initialization
 		if(flagInitFinish == 0)
 		{
 			Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//get pitch and roll angle
-			printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+			//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
 			if(fabs(Mpu6050_Roll) > POS_INIT_DIFF)
 			{
 				Motor1_Run((mdir_t)(Mpu6050_Roll > 0), POS_INTI_SPEED);//roll angle greather than zero, motor run clockwise
