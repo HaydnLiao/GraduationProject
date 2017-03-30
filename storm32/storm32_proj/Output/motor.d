@@ -13,4 +13,3 @@
 ..\output\motor.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\motor.o: ..\User\global_math.h
 ..\output\motor.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
-..\output\motor.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h

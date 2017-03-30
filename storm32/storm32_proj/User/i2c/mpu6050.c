@@ -15,7 +15,7 @@ float Mpu6050_Roll;		//Roll angle (degree)
 uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 {
 	uint8_t data;
-	I2C1_Init(0);//parameter is unused
+	I2C2_Init(0);//parameter is unused
 	Delay_ms(10);//must delay
 	if(Mpu6050_GetDevID())//mpu6050 WHO_AM_I register
 	{
@@ -27,57 +27,57 @@ uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 		return 2;
 	}
 	data = 0x80;//PWR_MGMT_1=0x80 reset device 
-	if(I2C1_WriteData(MPU6050_ADDRESS, PWR_MGMT_1, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, PWR_MGMT_1, &data, 1))
 	{
 		return 3;
 	}
 	Delay_ms(10);//must delay
 	data = 0x00;//after reset PWR_MGMT_1=0x40 sleep mode; PWR_MGMT_1=0x00 wake up
-	if(I2C1_WriteData(MPU6050_ADDRESS, PWR_MGMT_1, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, PWR_MGMT_1, &data, 1))
 	{
 		return 4;
 	}
 	
 	/**
 	data = 0x00;//wake-up frequency 1.25Hz and all axes in normal mode
-	if(I2C1_WriteData(MPU6050_ADDRESS, PWR_MGMT_2, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, PWR_MGMT_2, &data, 1))
 	{
 		return 5;
 	}
 	data = 0x00;//INT pin is active high and push-pull
-	if(I2C1_WriteData(MPU6050_ADDRESS, INT_PIN_CFG, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, INT_PIN_CFG, &data, 1))
 	{
 		return 6;
 	}
 	data = 0x00;//disable interrupt
-	if(I2C1_WriteData(MPU6050_ADDRESS, INT_ENABLE, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, INT_ENABLE, &data, 1))
 	{
 		return 7;
 	}
 	data = 0x00;//don't load any sensor data into FIFO buffer
-	if(I2C1_WriteData(MPU6050_ADDRESS, FIFO_EN, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, FIFO_EN, &data, 1))
 	{
 		return 8;
 	}
 	data = 0x00;//disable FIFO buffer and I2C master mode
-	if(I2C1_WriteData(MPU6050_ADDRESS, USER_CONTROL, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, USER_CONTROL, &data, 1))
 	{
 		return 9;
 	}
 	*/
 	data = 0x01;//clock source PLL with X axis gyroscope reference
-	if(I2C1_WriteData(MPU6050_ADDRESS, PWR_MGMT_1, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, PWR_MGMT_1, &data, 1))
 	{
 		return 10;
 	}
 	
 	data = 0x03<<3;//gyroscope full scale range ¡À2000¡ã/s
-	if(I2C1_WriteData(MPU6050_ADDRESS, GYRO_CONFIG, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, GYRO_CONFIG, &data, 1))
 	{
 		return 11;
 	}
 	data = 0x00;//accelerometer full scale range ¡À2g
-	if(I2C1_WriteData(MPU6050_ADDRESS, ACCEL_CONFIG, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, ACCEL_CONFIG, &data, 1))
 	{
 		return 12;
 	}
@@ -95,7 +95,7 @@ uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 
 uint8_t Mpu6050_GetDevID(void)
 {
-	if(I2C1_ReadData(MPU6050_ADDRESS, WHO_AM_I, &Mpu6050_ID, 1))
+	if(I2C2_ReadData(MPU6050_ADDRESS, WHO_AM_I, &Mpu6050_ID, 1))
 	{
 		return 1;
 	}
@@ -106,7 +106,7 @@ uint8_t Mpu6050_GetDevID(void)
 uint8_t Mpu6050_GetAccelData(void)
 {
 	uint8_t buff[6];
-	if(I2C1_ReadData(MPU6050_ADDRESS, ACCEL_XOUT_HIGH, buff, 6))
+	if(I2C2_ReadData(MPU6050_ADDRESS, ACCEL_XOUT_HIGH, buff, 6))
 	{
 		return 1;
 	}
@@ -123,7 +123,7 @@ uint8_t Mpu6050_GetAccelData(void)
 uint8_t Mpu6050_GetTempData(void)
 {
 	uint8_t buff[2];
-	if(I2C1_ReadData(MPU6050_ADDRESS, TEMP_OUT_HIGH, buff, 2))
+	if(I2C2_ReadData(MPU6050_ADDRESS, TEMP_OUT_HIGH, buff, 2))
 	{
 		return 1;
 	}
@@ -136,7 +136,7 @@ uint8_t Mpu6050_GetTempData(void)
 uint8_t Mpu6050_GetGyroData(void)
 {
 	uint8_t buff[6];
-	if(I2C1_ReadData(MPU6050_ADDRESS, GYRO_XOUT_HIGH, buff, 6))
+	if(I2C2_ReadData(MPU6050_ADDRESS, GYRO_XOUT_HIGH, buff, 6))
 	{
 		return 1;
 	}
@@ -166,7 +166,7 @@ uint8_t Mpu6050_SetSampleRate(uint16_t sampleRate, uint8_t flagDLPF)
 	}
 	divider = gyroOutputRate / sampleRate - 1;
 	//printf("divider: %d \r\n", divider);
-	if(I2C1_WriteData(MPU6050_ADDRESS, SMPRT_DIV, &divider, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, SMPRT_DIV, &divider, 1))
 	{
 		return 1;
 	}
@@ -208,7 +208,7 @@ uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 		data = 0;
 	}
 	//printf("bandWidth: %d %d \r\n", bandWidth, data);
-	if(I2C1_WriteData(MPU6050_ADDRESS, CONFIG, &data, 1))
+	if(I2C2_WriteData(MPU6050_ADDRESS, CONFIG, &data, 1))
 	{
 		return 1;
 	}

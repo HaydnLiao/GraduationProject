@@ -612,6 +612,16 @@
               <FileType>1</FileType>
               <FilePath>..\User\pid\pid.c</FilePath>
             </File>
+            <File>
+              <FileName>boardmpu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\i2c\boardmpu.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\i2c\i2c2.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

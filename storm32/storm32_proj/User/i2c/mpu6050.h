@@ -5,7 +5,7 @@
 //#include <math.h>
 #include "stm32f10x.h"
 #include "global_math.h"
-#include "i2c1.h"
+#include "i2c2.h"
 
 #define MPU6050_ADDRESS	0x68	//mpu6050 I2C address AD0=0
 #define MPU6050_ID		0x68	//mpu6050 WHO_AM_I=0x68

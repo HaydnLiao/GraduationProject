@@ -1,11 +1,12 @@
 
 #include "motor.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 void Motor_Init(void)
 {
 	SineArray_Init();
 	MotorPWM_Init();
+	MotorPos_Init();
 }
 
 void SineArray_Init(void)
@@ -121,6 +122,16 @@ void MotorPWM_Init(void)
 	TIM_Cmd(TIM4, ENABLE);
 }
 
+void MotorPos_Init(void)
+{
+	//Motor0 Pitch
+	Motor0_SetPWM();
+	//Motor1 Roll
+	Motor1_SetPWM();
+	//Motor2 Yaw
+	Motor2_SetPWM();
+}
+
 void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 {
 	static uint16_t preSpeed = 0;
@@ -134,7 +145,7 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	}
 	if(speed == 0)
 	{
-		
+		//keep
 	}
 	else
 	{
@@ -148,9 +159,7 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 			cntTime = 0;	
 			//TIM_Cmd(TIM3, DISABLE);
 			//Motor0_Disable();
-			TIM_SetCompare4(TIM3, pwmSin[mPitch.stepA]);
-			TIM_SetCompare3(TIM3, pwmSin[mPitch.stepB]);
-			TIM_SetCompare2(TIM3, pwmSin[mPitch.stepC]);
+			Motor0_SetPWM();
 			//Motor0_Enable();
 			//TIM_Cmd(TIM3, ENABLE);
 		
@@ -162,6 +171,14 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 		}
 	}
 }
+
+void Motor0_SetPWM(void)
+{
+	TIM_SetCompare4(TIM3, pwmSin[mPitch.stepA]);
+	TIM_SetCompare3(TIM3, pwmSin[mPitch.stepB]);
+	TIM_SetCompare2(TIM3, pwmSin[mPitch.stepC]);
+}
+
 /**
 void Motor0_Disable(void)
 {
@@ -191,7 +208,7 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	}
 	if(speed == 0)
 	{
-		
+		//keep
 	}
 	else
 	{
@@ -203,9 +220,7 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 		else
 		{
 			cntTime = 0;
-			TIM_SetCompare1(TIM3, pwmSin[mRoll.stepA]);
-			TIM_SetCompare4(TIM2, pwmSin[mRoll.stepB]);
-			TIM_SetCompare3(TIM2, pwmSin[mRoll.stepC]);
+			Motor1_SetPWM();
 		
 			//uint16_t has not negative so add sineArraySize
 			mRoll.stepA = (mRoll.stepA + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
@@ -214,6 +229,13 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 			//printf("%d %d %d\r\n", pwmSin[mRoll.stepA], pwmSin[mRoll.stepB], pwmSin[mRoll.stepC]);
 		}
 	}
+}
+
+void Motor1_SetPWM(void)
+{
+	TIM_SetCompare1(TIM3, pwmSin[mRoll.stepA]);
+	TIM_SetCompare4(TIM2, pwmSin[mRoll.stepB]);
+	TIM_SetCompare3(TIM2, pwmSin[mRoll.stepC]);
 }
 
 void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
@@ -229,7 +251,7 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	}
 	if(speed == 0)
 	{
-		
+		//keep
 	}
 	else
 	{
@@ -241,9 +263,7 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 		else
 		{
 			cntTime = 0;
-			TIM_SetCompare4(TIM4, pwmSin[mYaw.stepA]);
-			TIM_SetCompare2(TIM2, pwmSin[mYaw.stepB]);
-			TIM_SetCompare3(TIM4, pwmSin[mYaw.stepC]);
+			Motor2_SetPWM();
 		
 			//uint16_t has not negative so add sineArraySize
 			mYaw.stepA = (mYaw.stepA + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
@@ -252,6 +272,13 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 			//printf("%d %d %d\r\n", pwmSin[mYaw.stepA], pwmSin[mYaw.stepB], pwmSin[mYaw.stepC]);
 		}
 	}
+}
+
+void Motor2_SetPWM(void)
+{
+	TIM_SetCompare4(TIM4, pwmSin[mYaw.stepA]);
+	TIM_SetCompare2(TIM2, pwmSin[mYaw.stepB]);
+	TIM_SetCompare3(TIM4, pwmSin[mYaw.stepC]);
 }
 
 

@@ -284,7 +284,7 @@ I (..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
-F (..\User\main.c)(0x58DA64C1)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
+F (..\User\main.c)(0x58DC77E9)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
@@ -301,10 +301,12 @@ I (..\User\led\led.h)(0x58C806EF)
 I (..\User\systick\systick.h)(0x58C7EEDA)
 I (..\User\uart\usart1.h)(0x58D5D842)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdio.h)(0x54C245B8)
-I (..\User\i2c\mpu6050.h)(0x58D1487E)
-I (..\User\i2c\i2c1.h)(0x58C80ECA)
-I (..\User\motor\motor.h)(0x58D371F9)
+I (..\User\i2c\mpu6050.h)(0x58DC74D9)
+I (..\User\i2c\i2c2.h)(0x58DBBF9E)
+I (..\User\motor\motor.h)(0x58DC65C8)
 I (..\User\pid\pid.h)(0x58DA63A6)
+I (..\User\i2c\boardmpu.h)(0x58DC76FC)
+I (..\User\i2c\i2c1.h)(0x58C80ECA)
 F (..\User\stm32f10x_conf.h)(0x58CFC119)()
 F (..\User\stm32f10x_it.c)(0x58C7ECDB)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\stm32f10x_it.o --omf_browse ..\output\stm32f10x_it.crf --depend ..\output\stm32f10x_it.d)
 I (..\User\stm32f10x_it.h)(0x570B719F)
@@ -355,8 +357,8 @@ I (..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
 I (..\User\systick\systick.h)(0x58C7EEDA)
-F (..\User\i2c\mpu6050.c)(0x58CF9257)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\mpu6050.o --omf_browse ..\output\mpu6050.crf --depend ..\output\mpu6050.d)
-I (..\User\i2c\mpu6050.h)(0x58D1487E)
+F (..\User\i2c\mpu6050.c)(0x58DC74F2)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\mpu6050.o --omf_browse ..\output\mpu6050.crf --depend ..\output\mpu6050.d)
+I (..\User\i2c\mpu6050.h)(0x58DC74D9)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
@@ -369,10 +371,10 @@ I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
 I (..\User\global_math.h)(0x58D5D566)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
-I (..\User\i2c\i2c1.h)(0x58C80ECA)
+I (..\User\i2c\i2c2.h)(0x58DBBF9E)
 I (..\User\systick\systick.h)(0x58C7EEDA)
-F (..\User\motor\motor.c)(0x58D375B8)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\motor.o --omf_browse ..\output\motor.crf --depend ..\output\motor.d)
-I (..\User\motor\motor.h)(0x58D371F9)
+F (..\User\motor\motor.c)(0x58DC65D4)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\motor.o --omf_browse ..\output\motor.crf --depend ..\output\motor.d)
+I (..\User\motor\motor.h)(0x58DC65C8)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
@@ -385,7 +387,6 @@ I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
 I (..\User\global_math.h)(0x58D5D566)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
-I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 F (..\User\uart\usart1.c)(0x58D61AB4)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\usart1.o --omf_browse ..\output\usart1.crf --depend ..\output\usart1.d)
 I (..\User\uart\usart1.h)(0x58D5D842)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdio.h)(0x54C245B8)
@@ -416,3 +417,35 @@ I (..\User\global_math.h)(0x58D5D566)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
 I (..\User\uart\usart1.h)(0x58D5D842)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdio.h)(0x54C245B8)
+F (..\User\i2c\boardmpu.c)(0x58DC77FA)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\boardmpu.o --omf_browse ..\output\boardmpu.crf --depend ..\output\boardmpu.d)
+I (..\User\i2c\boardmpu.h)(0x58DC76FC)
+I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
+I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
+I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
+I (..\Libraries\CMSIS\system_stm32f10x.h)(0x570B719F)
+I (..\User\stm32f10x_conf.h)(0x58CFC119)
+I (..\Libraries\FWlib\inc\stm32f10x_gpio.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
+I (..\User\global_math.h)(0x58D5D566)
+I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\math.h)(0x54C245B8)
+I (..\User\i2c\i2c1.h)(0x58C80ECA)
+I (..\User\systick\systick.h)(0x58C7EEDA)
+I (..\User\i2c\mpu6050.h)(0x58DC74D9)
+I (..\User\i2c\i2c2.h)(0x58DBBF9E)
+I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdio.h)(0x54C245B8)
+F (..\User\i2c\i2c2.c)(0x58DBBF8A)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\i2c2.o --omf_browse ..\output\i2c2.crf --depend ..\output\i2c2.d)
+I (..\User\i2c\i2c2.h)(0x58DBBF9E)
+I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
+I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
+I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
+I (..\Libraries\CMSIS\system_stm32f10x.h)(0x570B719F)
+I (..\User\stm32f10x_conf.h)(0x58CFC119)
+I (..\Libraries\FWlib\inc\stm32f10x_gpio.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
+I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
+I (..\User\systick\systick.h)(0x58C7EEDA)

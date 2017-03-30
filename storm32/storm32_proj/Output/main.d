@@ -17,6 +17,8 @@
 ..\output\main.o: ..\User\uart\usart1.h
 ..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\main.o: ..\User\i2c\mpu6050.h
-..\output\main.o: ..\User\i2c\i2c1.h
+..\output\main.o: ..\User\i2c\i2c2.h
 ..\output\main.o: ..\User\motor\motor.h
 ..\output\main.o: ..\User\pid\pid.h
+..\output\main.o: ..\User\i2c\boardmpu.h
+..\output\main.o: ..\User\i2c\i2c1.h
