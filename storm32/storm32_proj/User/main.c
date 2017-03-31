@@ -10,18 +10,21 @@
 #include "boardmpu.h"
 #include "lipo.h"
 
-#define LED_BLINK_PERIOD	((uint16_t)(250))	//unit: ms
+#define GREEN_BLINK_PERIOD	((uint16_t)(250))	//unit: ms
+#define RED_BLINK_PERIOD	((uint16_t)(100))	//unit: ms
 #define MPU_SAMPLE_RATE		((uint16_t)(50))	//unit: Hz
 #define MPU_DLPF_SWITCH		((uint8_t)(1))		//1:on 0:off
 #define MPU_ACCEL_WEIGHT	((float)(0.1))
 #define MPU_CAL_PERIOD		((float)(SYSTEM_PERIOD/1000.0))		//unit: s
 #define POS_INIT_DIFF		((float)(1.0))		//unit: degree
 #define POS_INTI_SPEED		((uint16_t)(10))	//unit: degree per second
+#define LIPO_CAL_WEIGHT		((float)(0.8))//old data weight
+#define LIPO_LOW_VOLTAGE	((float)(6.0))//unit: v
 
 int main(void)
 {
 	uint8_t rtnValue = 0, flagInitFinish = 0;
-	uint32_t cntValue = 0;
+	uint32_t cntGreen = 0, cntRed = 0;
 	float pidPitch = 0.0, pidRoll = 0.0;
 
 	Led_Init();
@@ -50,17 +53,23 @@ int main(void)
 
 	while(1)
 	{
-		if(cntValue < LED_BLINK_PERIOD/SYSTEM_PERIOD/(2-flagInitFinish%2))//position initialization
+		cntGreen = (cntGreen+1) % (GREEN_BLINK_PERIOD/SYSTEM_PERIOD/(2-flagInitFinish%2));//position initialization
+		cntRed = (cntRed+1) % (RED_BLINK_PERIOD/SYSTEM_PERIOD);
+		if(cntGreen == 0)
 		{
-			cntValue += 1;
-		}
-		else
-		{
-			cntValue = 0;
 			LED0_TOGGLE;
 		}
-		Lipo_CalVoltage();
-		printf("lipo:%fv\r\n", Lipo_Voltage);
+		if(Lipo_Voltage > LIPO_LOW_VOLTAGE)
+		{
+			LED1_ON;
+		}
+		else if(cntRed == 0)
+		{
+			LED1_TOGGLE;
+		}
+
+		Lipo_CalVoltage(LIPO_CAL_WEIGHT);
+		//printf("lipo:%fv\r\n", Lipo_Voltage);
 
 		//position initialization
 		if(flagInitFinish == 0)

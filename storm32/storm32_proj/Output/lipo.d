@@ -12,3 +12,4 @@
 ..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\lipo.o: ..\Libraries\FWlib\inc\misc.h
+..\output\lipo.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h

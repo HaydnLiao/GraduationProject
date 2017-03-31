@@ -10,6 +10,6 @@ extern float Lipo_Voltage;
 void Lipo_Init(void);
 void LipoGPIO_Init(void);
 void LipoADC_Init(void);
-void Lipo_CalVoltage(void);
+void Lipo_CalVoltage(float calWeight);
 
 #endif
