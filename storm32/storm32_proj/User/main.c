@@ -16,8 +16,8 @@
 #define MPU_DLPF_SWITCH		((uint8_t)(1))		//1:on 0:off
 #define MPU_ACCEL_WEIGHT	((float)(0.1))
 #define MPU_CAL_PERIOD		((float)(SYSTEM_PERIOD/1000.0))		//unit: s
-#define POS_INIT_DIFF		((float)(1.0))		//unit: degree
-#define POS_INTI_SPEED		((uint16_t)(10))	//unit: degree per second
+#define POS_INIT_DIFF		((float)(3.0))		//unit: degree
+#define POS_INTI_SPEED		((uint16_t)(20))	//unit: degree per second
 #define LIPO_CAL_WEIGHT		((float)(0.8))//old data weight
 #define LIPO_LOW_VOLTAGE	((float)(6.0))//unit: v
 
@@ -54,7 +54,6 @@ int main(void)
 	while(1)
 	{
 		cntGreen = (cntGreen+1) % (GREEN_BLINK_PERIOD/SYSTEM_PERIOD/(2-flagInitFinish%2));//position initialization
-		cntRed = (cntRed+1) % (RED_BLINK_PERIOD/SYSTEM_PERIOD);
 		if(cntGreen == 0)
 		{
 			LED0_TOGGLE;
@@ -63,9 +62,13 @@ int main(void)
 		{
 			LED1_ON;
 		}
-		else if(cntRed == 0)
+		else
 		{
-			LED1_TOGGLE;
+			cntRed = (cntRed+1) % (RED_BLINK_PERIOD/SYSTEM_PERIOD);
+			if(cntRed == 0)
+			{
+				LED1_TOGGLE;
+			}
 		}
 
 		Lipo_CalVoltage(LIPO_CAL_WEIGHT);
@@ -75,7 +78,7 @@ int main(void)
 		if(flagInitFinish == 0)
 		{
 			Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//get pitch and roll angle
-			//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+			printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
 			if(fabs(Mpu6050_Roll) > POS_INIT_DIFF)
 			{
 				Motor1_Run((mdir_t)(Mpu6050_Roll > 0), POS_INTI_SPEED);//roll angle greather than zero, motor run clockwise
@@ -93,6 +96,7 @@ int main(void)
 		{
 			Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
 			//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+			printf("[debug]pitch: %f\t", Mpu6050_Pitch);
 			BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
 			//printf("[#2]pitch: %f roll: %f\r\n", BoardMpu_Pitch, BoardMpu_Roll);
 
@@ -101,8 +105,8 @@ int main(void)
 		#endif
 			pidPitch = PID_Motor0(Mpu6050_Pitch, 0.0);
 			Motor0_Run((mdir_t)(pidPitch > 0), (uint16_t)(fabs(pidPitch)));//pitch angle greather than zero, motor run clockwise
-			pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
-			Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
+			//pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
+			//Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
 			//Motor2_Run((mdir_t)1, (uint16_t)(360));
 		}
 		Delay_ms(SYSTEM_PERIOD);

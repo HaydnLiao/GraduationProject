@@ -1,19 +1,20 @@
 
 #include "pid.h"
 #include "usart1.h"
-#include "stdio.h"
 
-float PID_Motor0(float actAngle, float expAngle)		//actual angle and expected angle; return speed
+float PID_Motor0(float actAngle, float expAngle)//actual angle and expected angle; return speed
 {
-	static float expAngle_old = 0, et_pre = 0, et_sum = 0, et_diff = 0;
-	float et = 0, dpid = 0;
+	static uint16_t cntICal = 0;
+	static float expAngle_old = 0.0, et_pre = 0.0, et_sum = 0.0, et_diff = 0.0;
+	static float dP = 0.0, dI = 0.0, dD = 0.0;
+	float et = 0.0, dpid = 0.0;
 
 #if DEBUG_USART1_PID
 	//usart1-debug-pid parameters
 	pitchPPara = debugPara[0];
 	pitchIPara = debugPara[1];
 	pitchDPara = debugPara[2];
-	//printf("[0]P:%f\tI:%f\tD:%f\r\n", pitchPPara, pitchIPara, pitchDPara);
+	printf("[0]P:%f I:%f D:%f \t", pitchPPara, pitchIPara, pitchDPara);
 #endif
 
 	if(expAngle_old != expAngle)
@@ -21,21 +22,36 @@ float PID_Motor0(float actAngle, float expAngle)		//actual angle and expected an
 		expAngle_old = expAngle;
 		et_pre = et_sum = et_diff = 0;
 	}
-	et = actAngle - expAngle;
-	et_sum += et;
-	et_diff = et - et_pre;
-	dpid = pitchPPara * et + pitchIPara * et_sum + pitchDPara * et_diff;
-	//deadband
-	
-	//limit
 
+	et = actAngle - expAngle;
+	if(fabs(et) < ET_CAL_DEADBAND)
+	{
+		et = 0.0;
+	}
+	dP = pitchPPara * et;
+	//dP = INTERVAL_CONSTRAINT(dP, PITCH_P_UPPER, PITCH_P_LOWER);//proportion limit
+
+	cntICal = (cntICal+1) % I_CAL_PERIOD;
+	if(cntICal == 0)
+	{
+		et_sum += et;
+		dI = pitchIPara * et_sum;
+		dI = INTERVAL_CONSTRAINT(dI, PITCH_I_UPPER, PITCH_I_LOWER);//integration limit
+	}
+
+	et_diff = et - et_pre;
+	dD = pitchDPara * et_diff;
+
+	dpid = dP + dI + dD;
+	//dpid = INTERVAL_CONSTRAINT(dpid, PITCH_RES_UPPER, PITCH_RES_LOWER);//result limit
+	printf("et:%f et_sum:%f et_diff:%f dpid:%f \r\n", et, et_sum, et_diff, dpid);
 	return dpid;
 }
 
 float PID_Motor1(float actAngle, float expAngle)		//actual angle and expected angle; return speed
 {
-	static float expAngle_old = 0, et_pre = 0, et_sum = 0, et_diff = 0;
-	float et = 0, dpid = 0;
+	static float expAngle_old = 0.0, et_pre = 0.0, et_sum = 0.0, et_diff = 0.0;
+	float et = 0.0, dpid = 0.0;
 
 #if DEBUG_USART1_PID
 	//usart1-debug-pid parameters
@@ -51,12 +67,15 @@ float PID_Motor1(float actAngle, float expAngle)		//actual angle and expected an
 		et_pre = et_sum = et_diff = 0;
 	}
 	et = actAngle - expAngle;
+	//proportion limit
+	
 	et_sum += et;
+	//integral limit
+	
 	et_diff = et - et_pre;
 	dpid = rollPPara * et + rollIPara * et_sum + rollDPara * et_diff;
-	//deadband
+	//result limit
 	
-	//limit
 
 	return dpid;
 }
@@ -80,12 +99,15 @@ float PID_Motor2(float actAngle, float expAngle)		//actual angle and expected an
 		et_pre = et_sum = et_diff = 0;
 	}
 	et = actAngle - expAngle;
+	//proportion limit
+	
 	et_sum += et;
+	//integral limit
+	
 	et_diff = et - et_pre;
 	dpid = yawPPara * et + yawIPara * et_sum + yawDPara * et_diff;
-	//deadband
+	//result limit
 	
-	//limit
 
 	return dpid;
 }

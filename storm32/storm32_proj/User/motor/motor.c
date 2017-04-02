@@ -138,6 +138,11 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	static uint16_t timeout = 0;
 	static uint16_t cntTime = 0;
 
+	if(speed <= MOTOR_RUN_LIMIT)
+	{
+		speed = 0;
+	}
+
 	if(speed != preSpeed)
 	{
 		timeout = MOTOR_MAX_SPEED * 360 / speed / sineArraySize;	//faster speed shorter timeout
@@ -201,6 +206,11 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	static uint16_t timeout = 0;
 	static uint16_t cntTime = 0;
 
+	if(speed <= MOTOR_RUN_LIMIT)
+	{
+		speed = 0;
+	}
+
 	if(speed != preSpeed)
 	{
 		timeout = MOTOR_MAX_SPEED * 360 / speed / sineArraySize;	//faster speed shorter timeout
@@ -243,6 +253,11 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	static uint16_t preSpeed = 0;
 	static uint16_t timeout = 0;
 	static uint16_t cntTime = 0;
+	
+	if(speed <= MOTOR_RUN_LIMIT)
+	{
+		speed = 0;
+	}
 
 	if(speed != preSpeed)
 	{
