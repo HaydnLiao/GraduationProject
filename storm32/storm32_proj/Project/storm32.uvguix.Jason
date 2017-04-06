@@ -83,10 +83,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>45</Top>
+        <Top>75</Top>
         <Left>891</Left>
         <Right>1500</Right>
-        <Bottom>746</Bottom>
+        <Bottom>776</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>

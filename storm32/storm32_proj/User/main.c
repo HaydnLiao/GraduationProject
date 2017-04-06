@@ -14,12 +14,12 @@
 #define RED_BLINK_PERIOD	((uint16_t)(100))	//unit: ms
 #define MPU_SAMPLE_RATE		((uint16_t)(50))	//unit: Hz
 #define MPU_DLPF_SWITCH		((uint8_t)(1))		//1:on 0:off
-#define MPU_ACCEL_WEIGHT	((float)(0.1))
+#define MPU_ACCEL_WEIGHT	((float)(0.05))
 #define MPU_CAL_PERIOD		((float)(SYSTEM_PERIOD/1000.0))		//unit: s
 #define POS_INIT_DIFF		((float)(3.0))		//unit: degree
-#define POS_INTI_SPEED		((uint16_t)(20))	//unit: degree per second
+#define POS_INTI_SPEED		((uint16_t)(3))	//unit: degree per period
 #define LIPO_CAL_WEIGHT		((float)(0.8))//old data weight
-#define LIPO_LOW_VOLTAGE	((float)(6.0))//unit: v
+#define LIPO_LOW_VOLTAGE	((float)(10.5))//unit: v
 
 int main(void)
 {
@@ -89,6 +89,8 @@ int main(void)
 			}
 			else
 			{
+				Motor0_Run((mdir_t)(0), 0);
+				Motor1_Run((mdir_t)(0), 0);
 				flagInitFinish = 1;
 			}
 		}
@@ -96,17 +98,23 @@ int main(void)
 		{
 			Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
 			//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
-			printf("[debug]pitch: %f\t", Mpu6050_Pitch);
 			BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
 			//printf("[#2]pitch: %f roll: %f\r\n", BoardMpu_Pitch, BoardMpu_Roll);
 
 		#if DEBUG_USART1_PID
 			Usart1StringToFloat();	//usart1-debug-pid parameters
 		#endif
-			pidPitch = PID_Motor0(Mpu6050_Pitch, 0.0);
-			Motor0_Run((mdir_t)(pidPitch > 0), (uint16_t)(fabs(pidPitch)));//pitch angle greather than zero, motor run clockwise
-			//pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
-			//Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
+			//if(fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
+			{
+				pidPitch = PID_Motor0(Mpu6050_Pitch, 0.0);
+				Motor0_Run((mdir_t)(pidPitch > 0), (uint16_t)(fabs(pidPitch)));//pitch angle greather than zero, motor run clockwise
+			}
+			/**else
+			{
+				Motor0_Run((mdir_t)(0), 0);
+			}*/
+			pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
+			Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
 			//Motor2_Run((mdir_t)1, (uint16_t)(360));
 		}
 		Delay_ms(SYSTEM_PERIOD);

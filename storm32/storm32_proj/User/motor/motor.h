@@ -10,8 +10,8 @@
 //#define TIM_PERIOD		((uint16_t)(256-1))		//7.96875ms
 //#define TIM_PRESCALER	((uint16_t)(2250-1))	//72MHz/2250=32kHz 31.25us
 #define TIM_DEADTIME	((uint8_t)(0x08))
-#define MOTOR_MAX_SPEED	((uint8_t)(10))		//unit: r/s 10r/s = 3600°/s
-#define MOTOR_RUN_LIMIT	((uint16_t)(1))		//unit: °/s
+#define MOTOR_MAX_SPEED	((uint8_t)(2))		//unit: r/s 1r/s = 360°/s
+#define MOTOR_RUN_LIMIT	((uint16_t)(5))		//unit: °/s
 
 typedef enum {mdir_anticlk = 0, mdir_clkwise} mdir_t;
 const static int8_t mdir_cal_factor[] = {-1, 1};

@@ -5,12 +5,12 @@
 #include "stm32f10x.h"
 #include "global_math.h"
 
-static float pitchPPara = 0.0;
+static float pitchPPara = 1.0;
 static float pitchIPara = 0.0;
-static float pitchDPara = 0.0;
-static float rollPPara = 0.0;
+static float pitchDPara = 8.0;
+static float rollPPara = 1.0;
 static float rollIPara = 0.0;
-static float rollDPara = 0.0;
+static float rollDPara = 8.0;
 static float yawPPara = 0.0;
 static float yawIPara = 0.0;
 static float yawDPara = 0.0;
@@ -49,7 +49,7 @@ static float yawDPara = 0.0;
 #define YAW_RES_LOWER		((float)(0.0))
 
 #define I_CAL_PERIOD		((uint8_t)(10))
-#define ET_CAL_DEADBAND		((float)(2.0))
+#define P_CAL_DEADBAND		((float)(2.0))
 
 #define DEBUG_USART1_PID	1
 #define DEBUG_PARA_LEN		9

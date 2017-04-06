@@ -4,7 +4,7 @@
 
 #include <math.h>
 
-#define SYSTEM_PERIOD		((10))	//unit: ms
+#define SYSTEM_PERIOD		((5))	//unit: ms
 #define MATH_PI				((3.141592653589793))
 #define INTERVAL_CONSTRAINT(x, max, min)	((x)>(max)?(max):((x)<(min)?(min):(x)))
 
