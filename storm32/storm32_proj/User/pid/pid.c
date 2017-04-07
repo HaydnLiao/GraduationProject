@@ -4,7 +4,6 @@
 
 float PID_Motor0(float actAngle, float expAngle)//actual angle and expected angle; return speed
 {
-
 	static uint16_t cntICal = 0;
 	static float expAngle_old = 0.0, et = 0.0, et_pre = 0.0, et_sum = 0.0, et_diff = 0.0, dpid = 0.0;
 	static float dP = 0.0, dI = 0.0, dD = 0.0;
@@ -60,7 +59,7 @@ float PID_Motor0(float actAngle, float expAngle)//actual angle and expected angl
 	}
 	et_sum += et;
 	dI = indexICal * pitchIPara * et_sum;
-	dI = INTERVAL_CONSTRAINT(dI, PITCH_I_UPPER, PITCH_I_LOWER);//integration limit
+	//dI = INTERVAL_CONSTRAINT(dI, PITCH_I_UPPER, PITCH_I_LOWER);//integration limit
 
 	et_diff = et - et_pre;
 	et_pre = et;
@@ -95,7 +94,7 @@ float PID_Motor0(float actAngle, float expAngle)//actual angle and expected angl
 */
 	//dpid = INTERVAL_CONSTRAINT(dpid, PITCH_RES_UPPER, PITCH_RES_LOWER);//result limit
 	//printf("et:%f dP:%f dI:%f dD:%f dpid:%f \r\n", et, dP, dI, dD, dpid);
-	printf("%f %f \r\n", et, dpid);
+	//printf("%f,%f\r\n", et, dpid);
 	return dpid;
 }
 
@@ -120,7 +119,6 @@ float PID_Motor1(float actAngle, float expAngle)		//actual angle and expected an
 	}
 
 	et = actAngle - expAngle;
-
 	dP = rollPPara * et;
 
 	if(fabs(et) >= 60)
@@ -137,7 +135,6 @@ float PID_Motor1(float actAngle, float expAngle)		//actual angle and expected an
 	}
 	et_sum += et;
 	dI = indexICal * rollIPara * et_sum;
-	dI = INTERVAL_CONSTRAINT(dI, PITCH_I_UPPER, PITCH_I_LOWER);//integration limit
 
 	et_diff = et - et_pre;
 	et_pre = et;
@@ -150,15 +147,16 @@ float PID_Motor1(float actAngle, float expAngle)		//actual angle and expected an
 
 float PID_Motor2(float actAngle, float expAngle)		//actual angle and expected angle; return speed
 {
-	static float expAngle_old = 0, et_pre = 0, et_sum = 0, et_diff = 0;
-	float et = 0, dpid = 0;
+	static float expAngle_old = 0.0, et = 0.0, et_pre = 0.0, et_sum = 0.0, et_diff = 0.0, dpid = 0.0;
+	static float dP = 0.0, dI = 0.0, dD = 0.0;
+	static float indexICal = 0.0;
 
 #if DEBUG_USART1_PID
 	//usart1-debug-pid parameters
 	yawPPara = debugPara[6];
 	yawIPara = debugPara[7];
 	yawDPara = debugPara[8];
-	//printf("[2]P:%f\tI:%f\tD:%f\r\n", yawPPara, yawIPara, yawDPara);
+	//printf("%f,%f,%f,", yawPPara, yawIPara, yawDPara);
 #endif
 
 	if(expAngle_old != expAngle)
@@ -166,16 +164,30 @@ float PID_Motor2(float actAngle, float expAngle)		//actual angle and expected an
 		expAngle_old = expAngle;
 		et_pre = et_sum = et_diff = 0;
 	}
+
 	et = actAngle - expAngle;
-	//proportion limit
-	
+	dP = yawPPara * et;
+
+	if(fabs(et) >= 60)
+	{
+		indexICal = 0.0;
+	}
+	else if(fabs(et) <= 30)
+	{
+		indexICal = 1.0;
+	}
+	else
+	{
+		indexICal = 1 - ((fabs(et)+30)/60);
+	}
 	et_sum += et;
-	//integral limit
-	
+	dI = yawIPara * et_sum;
+
 	et_diff = et - et_pre;
-	dpid = yawPPara * et + yawIPara * et_sum + yawDPara * et_diff;
-	//result limit
-	
+	et_pre = et;
+	dD = yawDPara * et_diff;
+
+	dpid = dP + dI + dD;
 
 	return dpid;
 }
@@ -188,7 +200,7 @@ void Usart1StringToFloat(void)
 	for(; cntU < cntUsart1RxBuff && cntD < DEBUG_PARA_LEN; cntU++)
 	{
 		tmpData = usart1RxBuff[cntU];
-		if(tmpData == '\r' || tmpData == '\n')
+		if(tmpData == '\r' || tmpData == '\n' || tmpData == '\0')
 		{
 			cntUsart1RxBuff = 0;
 			break;

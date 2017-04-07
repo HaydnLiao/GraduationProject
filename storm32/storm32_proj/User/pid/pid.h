@@ -11,9 +11,9 @@ static float pitchDPara = 8.0;
 static float rollPPara = 1.0;
 static float rollIPara = 0.0;
 static float rollDPara = 8.0;
-static float yawPPara = 0.0;
+static float yawPPara = 1.0;
 static float yawIPara = 0.0;
-static float yawDPara = 0.0;
+static float yawDPara = 8.0;
 
 #define PITCH_P_PARAM		((float)(1.0))
 #define PITCH_I_PARAM		((float)(0.0))

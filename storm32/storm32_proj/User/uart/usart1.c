@@ -48,7 +48,7 @@ void USART1_IRQHandler(void)
 	{
 		usart1RxBuff[cntUsart1RxBuff] = USART_ReceiveData(USART1) & 0xff;
 		cntUsart1RxBuff = (cntUsart1RxBuff+1) % USART1_RX_LEN;
-		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+		//USART_ClearITPendingBit(USART1, USART_IT_RXNE);
 	}
 }
 

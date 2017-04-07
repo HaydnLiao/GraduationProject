@@ -25,7 +25,10 @@ int main(void)
 {
 	uint8_t rtnValue = 0, flagInitFinish = 0;
 	uint32_t cntGreen = 0, cntRed = 0;
-	float pidPitch = 0.0, pidRoll = 0.0;
+	float pidPitch = 0.0, pidRoll = 0.0, pidYaw = 0.0;
+	float yawBoard = 0.0, yawMpu = 0.0;
+	uint32_t cntCalibate = 0;
+	float yawBiasBoard = 0.0, yawBiasMpu = 0.0;
 
 	Led_Init();
 	Systick_Init();
@@ -91,6 +94,15 @@ int main(void)
 			{
 				Motor0_Run((mdir_t)(0), 0);
 				Motor1_Run((mdir_t)(0), 0);
+				for(cntCalibate = 0.0; cntCalibate < 1000; cntCalibate++)
+				{
+					Mpu6050_GetGyroData();
+					BoardMpu_GetGyroData();
+					yawBiasMpu +=  Mpu6050_Gyro_Z;
+					yawBiasBoard += BoardMpu_Gyro_Z;
+				}
+				yawBiasMpu /= 1000;
+				yawBiasBoard /= 1000;
 				flagInitFinish = 1;
 			}
 		}
@@ -115,7 +127,13 @@ int main(void)
 			}*/
 			pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
 			Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
-			//Motor2_Run((mdir_t)1, (uint16_t)(360));
+
+			yawMpu +=  (Mpu6050_Gyro_Z-yawBiasMpu)*SYSTEM_PERIOD/1000;
+			yawBoard += (BoardMpu_Gyro_Z-yawBiasBoard)*SYSTEM_PERIOD/1000;
+			pidYaw = PID_Motor2(BoardMpu_Gyro_Z, 0.0);
+			Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw angular rete greather than zero, motor run clockwise
+			printf("%f,%f,%f,%f,%f\r\n", yawBiasMpu, yawBiasBoard, yawMpu, yawBoard, pidYaw);
+			//yawBoard -= pidYaw;
 		}
 		Delay_ms(SYSTEM_PERIOD);
 	}
