@@ -24,3 +24,4 @@
 ..\output\main.o: ..\User\i2c\boardmpu.h
 ..\output\main.o: ..\User\i2c\i2c1.h
 ..\output\main.o: ..\User\lipo\lipo.h
+..\output\main.o: ..\User\buzzer\buzzer.h

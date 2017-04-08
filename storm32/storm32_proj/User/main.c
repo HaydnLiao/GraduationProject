@@ -9,6 +9,7 @@
 #include "pid.h"
 #include "boardmpu.h"
 #include "lipo.h"
+#include "buzzer.h"
 
 #define GREEN_BLINK_PERIOD	((uint16_t)(250))	//unit: ms
 #define RED_BLINK_PERIOD	((uint16_t)(100))	//unit: ms
@@ -38,6 +39,7 @@ int main(void)
 	LED1_ON;
 
 	Lipo_Init();
+	Buzzer_Init();
 	rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
@@ -64,6 +66,7 @@ int main(void)
 		if(Lipo_Voltage > LIPO_LOW_VOLTAGE)
 		{
 			LED1_ON;
+			BUZZER_OFF;
 		}
 		else
 		{
@@ -71,6 +74,7 @@ int main(void)
 			if(cntRed == 0)
 			{
 				LED1_TOGGLE;
+				BUZZER_TOGGLE;
 			}
 		}
 
