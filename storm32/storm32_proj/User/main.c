@@ -23,6 +23,8 @@
 #define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.7*0.9*s 2s->6.66v 3s->9.99v
 #define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
 #define MPU_CALI_TIMES		((uint16_t)(1000))//about 5s
+#define MPU_GYPO_Z_BOUND	((float)(1.0))
+
 //#define MPU_YAW_BIAS_MAX	((float)(1.0))
 
 #define STEP_ONE_POS_INIT	((uint8_t)(0))
@@ -35,7 +37,7 @@ int main(void)
 	uint32_t cntGreen = 0, cntRed = 0, cntCalibrate = 0;
 	float pidPitch = 0.0, pidRoll = 0.0, pidYaw = 0.0;
 	float yawBoard = 0.0, yawMpu = 0.0;
-	float yawBiasBoard = 0.0, yawBiasMpu = 0.0;
+	float gypoZBiasBoard = 0.0, gypoZBiasMpu = 0.0;
 	float gypoMedianBoard = 0.0;
 
 	stepRun = STEP_THREE_MAIN;	//Debug
@@ -120,22 +122,22 @@ int main(void)
 				{
 					Mpu6050_GetGyroData();
 					BoardMpu_GetGyroData();
-					yawBiasMpu +=  Mpu6050_Gyro_Z;
-					yawBiasBoard += BoardMpu_Gyro_Z;
+					gypoZBiasMpu +=  Mpu6050_Gyro_Z;
+					gypoZBiasBoard += BoardMpu_Gyro_Z;
 					
 				}
 				else
 				{
-					yawBiasMpu /= MPU_CALI_TIMES;
-					yawBiasBoard /= MPU_CALI_TIMES;
+					gypoZBiasMpu /= MPU_CALI_TIMES;
+					gypoZBiasBoard /= MPU_CALI_TIMES;
 					/**
-					if(fabs(yawBiasMpu) > MPU_YAW_BIAS_MAX)
+					if(fabs(gypoZBiasMpu) > MPU_YAW_BIAS_MAX)
 					{
-						yawBiasMpu = 0.0;
+						gypoZBiasMpu = 0.0;
 					}
-					if(fabs(yawBiasBoard) > MPU_YAW_BIAS_MAX)
+					if(fabs(gypoZBiasBoard) > MPU_YAW_BIAS_MAX)
 					{
-						yawBiasBoard = 0.0;
+						gypoZBiasBoard = 0.0;
 					}
 					*/
 					stepRun = STEP_THREE_MAIN;
@@ -164,13 +166,19 @@ int main(void)
 			pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
 			Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
 
+			yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu)*SYSTEM_PERIOD/1000;
+			yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard)*SYSTEM_PERIOD/1000;
 			gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z);
-			yawMpu +=  (Mpu6050_Gyro_Z-yawBiasMpu)*SYSTEM_PERIOD/1000;
-			yawBoard += (gypoMedianBoard-yawBiasBoard)*SYSTEM_PERIOD/1000;
-			
-			pidYaw = PID_Motor2(gypoMedianBoard, 0.0);
-			Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw angular rete greather than zero, motor run clockwise
-			printf("%f,%f,%f,%f,%f\r\n", yawBiasMpu, yawBiasBoard, yawMpu, yawBoard, pidYaw);
+			if(gypoMedianBoard > MPU_GYPO_Z_BOUND)
+			{
+				pidYaw = PID_Motor2(gypoMedianBoard*(-1), 0.0);//negative direction
+			}
+			else
+			{
+				pidYaw = PID_Motor2(yawBoard-yawMpu, 0.0);
+			}
+			Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
+			printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
 			//yawBoard -= pidYaw;
 		}
 		Delay_ms(SYSTEM_PERIOD);
