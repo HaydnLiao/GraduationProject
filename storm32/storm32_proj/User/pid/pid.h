@@ -51,14 +51,19 @@ static float yawDPara = 8.0;
 #define I_CAL_PERIOD		((uint8_t)(10))
 #define P_CAL_DEADBAND		((float)(2.0))
 
-#define DEBUG_USART1_PID	1
+#define DEBUG_USART1_PID	0
 #define DEBUG_PARA_LEN		9
 static float debugPara[DEBUG_PARA_LEN];
+
+#define MEDIAN_FILTER_LEN	31
+static float mfData[MEDIAN_FILTER_LEN];
+static float mfSort[MEDIAN_FILTER_LEN];
 
 float PID_Motor0(float actAngle, float expAngle);
 float PID_Motor1(float actAngle, float expAngle);
 float PID_Motor2(float actAngle, float expAngle);
 void Usart1StringToFloat(void);
+float MedianFilter(float data);
 
 #endif
 

@@ -11,8 +11,8 @@
 #include "lipo.h"
 #include "buzzer.h"
 
-#define GREEN_BLINK_PERIOD	((uint16_t)(250))	//unit: ms
-#define RED_BLINK_PERIOD	((uint16_t)(100))	//unit: ms
+#define GREEN_BLINK_PERIOD	((uint16_t)(300))	//unit: ms
+#define RED_BLINK_PERIOD	((uint16_t)(200))	//unit: ms
 #define MPU_SAMPLE_RATE		((uint16_t)(50))	//unit: Hz
 #define MPU_DLPF_SWITCH		((uint8_t)(1))		//1:on 0:off
 #define MPU_ACCEL_WEIGHT	((float)(0.05))
@@ -20,16 +20,25 @@
 #define POS_INIT_DIFF		((float)(3.0))		//unit: degree
 #define POS_INTI_SPEED		((uint16_t)(3))	//unit: degree per period
 #define LIPO_CAL_WEIGHT		((float)(0.8))//old data weight
-#define LIPO_LOW_VOLTAGE	((float)(10.5))//unit: v
+#define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.7*0.9*s 2s->6.66v 3s->9.99v
+#define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
+#define MPU_CALI_TIMES		((uint16_t)(1000))//about 5s
+//#define MPU_YAW_BIAS_MAX	((float)(1.0))
+
+#define STEP_ONE_POS_INIT	((uint8_t)(0))
+#define STEP_TWO_MPU_CALI	((uint8_t)(1))
+#define STEP_THREE_MAIN		((uint8_t)(2))
 
 int main(void)
 {
-	uint8_t rtnValue = 0, flagInitFinish = 0;
-	uint32_t cntGreen = 0, cntRed = 0;
+	uint8_t stepRun = 0, rtnValue = 0;
+	uint32_t cntGreen = 0, cntRed = 0, cntCalibrate = 0;
 	float pidPitch = 0.0, pidRoll = 0.0, pidYaw = 0.0;
 	float yawBoard = 0.0, yawMpu = 0.0;
-	uint32_t cntCalibate = 0;
 	float yawBiasBoard = 0.0, yawBiasMpu = 0.0;
+	float gypoMedianBoard = 0.0;
+
+	stepRun = STEP_THREE_MAIN;	//Debug
 
 	Led_Init();
 	Systick_Init();
@@ -58,7 +67,7 @@ int main(void)
 
 	while(1)
 	{
-		cntGreen = (cntGreen+1) % (GREEN_BLINK_PERIOD/SYSTEM_PERIOD/(2-flagInitFinish%2));//position initialization
+		cntGreen = (cntGreen+1) % (GREEN_BLINK_PERIOD/SYSTEM_PERIOD/(STEP_THREE_MAIN - stepRun + 1));//position initialization
 		if(cntGreen == 0)
 		{
 			LED0_TOGGLE;
@@ -74,7 +83,7 @@ int main(void)
 			if(cntRed == 0)
 			{
 				LED1_TOGGLE;
-				BUZZER_TOGGLE;
+				//BUZZER_TOGGLE;
 			}
 		}
 
@@ -82,7 +91,7 @@ int main(void)
 		//printf("lipo:%fv\r\n", Lipo_Voltage);
 
 		//position initialization
-		if(flagInitFinish == 0)
+		if(stepRun == STEP_ONE_POS_INIT)
 		{
 			Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//get pitch and roll angle
 			printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
@@ -98,16 +107,39 @@ int main(void)
 			{
 				Motor0_Run((mdir_t)(0), 0);
 				Motor1_Run((mdir_t)(0), 0);
-				for(cntCalibate = 0.0; cntCalibate < 1000; cntCalibate++)
+				stepRun = STEP_TWO_MPU_CALI;
+			}
+		}
+		else if(stepRun == STEP_TWO_MPU_CALI)
+		{
+			//cal the parameter to calibrate two mpu6050
+			cntCalibrate += 1;
+			if(cntCalibrate > MPU_CALI_DELAY/SYSTEM_PERIOD)
+			{
+				if(cntCalibrate < MPU_CALI_TIMES)
 				{
 					Mpu6050_GetGyroData();
 					BoardMpu_GetGyroData();
 					yawBiasMpu +=  Mpu6050_Gyro_Z;
 					yawBiasBoard += BoardMpu_Gyro_Z;
+					
 				}
-				yawBiasMpu /= 1000;
-				yawBiasBoard /= 1000;
-				flagInitFinish = 1;
+				else
+				{
+					yawBiasMpu /= MPU_CALI_TIMES;
+					yawBiasBoard /= MPU_CALI_TIMES;
+					/**
+					if(fabs(yawBiasMpu) > MPU_YAW_BIAS_MAX)
+					{
+						yawBiasMpu = 0.0;
+					}
+					if(fabs(yawBiasBoard) > MPU_YAW_BIAS_MAX)
+					{
+						yawBiasBoard = 0.0;
+					}
+					*/
+					stepRun = STEP_THREE_MAIN;
+				}
 			}
 		}
 		else
@@ -132,9 +164,11 @@ int main(void)
 			pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
 			Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
 
+			gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z);
 			yawMpu +=  (Mpu6050_Gyro_Z-yawBiasMpu)*SYSTEM_PERIOD/1000;
-			yawBoard += (BoardMpu_Gyro_Z-yawBiasBoard)*SYSTEM_PERIOD/1000;
-			pidYaw = PID_Motor2(BoardMpu_Gyro_Z, 0.0);
+			yawBoard += (gypoMedianBoard-yawBiasBoard)*SYSTEM_PERIOD/1000;
+			
+			pidYaw = PID_Motor2(gypoMedianBoard, 0.0);
 			Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw angular rete greather than zero, motor run clockwise
 			printf("%f,%f,%f,%f,%f\r\n", yawBiasMpu, yawBiasBoard, yawMpu, yawBoard, pidYaw);
 			//yawBoard -= pidYaw;

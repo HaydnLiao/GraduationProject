@@ -228,3 +228,136 @@ void Usart1StringToFloat(void)
 	}
 }
 
+/**
+float MedianFilter(float data)
+{
+	uint16_t cntSort = 0;
+	float tempData = 0.0;
+	static uint8_t flagInit = 0;
+	static uint16_t cntMFData = 0;
+	static float rtnValue = 0.0;
+
+	//from small to large
+	if(flagInit == 0)
+	{
+		mfData[cntMFData] = data;
+		for(cntSort = cntMFData; cntSort > 0; cntSort--)
+		{
+			if(mfData[cntSort] < mfData[cntSort-1])
+			{
+				tempData = mfData[cntSort];
+				mfData[cntSort] = mfData[cntSort-1];
+				mfData[cntSort-1] = tempData;
+			}
+		}
+		cntMFData += 1;
+		rtnValue = mfData[cntMFData/2];
+		if(cntMFData > MEDIAN_FILTER_LEN - 1)
+		{
+			cntMFData = 0;
+			flagInit = 1;
+		}
+	}
+	else
+	{
+		mfData[cntMFData] = data;
+		if(cntMFData == 0 || mfData[cntMFData] > mfData[cntMFData-1])
+		{
+			for(cntSort = cntMFData+1; cntSort < MEDIAN_FILTER_LEN; cntSort++)
+			{
+				if(mfData[cntSort-1] > mfData[cntSort])
+				{
+					tempData = mfData[cntSort-1];
+					mfData[cntSort-1] = mfData[cntSort];
+					mfData[cntSort] = tempData;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		else if(cntMFData == MEDIAN_FILTER_LEN-1 || mfData[cntMFData] < mfData[cntMFData-1])
+		{
+			for(cntSort = cntMFData; cntSort > 0; cntSort--)
+			{
+				if(mfData[cntSort] < mfData[cntSort-1])
+				{
+					tempData = mfData[cntSort];
+					mfData[cntSort] = mfData[cntSort-1];
+					mfData[cntSort-1] = tempData;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		cntMFData = (cntMFData + 1) % MEDIAN_FILTER_LEN;
+		//rtnValue = mfData[MEDIAN_FILTER_LEN/2];
+		for(cntSort=MEDIAN_FILTER_LEN/2-5; cntSort<MEDIAN_FILTER_LEN/2+5; cntSort++)
+		{
+			rtnValue += mfData[cntSort];
+		}
+		rtnValue /= 10;
+	}
+	return rtnValue;
+}
+*/
+
+float MedianFilter(float data)
+{
+	uint16_t cntSort = 0, cntSortIn = 0;
+	float tempData = 0.0;
+	static uint8_t flagInit = 0;
+	static uint16_t cntMFData = 0;
+	static float rtnValue = 0.0;
+
+	mfData[cntMFData] = data;
+	//from small to large
+	if(flagInit == 0)
+	{
+		for(cntSort = cntMFData; cntSort > 0; cntSort--)
+		{
+			if(mfData[cntSort] < mfData[cntSort-1])
+			{
+				tempData = mfData[cntSort];
+				mfData[cntSort] = mfData[cntSort-1];
+				mfData[cntSort-1] = tempData;
+			}
+		}
+		rtnValue = mfData[cntMFData/2];
+		if(cntMFData == MEDIAN_FILTER_LEN-1)
+		{
+			flagInit = 1;
+		}
+	}
+	else
+	{
+		for(cntSort = 0; cntSort < MEDIAN_FILTER_LEN; cntSort++)
+		{
+			mfSort[cntSort] = mfData[cntSort];
+		}
+		for(cntSort = 0; cntSort < MEDIAN_FILTER_LEN-1; cntSort++)
+		{
+			for(cntSortIn = cntSort+1; cntSortIn < MEDIAN_FILTER_LEN; cntSortIn++)
+			{
+				if(mfSort[cntSort] > mfSort[cntSortIn])
+				{
+					tempData = mfSort[cntSort];
+					mfSort[cntSort] = mfSort[cntSortIn];
+					mfSort[cntSortIn] = tempData;
+				}
+			}
+		}
+		for(cntSort = MEDIAN_FILTER_LEN/4; cntSort < MEDIAN_FILTER_LEN/4*3; cntSort++)
+		{
+			rtnValue += mfSort[cntSort];
+		}
+		rtnValue /= MEDIAN_FILTER_LEN/2;
+		//rtnValue = mfSort[MEDIAN_FILTER_LEN/2];
+	}
+	cntMFData = (cntMFData + 1) % MEDIAN_FILTER_LEN;
+	return rtnValue;
+}
+

@@ -22,17 +22,22 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\storm32.uvprojx
-Project File Date:  03/30/2017
+Project File Date:  04/08/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'D:\Program Files (x86)\Keil\ARM\ARMCC\Bin'
 Build target 'STORM32'
 compiling main.c...
-compiling buzzer.c...
+compiling pid.c...
+..\User\pid\pid.c(7): warning:  #177-D: variable "cntICal" was declared but never referenced
+        static uint16_t cntICal = 0;
+..\User\pid\pid.c(152): warning:  #550-D: variable "indexICal" was set but never used
+        static float indexICal = 0.0;
+..\User\pid\pid.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=22440 RO-data=928 RW-data=404 ZI-data=1828  
+Program Size: Code=19684 RO-data=788 RW-data=412 ZI-data=2748  
 FromELF: creating hex file...
-"..\Output\storm32.axf" - 0 Error(s), 0 Warning(s).
+"..\Output\storm32.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE
