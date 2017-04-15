@@ -33,7 +33,7 @@
 
 int main(void)
 {
-	uint8_t stepRun = 0, rtnValue = 0;
+	uint8_t stepRun = 0, rtnValue = 0, flagVoltageLow = 0;
 	uint32_t cntGreen = 0, cntRed = 0, cntCalibrate = 0;
 	float pidPitch = 0.0, pidRoll = 0.0, pidYaw = 0.0;
 	float yawBoard = 0.0, yawMpu = 0.0;
@@ -78,6 +78,7 @@ int main(void)
 		{
 			LED1_ON;
 			BUZZER_OFF;
+			cntRed = 0;//avoid voltage jump
 		}
 		else
 		{
@@ -86,101 +87,111 @@ int main(void)
 			{
 				LED1_TOGGLE;
 				//BUZZER_TOGGLE;
+				flagVoltageLow = 1;//must power off and restart
 			}
 		}
 
-		Lipo_CalVoltage(LIPO_CAL_WEIGHT);
-		//printf("lipo:%fv\r\n", Lipo_Voltage);
+		if(flagVoltageLow == 0)
+		{
+			Lipo_CalVoltage(LIPO_CAL_WEIGHT);//when the voltage is low voltage sampling stops
+			//printf("lipo:%fv\r\n", Lipo_Voltage);
 
-		//position initialization
-		if(stepRun == STEP_ONE_POS_INIT)
-		{
-			Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//get pitch and roll angle
-			printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
-			if(fabs(Mpu6050_Roll) > POS_INIT_DIFF)
+			//position initialization
+			if(stepRun == STEP_ONE_POS_INIT)
 			{
-				Motor1_Run((mdir_t)(Mpu6050_Roll > 0), POS_INTI_SPEED);//roll angle greather than zero, motor run clockwise
-			}
-			else if(fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
-			{
-				Motor0_Run((mdir_t)(Mpu6050_Pitch > 0), POS_INTI_SPEED);//pitch angle greather than zero, motor run clockwise
-			}
-			else
-			{
-				Motor0_Run((mdir_t)(0), 0);
-				Motor1_Run((mdir_t)(0), 0);
-				stepRun = STEP_TWO_MPU_CALI;
-			}
-		}
-		else if(stepRun == STEP_TWO_MPU_CALI)
-		{
-			//cal the parameter to calibrate two mpu6050
-			cntCalibrate += 1;
-			if(cntCalibrate > MPU_CALI_DELAY/SYSTEM_PERIOD)
-			{
-				if(cntCalibrate < MPU_CALI_TIMES)
+				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//get pitch and roll angle
+				printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+				if(fabs(Mpu6050_Roll) > POS_INIT_DIFF)
 				{
-					Mpu6050_GetGyroData();
-					BoardMpu_GetGyroData();
-					gypoZBiasMpu +=  Mpu6050_Gyro_Z;
-					gypoZBiasBoard += BoardMpu_Gyro_Z;
-					
+					Motor1_Run((mdir_t)(Mpu6050_Roll > 0), POS_INTI_SPEED);//roll angle greather than zero, motor run clockwise
+				}
+				else if(fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
+				{
+					Motor0_Run((mdir_t)(Mpu6050_Pitch > 0), POS_INTI_SPEED);//pitch angle greather than zero, motor run clockwise
 				}
 				else
 				{
-					gypoZBiasMpu /= MPU_CALI_TIMES;
-					gypoZBiasBoard /= MPU_CALI_TIMES;
-					/**
-					if(fabs(gypoZBiasMpu) > MPU_YAW_BIAS_MAX)
-					{
-						gypoZBiasMpu = 0.0;
-					}
-					if(fabs(gypoZBiasBoard) > MPU_YAW_BIAS_MAX)
-					{
-						gypoZBiasBoard = 0.0;
-					}
-					*/
-					stepRun = STEP_THREE_MAIN;
+					Motor0_Run((mdir_t)(0), 0);
+					Motor1_Run((mdir_t)(0), 0);
+					stepRun = STEP_TWO_MPU_CALI;
 				}
+			}
+			else if(stepRun == STEP_TWO_MPU_CALI)
+			{
+				//cal the parameter to calibrate two mpu6050
+				cntCalibrate += 1;
+				if(cntCalibrate > MPU_CALI_DELAY/SYSTEM_PERIOD)
+				{
+					if(cntCalibrate < MPU_CALI_TIMES)
+					{
+						Mpu6050_GetGyroData();
+						BoardMpu_GetGyroData();
+						gypoZBiasMpu +=  Mpu6050_Gyro_Z;
+						gypoZBiasBoard += BoardMpu_Gyro_Z;
+						
+					}
+					else
+					{
+						gypoZBiasMpu /= MPU_CALI_TIMES;
+						gypoZBiasBoard /= MPU_CALI_TIMES;
+						/**
+						if(fabs(gypoZBiasMpu) > MPU_YAW_BIAS_MAX)
+						{
+							gypoZBiasMpu = 0.0;
+						}
+						if(fabs(gypoZBiasBoard) > MPU_YAW_BIAS_MAX)
+						{
+							gypoZBiasBoard = 0.0;
+						}
+						*/
+						stepRun = STEP_THREE_MAIN;
+					}
+				}
+			}
+			else
+			{
+				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
+				//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+				BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
+				//printf("[#2]pitch: %f roll: %f\r\n", BoardMpu_Pitch, BoardMpu_Roll);
+
+			#if DEBUG_USART1_PID
+				Usart1StringToFloat();	//usart1-debug-pid parameters
+			#endif
+				//if(fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
+				{
+					pidPitch = PID_Motor0(Mpu6050_Pitch, 0.0);
+					Motor0_Run((mdir_t)(pidPitch > 0), (uint16_t)(fabs(pidPitch)));//pitch angle greather than zero, motor run clockwise
+				}
+				/**else
+				{
+					Motor0_Run((mdir_t)(0), 0);
+				}*/
+				pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
+				Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
+
+				yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu)*SYSTEM_PERIOD/1000;
+				yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard)*SYSTEM_PERIOD/1000;
+				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z);
+				if(gypoMedianBoard > MPU_GYPO_Z_BOUND)
+				{
+					//negative direction
+					Motor2_Run((mdir_t)(gypoMedianBoard < 0), (uint16_t)(fabs(gypoMedianBoard)));//yaw  greather than zero, motor run anticlockwise
+				}
+				else
+				{
+					pidYaw = PID_Motor2(yawBoard-yawMpu, 0.0);
+					Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
+				}
+				printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
+				//yawBoard -= pidYaw;
 			}
 		}
 		else
 		{
-			Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
-			//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
-			BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
-			//printf("[#2]pitch: %f roll: %f\r\n", BoardMpu_Pitch, BoardMpu_Roll);
-
-		#if DEBUG_USART1_PID
-			Usart1StringToFloat();	//usart1-debug-pid parameters
-		#endif
-			//if(fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
-			{
-				pidPitch = PID_Motor0(Mpu6050_Pitch, 0.0);
-				Motor0_Run((mdir_t)(pidPitch > 0), (uint16_t)(fabs(pidPitch)));//pitch angle greather than zero, motor run clockwise
-			}
-			/**else
-			{
-				Motor0_Run((mdir_t)(0), 0);
-			}*/
-			pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
-			Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
-
-			yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu)*SYSTEM_PERIOD/1000;
-			yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard)*SYSTEM_PERIOD/1000;
-			gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z);
-			if(gypoMedianBoard > MPU_GYPO_Z_BOUND)
-			{
-				//negative direction
-				Motor2_Run((mdir_t)(gypoMedianBoard < 0), (uint16_t)(fabs(gypoMedianBoard)));//yaw  greather than zero, motor run anticlockwise
-			}
-			else
-			{
-				pidYaw = PID_Motor2(yawBoard-yawMpu, 0.0);
-				Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
-			}
-			printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
-			//yawBoard -= pidYaw;
+			Motor0_Shutdown();
+			Motor1_Shutdown();
+			Motor2_Shutdown();
 		}
 		Delay_ms(SYSTEM_PERIOD);
 	}

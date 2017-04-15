@@ -200,6 +200,13 @@ void Motor0_Enable(void)
 }
 */
 
+void Motor0_Shutdown(void)
+{
+	TIM_CCxCmd(TIM3, TIM_Channel_2, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM3, TIM_Channel_3, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM3, TIM_Channel_4, TIM_CCx_Disable);
+}
+
 void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 {
 	static uint16_t preSpeed = 0;
@@ -248,6 +255,13 @@ void Motor1_SetPWM(void)
 	TIM_SetCompare1(TIM3, pwmSin[mRoll.stepA]);
 	TIM_SetCompare4(TIM2, pwmSin[mRoll.stepB]);
 	TIM_SetCompare3(TIM2, pwmSin[mRoll.stepC]);
+}
+
+void Motor1_Shutdown(void)
+{
+	TIM_CCxCmd(TIM2, TIM_Channel_3, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM2, TIM_Channel_4, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM3, TIM_Channel_1, TIM_CCx_Disable);
 }
 
 void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
@@ -300,4 +314,10 @@ void Motor2_SetPWM(void)
 	TIM_SetCompare3(TIM4, pwmSin[mYaw.stepC]);
 }
 
+void Motor2_Shutdown(void)
+{
+	TIM_CCxCmd(TIM4, TIM_Channel_3, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM2, TIM_Channel_2, TIM_CCx_Disable);
+	TIM_CCxCmd(TIM4, TIM_Channel_4, TIM_CCx_Disable);
+}
 

@@ -49,5 +49,9 @@ void Motor2_Run(mdir_t mdir, uint16_t speed);
 void Motor0_SetPWM(void);
 void Motor1_SetPWM(void);
 void Motor2_SetPWM(void);
+void Motor0_Shutdown(void);
+void Motor1_Shutdown(void);
+void Motor2_Shutdown(void);
+
 #endif
 
