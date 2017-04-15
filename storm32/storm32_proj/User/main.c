@@ -171,13 +171,14 @@ int main(void)
 			gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z);
 			if(gypoMedianBoard > MPU_GYPO_Z_BOUND)
 			{
-				pidYaw = PID_Motor2(gypoMedianBoard*(-1), 0.0);//negative direction
+				//negative direction
+				Motor2_Run((mdir_t)(gypoMedianBoard < 0), (uint16_t)(fabs(gypoMedianBoard)));//yaw  greather than zero, motor run anticlockwise
 			}
 			else
 			{
 				pidYaw = PID_Motor2(yawBoard-yawMpu, 0.0);
+				Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
 			}
-			Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
 			printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
 			//yawBoard -= pidYaw;
 		}
