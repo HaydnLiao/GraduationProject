@@ -12,7 +12,7 @@ void Motor_Init(void)
 void SineArray_Init(void)
 {
 	uint16_t cntL = 0;
-	sineArraySize = 1000 / SYSTEM_PERIOD / MOTOR_MAX_SPEED;
+	sineArraySize = 1000 / SYSTEM_PERIOD / (MOTOR_MAX_SPEED/360);
 	phaseShift = sineArraySize / 3;
 
 	mPitch.stepA = 0;
@@ -151,7 +151,7 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED * 360 / speed / sineArraySize;	//faster speed shorter timeout
+			timeout = MOTOR_MAX_SPEED / speed;	//faster speed shorter timeout
 			preSpeed = speed;
 		}
 		if(cntTime < timeout)
@@ -227,7 +227,7 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED * 360 / speed / sineArraySize;	//faster speed shorter timeout
+			timeout = MOTOR_MAX_SPEED / speed;	//faster speed shorter timeout
 			preSpeed = speed;
 		}
 
@@ -284,7 +284,7 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED * 360 / speed / sineArraySize;	//faster speed shorter timeout
+			timeout = MOTOR_MAX_SPEED / speed;	//faster speed shorter timeout
 			preSpeed = speed;
 		}
 

@@ -74,7 +74,9 @@ int main(void)
 		{
 			LED0_TOGGLE;
 		}
-		if(Lipo_Voltage > LIPO_LOW_VOLTAGE)
+		Lipo_CalVoltage(LIPO_CAL_WEIGHT);//when the voltage is low voltage sampling stops
+		//printf("lipo:%fv\r\n", Lipo_Voltage);
+		if(flagVoltageLow == 0 && Lipo_Voltage > LIPO_LOW_VOLTAGE)
 		{
 			LED1_ON;
 			BUZZER_OFF;
@@ -93,8 +95,6 @@ int main(void)
 
 		if(flagVoltageLow == 0)
 		{
-			Lipo_CalVoltage(LIPO_CAL_WEIGHT);//when the voltage is low voltage sampling stops
-			//printf("lipo:%fv\r\n", Lipo_Voltage);
 
 			//position initialization
 			if(stepRun == STEP_ONE_POS_INIT)
