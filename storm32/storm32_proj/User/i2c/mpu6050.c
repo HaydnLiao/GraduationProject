@@ -224,7 +224,7 @@ void Mpu6050_CalPitchRoll(float calWeight, float calPeriod)
 	//Mpu6050_Pitch = atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
 	//Mpu6050_Roll = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
 	//the first-order complementary filter algorithm    data fusion
-	Mpu6050_Pitch = calWeight*atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Pitch+Mpu6050_Gyro_X*calPeriod);
-	Mpu6050_Roll = calWeight*atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Roll+Mpu6050_Gyro_Y*calPeriod);	
+	Mpu6050_Pitch = calWeight*atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Pitch+Mpu6050_Gyro_X*calPeriod);
+	Mpu6050_Roll = calWeight*atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Roll+Mpu6050_Gyro_Y*calPeriod);
 }
 

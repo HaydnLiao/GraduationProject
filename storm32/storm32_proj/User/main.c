@@ -173,14 +173,14 @@ int main(void)
 				yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu)*SYSTEM_PERIOD/1000;
 				yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard)*SYSTEM_PERIOD/1000;
 				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z);
-				if(gypoMedianBoard > MPU_GYPO_Z_BOUND)
+				if(fabs(gypoMedianBoard) > MPU_GYPO_Z_BOUND)
 				{
 					//negative direction
-					Motor2_Run((mdir_t)(gypoMedianBoard < 0), (uint16_t)(fabs(gypoMedianBoard)));//yaw  greather than zero, motor run anticlockwise
+					Motor2_Run((mdir_t)(gypoMedianBoard > 0), (uint16_t)(fabs(gypoMedianBoard)));//yaw  greather than zero, motor run clockwise
 				}
 				else
 				{
-					pidYaw = PID_Motor2(yawBoard-yawMpu, 0.0);
+					pidYaw = PID_Motor2(yawMpu - yawBoard, 0.0);
 					Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
 				}
 				printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
