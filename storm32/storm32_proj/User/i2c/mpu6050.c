@@ -1,5 +1,6 @@
 
 #include "mpu6050.h"
+#include <stdio.h>
 
 uint8_t Mpu6050_ID;		//Identity of device
 float Mpu6050_Accel_X;	//Aceeleration x-axis
@@ -217,6 +218,7 @@ uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 
 void Mpu6050_CalPitchRoll(float calWeight, float calPeriod)
 {
+	static float aP = 0.0, aR = 0.0, gP = 0.0, gR = 0.0;
 	//2017-01-27 when pitch is greater than 90¡ãroll is abnormal
 	//2017-01-28 in dynamic environment angles are incorrect 
 	Mpu6050_GetAccelData();
@@ -225,6 +227,12 @@ void Mpu6050_CalPitchRoll(float calWeight, float calPeriod)
 	//Mpu6050_Roll = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI;//range -PI~PI
 	//the first-order complementary filter algorithm    data fusion
 	Mpu6050_Pitch = calWeight*atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Pitch+Mpu6050_Gyro_X*calPeriod);
-	Mpu6050_Roll = calWeight*atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Roll+Mpu6050_Gyro_Y*calPeriod);
+	Mpu6050_Roll = calWeight*(-1)*atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI + (1-calWeight)*(Mpu6050_Roll+Mpu6050_Gyro_Y*calPeriod);
+	
+	aP = atan2(Mpu6050_Accel_Y, Mpu6050_Accel_Z)*180/MATH_PI;
+	aR = (-1)*atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI;
+	gP = gP + Mpu6050_Gyro_X*calPeriod;
+	gR = gR + Mpu6050_Gyro_Y*calPeriod;
+	printf("%f,%f,%f,%f,%f,%f\r\n", aP, aR, gP, gR, Mpu6050_Pitch, Mpu6050_Roll);
 }
 

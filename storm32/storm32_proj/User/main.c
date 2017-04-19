@@ -19,8 +19,8 @@
 #define MPU_CAL_PERIOD		((float)(SYSTEM_PERIOD/1000.0))		//unit: s
 #define POS_INIT_DIFF		((float)(3.0))		//unit: degree
 #define POS_INTI_SPEED		((uint16_t)(3))	//unit: degree per period
-#define LIPO_CAL_WEIGHT		((float)(0.8))//old data weight
-#define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.5v*S 2S->7v 3S->10.5v
+#define LIPO_CAL_WEIGHT		((float)(0.5))//old data weight
+#define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.5v*S 2S->7v 3S->10.5v 4S->14v
 #define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
 #define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 5s
 #define MPU_GYPO_Z_BOUND	((float)(1.0))

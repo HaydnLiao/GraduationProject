@@ -86,6 +86,6 @@ void Lipo_CalVoltage(float calWeight)
 	{
 		Lipo_Voltage = 0.0;
 	}*/
-	printf("lipo:%d %f\r\n", ADC1_Value, Lipo_Voltage);
+	//printf("lipo:%d %f\r\n", ADC1_Value, Lipo_Voltage);
 }
 
