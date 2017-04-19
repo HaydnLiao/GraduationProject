@@ -21,7 +21,7 @@ const static int8_t mdir_cal_factor[] = {-1, 1};
 //const static uint8_t pwmSin[] = {120, 140, 158, 174, 186, 195, 199, 199, 195, 186, 174, 158, 140, 120, 100, 79, 59, 41, 25, 13, 4, 0, 0, 4, 13, 25, 41, 59, 79, 100};
 //const static uint8_t pwmSin[] = {191, 238, 255, 238, 191, 127, 64, 17, 0, 17, 64, 127};//12n14p sine
 //const static uint8_t pwmSin[] = {238, 238, 127, 17, 17, 127};
-#define SINE_ARRAY_MAX_LEN 512
+#define SINE_ARRAY_MAX_LEN 1024
 static uint16_t pwmSin[SINE_ARRAY_MAX_LEN];
 
 static uint16_t sineArraySize;

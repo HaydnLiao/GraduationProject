@@ -20,9 +20,9 @@
 #define POS_INIT_DIFF		((float)(3.0))		//unit: degree
 #define POS_INTI_SPEED		((uint16_t)(3))	//unit: degree per period
 #define LIPO_CAL_WEIGHT		((float)(0.8))//old data weight
-#define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.7*0.9*s 2s->6.66v 3s->9.99v
+#define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.5v*S 2S->7v 3S->10.5v
 #define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
-#define MPU_CALI_TIMES		((uint16_t)(1000))//about 5s
+#define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 5s
 #define MPU_GYPO_Z_BOUND	((float)(1.0))
 
 //#define MPU_YAW_BIAS_MAX	((float)(1.0))
@@ -89,7 +89,7 @@ int main(void)
 			{
 				LED1_TOGGLE;
 				//BUZZER_TOGGLE;
-				flagVoltageLow = 1;//must power off and restart
+				//flagVoltageLow = 1;//must power off and restart
 			}
 		}
 
@@ -183,7 +183,7 @@ int main(void)
 					pidYaw = PID_Motor2(yawMpu - yawBoard, 0.0);
 					Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
 				}
-				printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
+				//printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
 				//yawBoard -= pidYaw;
 			}
 		}

@@ -12,7 +12,7 @@ void Motor_Init(void)
 void SineArray_Init(void)
 {
 	uint16_t cntL = 0;
-	sineArraySize = 1000 / SYSTEM_PERIOD / (MOTOR_MAX_SPEED/360);
+	sineArraySize = 1000 / SYSTEM_PERIOD / (MOTOR_MAX_SPEED/360.0);//360.0 avoid divisor become zero
 	phaseShift = sineArraySize / 3;
 
 	mPitch.stepA = 0;

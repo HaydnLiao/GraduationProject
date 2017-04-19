@@ -2,7 +2,7 @@
 #include "lipo.h"
 #include <stdio.h>
 
-float Lipo_Voltage = 0;
+float Lipo_Voltage = 0.0;
 
 void Lipo_Init(void)
 {
@@ -69,6 +69,7 @@ void ADC1_2_IRQHandler(void)
 
 void Lipo_CalVoltage(float calWeight)
 {
+	//static float temp = 0.0;
 	/**
 		1936 -> 12.00v
 		1612 -> 10.00v
@@ -77,11 +78,14 @@ void Lipo_CalVoltage(float calWeight)
 		647  -> 4.00v
 	*/
 	//Lipo_Voltage = (float)ADC1_Value/4096*3.3;
-	Lipo_Voltage = calWeight*Lipo_Voltage + (1-calWeight)*ADC1_Value * 0.0062 - 0.0161;//fitted equation
-	if(Lipo_Voltage < 0.01)
+	//Lipo_Voltage = calWeight*Lipo_Voltage + (1-calWeight)*ADC1_Value * 0.0062 - 0.0161;//fitted equation
+	
+	//Lipo_Voltage = calWeight*Lipo_Voltage + (1-calWeight)*(ADC1_Value/4096*3.3/1.5*11.5);
+	Lipo_Voltage = calWeight*Lipo_Voltage + (1-calWeight)*(ADC1_Value*0.0061767578125);
+	/**if(Lipo_Voltage < 0.01)
 	{
 		Lipo_Voltage = 0.0;
-	}
-	//printf("lipo:%d %f\r\n", ADC1_Value, Lipo_Voltage);
+	}*/
+	printf("lipo:%d %f\r\n", ADC1_Value, Lipo_Voltage);
 }
 
