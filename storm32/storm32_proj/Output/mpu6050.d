@@ -16,4 +16,3 @@
 ..\output\mpu6050.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\mpu6050.o: ..\User\i2c\i2c2.h
 ..\output\mpu6050.o: ..\User\systick\systick.h
-..\output\mpu6050.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h

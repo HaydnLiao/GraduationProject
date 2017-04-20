@@ -350,11 +350,11 @@ float MedianFilter(float data)
 				}
 			}
 		}
-		for(cntSort = MEDIAN_FILTER_LEN/4; cntSort < MEDIAN_FILTER_LEN/4*3; cntSort++)
+		for(cntSort = (uint16_t)(MEDIAN_FILTER_LEN*(0.5-MEDIAN_AVE_SCALE/2)); cntSort < (uint16_t)(MEDIAN_FILTER_LEN*(0.5+MEDIAN_AVE_SCALE/2)); cntSort++)
 		{
 			rtnValue += mfSort[cntSort];
 		}
-		rtnValue /= MEDIAN_FILTER_LEN/2;
+		rtnValue /= MEDIAN_FILTER_LEN*MEDIAN_AVE_SCALE;
 		//rtnValue = mfSort[MEDIAN_FILTER_LEN/2];
 	}
 	cntMFData = (cntMFData + 1) % MEDIAN_FILTER_LEN;

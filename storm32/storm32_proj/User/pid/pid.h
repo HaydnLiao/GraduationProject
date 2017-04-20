@@ -56,6 +56,7 @@ static float yawDPara = 8.0;
 static float debugPara[DEBUG_PARA_LEN];
 
 #define MEDIAN_FILTER_LEN	31
+#define MEDIAN_AVE_SCALE	((float)(0.5))
 static float mfData[MEDIAN_FILTER_LEN];
 static float mfSort[MEDIAN_FILTER_LEN];
 

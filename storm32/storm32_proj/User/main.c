@@ -34,13 +34,13 @@
 int main(void)
 {
 	uint8_t stepRun = 0, rtnValue = 0, flagVoltageLow = 0;
-	uint32_t cntGreen = 0, cntRed = 0, cntCalibrate = 0;
+	uint32_t cntGreen = 0, cntRed = 0, cntCalibrate = 0, cntCaliDelay = 0;
 	float pidPitch = 0.0, pidRoll = 0.0, pidYaw = 0.0;
 	float yawBoard = 0.0, yawMpu = 0.0;
 	float gypoZBiasBoard = 0.0, gypoZBiasMpu = 0.0;
 	float gypoMedianBoard = 0.0;
 
-	stepRun = STEP_THREE_MAIN;	//Debug
+	stepRun = STEP_TWO_MPU_CALI;	//Debug
 
 	Led_Init();
 	Systick_Init();
@@ -119,8 +119,8 @@ int main(void)
 			else if(stepRun == STEP_TWO_MPU_CALI)
 			{
 				//cal the parameter to calibrate two mpu6050
-				cntCalibrate += 1;
-				if(cntCalibrate > MPU_CALI_DELAY/SYSTEM_PERIOD)
+				cntCaliDelay += 1;
+				if(cntCaliDelay > MPU_CALI_DELAY/SYSTEM_PERIOD)
 				{
 					if(cntCalibrate < MPU_CALI_TIMES)
 					{
@@ -128,7 +128,7 @@ int main(void)
 						BoardMpu_GetGyroData();
 						gypoZBiasMpu +=  Mpu6050_Gyro_Z;
 						gypoZBiasBoard += BoardMpu_Gyro_Z;
-						
+						cntCalibrate += 1;
 					}
 					else
 					{
@@ -170,9 +170,10 @@ int main(void)
 				pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
 				Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
 
-				yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu)*SYSTEM_PERIOD/1000;
-				yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard)*SYSTEM_PERIOD/1000;
-				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z);
+				yawMpu +=  Mpu6050_Gyro_Z-gypoZBiasMpu;
+				yawBoard += BoardMpu_Gyro_Z-gypoZBiasBoard;
+				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z-gypoZBiasBoard);
+				//printf("%f,%f\r\n", BoardMpu_Gyro_Z, gypoMedianBoard);
 				if(fabs(gypoMedianBoard) > MPU_GYPO_Z_BOUND)
 				{
 					//negative direction
