@@ -5,7 +5,7 @@
 #include "stm32f10x.h"
 #include "global_math.h"
 
-#define TIM_PERIOD		((uint16_t)(50-1))	//50us
+#define TIM_PERIOD		((uint16_t)(500-1))	//50us
 #define TIM_PRESCALER	((uint16_t)(72-1))		//72MHz/72=1MHz 1us
 //#define TIM_PERIOD		((uint16_t)(256-1))		//7.96875ms
 //#define TIM_PRESCALER	((uint16_t)(2250-1))	//72MHz/2250=32kHz 31.25us

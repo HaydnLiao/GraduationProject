@@ -50,7 +50,7 @@ int main(void)
 	LED1_ON;
 
 	Lipo_Init();
-	Buzzer_Init();
+	Buzzer_Init();/**
 	rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
@@ -64,9 +64,14 @@ int main(void)
 		printf("Error-boardmpu-%d\r\n", rtnValue);
 		Delay_ms(200);
 		rtnValue = BoardMpu_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
-	}
+	}*/
 	Motor_Init();
-
+while(1)
+{
+	Motor0_Run((mdir_t)(0), 60);
+	Motor1_Run((mdir_t)(0), 60);
+	Motor2_Run((mdir_t)(0), 60);
+}
 	while(1)
 	{
 		cntGreen = (cntGreen+1) % (GREEN_BLINK_PERIOD/SYSTEM_PERIOD/(STEP_THREE_MAIN - stepRun + 1));//position initialization
