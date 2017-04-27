@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\led;..\User\systick;..\User\uart;..\User\i2c;..\User\motor;..\User\pid;..\User\lipo;..\User\buzzer</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\led;..\User\systick;..\User\uart;..\User\i2c;..\User\motor;..\User\pid;..\User\lipo;..\User\buzzer;..\User\joystick</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -631,6 +631,11 @@
               <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\buzzer\buzzer.c</FilePath>
+            </File>
+            <File>
+              <FileName>joystick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\joystick\joystick.c</FilePath>
             </File>
           </Files>
         </Group>

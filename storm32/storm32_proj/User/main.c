@@ -10,6 +10,7 @@
 #include "boardmpu.h"
 #include "lipo.h"
 #include "buzzer.h"
+#include "joystick.h"
 
 #define GREEN_BLINK_PERIOD	((uint16_t)(300))	//unit: ms
 #define RED_BLINK_PERIOD	((uint16_t)(200))	//unit: ms
@@ -19,8 +20,9 @@
 #define MPU_CAL_PERIOD		((float)(SYSTEM_PERIOD/1000.0))		//unit: s
 #define POS_INIT_DIFF		((float)(3.0))		//unit: degree
 #define POS_INTI_SPEED		((uint16_t)(3))	//unit: degree per period
-#define LIPO_CAL_WEIGHT		((float)(0.5))//old data weight
+#define LIPO_CAL_WEIGHT		((float)(0.99))//old data weight
 #define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.5v*S 2S->7v 3S->10.5v 4S->14v
+#define JOY_CAL_WEIGHT		((float)(0.9))//old data weight
 #define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
 #define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 5s
 #define MPU_GYPO_Z_BOUND	((float)(1.0))
@@ -40,7 +42,7 @@ int main(void)
 	float gypoZBiasBoard = 0.0, gypoZBiasMpu = 0.0;
 	float gypoMedianBoard = 0.0;
 
-	stepRun = STEP_TWO_MPU_CALI;	//Debug
+	stepRun = STEP_THREE_MAIN;	//Debug
 
 	Led_Init();
 	Systick_Init();
@@ -50,7 +52,8 @@ int main(void)
 	LED1_ON;
 
 	Lipo_Init();
-	Buzzer_Init();/**
+	Buzzer_Init();
+	Joystick_Init();
 	rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
@@ -64,14 +67,9 @@ int main(void)
 		printf("Error-boardmpu-%d\r\n", rtnValue);
 		Delay_ms(200);
 		rtnValue = BoardMpu_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
-	}*/
+	}
 	Motor_Init();
-while(1)
-{
-	Motor0_Run((mdir_t)(0), 60);
-	Motor1_Run((mdir_t)(0), 60);
-	Motor2_Run((mdir_t)(0), 60);
-}
+
 	while(1)
 	{
 		cntGreen = (cntGreen+1) % (GREEN_BLINK_PERIOD/SYSTEM_PERIOD/(STEP_THREE_MAIN - stepRun + 1));//position initialization
@@ -155,6 +153,8 @@ while(1)
 			}
 			else
 			{
+				Joystick_CalValues(JOY_CAL_WEIGHT);
+
 				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
 				//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
 				BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);

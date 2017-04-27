@@ -28,15 +28,15 @@ Project File Date:  04/08/2017
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'D:\Program Files (x86)\Keil\ARM\ARMCC\Bin'
 Build target 'STORM32'
 compiling main.c...
-..\User\main.c(75): warning:  #128-D: loop is not reachable
-        while(1)
-..\User\main.c(36): warning:  #177-D: variable "rtnValue" was declared but never referenced
-        uint8_t stepRun = 0, rtnValue = 0, flagVoltageLow = 0;
-..\User\main.c: 2 warnings, 0 errors
+compiling lipo.c...
+..\User\lipo\lipo.c(72): warning:  #550-D: variable "temp" was set but never used
+        static float temp = 0.0;
+..\User\lipo\lipo.c: 1 warning, 0 errors
+compiling joystick.c...
 linking...
-Program Size: Code=8664 RO-data=632 RW-data=100 ZI-data=3332  
+Program Size: Code=20864 RO-data=792 RW-data=424 ZI-data=3616  
 FromELF: creating hex file...
-"..\Output\storm32.axf" - 0 Error(s), 2 Warning(s).
+"..\Output\storm32.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE

@@ -7,6 +7,7 @@
 ..\output\motor.o: ..\User\stm32f10x_conf.h
 ..\output\motor.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\motor.o: ..\Libraries\CMSIS\stm32f10x.h
+..\output\motor.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
 ..\output\motor.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\motor.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\motor.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h

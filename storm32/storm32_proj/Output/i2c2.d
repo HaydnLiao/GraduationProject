@@ -7,6 +7,7 @@
 ..\output\i2c2.o: ..\User\stm32f10x_conf.h
 ..\output\i2c2.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\i2c2.o: ..\Libraries\CMSIS\stm32f10x.h
+..\output\i2c2.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
 ..\output\i2c2.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\i2c2.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\i2c2.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h

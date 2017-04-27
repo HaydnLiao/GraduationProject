@@ -3,6 +3,10 @@
 
 void Led_Init(void)
 {
+	/**
+		LED0 -> PB12 green
+		LED1 -> PB13 red
+	*/
 	GPIO_InitTypeDef ledInitStruct;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); 
 	ledInitStruct.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13;

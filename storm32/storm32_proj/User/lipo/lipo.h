@@ -4,7 +4,9 @@
 
 #include "stm32f10x.h"
 
-static __IO uint16_t ADC1_Value;
+#define LIPO_VOL_LOWEST ((float)(0.001))
+
+__IO static uint16_t ADC2_Value;
 extern float Lipo_Voltage;
 
 void Lipo_Init(void);

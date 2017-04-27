@@ -7,6 +7,7 @@
 ..\output\pid.o: ..\User\stm32f10x_conf.h
 ..\output\pid.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\pid.o: ..\Libraries\CMSIS\stm32f10x.h
+..\output\pid.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
 ..\output\pid.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\pid.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\pid.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
