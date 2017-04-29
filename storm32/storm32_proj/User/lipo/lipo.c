@@ -70,7 +70,7 @@ void ADC1_2_IRQHandler(void)
 
 void Lipo_CalVoltage(float calWeight)
 {
-	static float temp = 0.0;
+	//static float temp = 0.0;
 	/**
 		1936 -> 12.00v
 		1612 -> 10.00v
@@ -94,7 +94,7 @@ void Lipo_CalVoltage(float calWeight)
 	{
 		Lipo_Voltage = 0.0;
 	}*/
-	temp = ADC2_Value*0.0061767578125;
+	//temp = ADC2_Value*0.0061767578125;
 	//printf("lipo:%d %f\r\n", ADC2_Value, Lipo_Voltage);
 	//printf("%f,%f\r\n", temp, Lipo_Voltage);
 }

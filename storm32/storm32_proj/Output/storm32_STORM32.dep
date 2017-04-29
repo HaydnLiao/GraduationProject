@@ -171,7 +171,7 @@ I (..\User\i2c\boardmpu.h)(0x58DC76FC)
 I (..\User\i2c\i2c1.h)(0x58C80ECA)
 I (..\User\lipo\lipo.h)(0x59019960)
 I (..\User\buzzer\buzzer.h)(0x58E88117)
-I (..\User\joystick\joystick.h)(0x5904C9C7)
+I (..\User\joystick\joystick.h)(0x5904D75E)
 F (..\User\stm32f10x_conf.h)(0x590497B0)()
 F (..\User\stm32f10x_it.c)(0x58C7ECDB)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid -I..\User\lipo -I..\User\buzzer -I..\User\joystick-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\stm32f10x_it.o --omf_browse ..\output\stm32f10x_it.crf --depend ..\output\stm32f10x_it.d)
 I (..\User\stm32f10x_it.h)(0x570B719F)
@@ -344,7 +344,7 @@ I (..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
 I (..\User\systick\systick.h)(0x58C7EEDA)
-F (..\User\lipo\lipo.c)(0x5904C45E)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid -I..\User\lipo -I..\User\buzzer -I..\User\joystick-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\lipo.o --omf_browse ..\output\lipo.crf --depend ..\output\lipo.d)
+F (..\User\lipo\lipo.c)(0x5904CF9F)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid -I..\User\lipo -I..\User\buzzer -I..\User\joystick-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\lipo.o --omf_browse ..\output\lipo.crf --depend ..\output\lipo.d)
 I (..\User\lipo\lipo.h)(0x59019960)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
@@ -375,8 +375,8 @@ I (..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x570B719F)
 I (..\Libraries\FWlib\inc\misc.h)(0x570B719F)
-F (..\User\joystick\joystick.c)(0x5904CD42)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid -I..\User\lipo -I..\User\buzzer -I..\User\joystick-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\joystick.o --omf_browse ..\output\joystick.crf --depend ..\output\joystick.d)
-I (..\User\joystick\joystick.h)(0x5904C9C7)
+F (..\User\joystick\joystick.c)(0x5904D9BD)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS -I..\Libraries\FWlib\inc -I..\User -I..\User\led -I..\User\systick -I..\User\uart -I..\User\i2c -I..\User\motor -I..\User\pid -I..\User\lipo -I..\User\buzzer -I..\User\joystick-I D:\Documents\我的文档\本科毕业设计\Local\storm32\storm32_proj\Project\RTE-I "D:\Program Files (x86)\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include"-I "D:\Program Files (x86)\Keil\ARM\CMSIS\Include"-D__UVISION_VERSION="515" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\output\joystick.o --omf_browse ..\output\joystick.crf --depend ..\output\joystick.d)
+I (..\User\joystick\joystick.h)(0x5904D75E)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x570B719F)
 I (..\Libraries\CMSIS\core_cm3.h)(0x570B719F)
 I (D:\Program Files (x86)\Keil\ARM\ARMCC\include\stdint.h)(0x54C245B8)
