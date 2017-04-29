@@ -50,7 +50,8 @@ void LipoADC_Init(void)
 	while(ADC_GetCalibrationStatus(ADC2));
 
 	ADC_SoftwareStartConvCmd(ADC2, ENABLE);
-
+	
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
 	nvicInitStruct.NVIC_IRQChannel = ADC1_2_IRQn;
 	nvicInitStruct.NVIC_IRQChannelPreemptionPriority = 0;
 	nvicInitStruct.NVIC_IRQChannelSubPriority = 4;

@@ -7,6 +7,7 @@
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\main.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
+..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_exti.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h

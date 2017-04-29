@@ -8,6 +8,7 @@
 ..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\lipo.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
+..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_exti.h
 ..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\lipo.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h

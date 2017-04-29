@@ -8,6 +8,7 @@
 ..\output\systick.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\systick.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\systick.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
+..\output\systick.o: ..\Libraries\FWlib\inc\stm32f10x_exti.h
 ..\output\systick.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\systick.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\systick.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h

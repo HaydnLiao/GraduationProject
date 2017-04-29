@@ -8,6 +8,7 @@
 ..\output\stm32f10x_i2c.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\stm32f10x_i2c.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\stm32f10x_i2c.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
+..\output\stm32f10x_i2c.o: ..\Libraries\FWlib\inc\stm32f10x_exti.h
 ..\output\stm32f10x_i2c.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\stm32f10x_i2c.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\stm32f10x_i2c.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h

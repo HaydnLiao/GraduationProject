@@ -8,6 +8,7 @@
 ..\output\boardmpu.o: ..\Libraries\FWlib\inc\stm32f10x_adc.h
 ..\output\boardmpu.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\boardmpu.o: ..\Libraries\FWlib\inc\stm32f10x_dma.h
+..\output\boardmpu.o: ..\Libraries\FWlib\inc\stm32f10x_exti.h
 ..\output\boardmpu.o: ..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\output\boardmpu.o: ..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\output\boardmpu.o: ..\Libraries\FWlib\inc\stm32f10x_tim.h
