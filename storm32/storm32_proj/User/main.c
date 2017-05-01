@@ -37,10 +37,10 @@ int main(void)
 {
 	uint8_t stepRun = 0, rtnValue = 0, flagVoltageLow = 0;
 	uint32_t cntGreen = 0, cntRed = 0, cntCalibrate = 0, cntCaliDelay = 0;
-	float pidPitch = 0.0, pidRoll = 0.0, pidYaw = 0.0;
-	float yawBoard = 0.0, yawMpu = 0.0;
-	float gypoZBiasBoard = 0.0, gypoZBiasMpu = 0.0;
-	float gypoMedianBoard = 0.0;
+	float pitchSpeed = 0.0, rollSpeed = 0.0, yawSpeed = 0.0;
+	float yawBoard = 0.0, yawMpu = 0.0, yawDiff = 0.0;
+	float gypoZBiasBoard = 0.0, gypoZBiasMpu = 0.0, gypoMedianBoard = 0.0;
+	float joyExpPitch = 0.0, joyExpYaw = 0.0;
 
 	stepRun = STEP_THREE_MAIN;	//Debug
 
@@ -137,6 +137,7 @@ int main(void)
 					{
 						gypoZBiasMpu /= MPU_CALI_TIMES;
 						gypoZBiasBoard /= MPU_CALI_TIMES;
+						//Bias clipping 
 						/**
 						if(fabs(gypoZBiasMpu) > MPU_YAW_BIAS_MAX)
 						{
@@ -153,44 +154,53 @@ int main(void)
 			}
 			else
 			{
-				Joystick_CalValues(JOY_CAL_WEIGHT);
-
-				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
-				//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
-				BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);
-				//printf("[#2]pitch: %f roll: %f\r\n", BoardMpu_Pitch, BoardMpu_Roll);
-
 			#if DEBUG_USART1_PID
 				Usart1StringToFloat();	//usart1-debug-pid parameters
 			#endif
-				//if(fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
-				{
-					pidPitch = PID_Motor0(Mpu6050_Pitch, 0.0);
-					Motor0_Run((mdir_t)(pidPitch > 0), (uint16_t)(fabs(pidPitch)));//pitch angle greather than zero, motor run clockwise
-				}
-				/**else
-				{
-					Motor0_Run((mdir_t)(0), 0);
-				}*/
-				pidRoll = PID_Motor1(Mpu6050_Roll, 0.0);
-				Motor1_Run((mdir_t)(pidRoll > 0), (uint16_t)(fabs(pidRoll)));//roll angle greather than zero, motor run clockwise
 
-				yawMpu +=  Mpu6050_Gyro_Z-gypoZBiasMpu;
-				yawBoard += BoardMpu_Gyro_Z-gypoZBiasBoard;
-				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z-gypoZBiasBoard);
-				//printf("%f,%f\r\n", BoardMpu_Gyro_Z, gypoMedianBoard);
-				if(fabs(gypoMedianBoard) > MPU_GYPO_Z_BOUND)
+				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//#1 pitch roll
+				//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+				BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//#2 pitch roll
+				//printf("[#2]pitch: %f roll: %f\r\n", BoardMpu_Pitch, BoardMpu_Roll);
+				yawMpu +=  Mpu6050_Gyro_Z-gypoZBiasMpu;//#1 yaw
+				yawBoard += BoardMpu_Gyro_Z-gypoZBiasBoard;//#2 yaw
+				yawDiff = yawMpu - yawBoard;//#1 yaw - #2 yaw
+				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z-gypoZBiasBoard);//#2 angular rate
+				//printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, gypoMedianBoard);
+
+				//#2 pitch&roll angle clipping 
+				
+
+				if(Joystick_ObtainMode())//Manual mode
 				{
-					//negative direction
-					Motor2_Run((mdir_t)(gypoMedianBoard > 0), (uint16_t)(fabs(gypoMedianBoard)));//yaw  greather than zero, motor run clockwise
+					Joystick_CalXY(JOY_CAL_WEIGHT);
+					Joystick_ConvertAngle(&joyExpPitch, &joyExpYaw);
+					//#1 expect pitch, #1-#2 yaw angle clipping 
+					//joyExpPitch = 
+					//joyExpYaw = 
+					printf("%f,%f\r\n", joyExpPitch, joyExpYaw);
+
+					pitchSpeed = PID_Motor0(Mpu6050_Pitch, joyExpPitch);//#1 pitch
+					yawSpeed = PID_Motor2(yawDiff, joyExpYaw);//#1 yaw - #2 yaw
 				}
-				else
+				else//Auto mode
 				{
-					pidYaw = PID_Motor2(yawMpu - yawBoard, 0.0);
-					Motor2_Run((mdir_t)(pidYaw > 0), (uint16_t)(fabs(pidYaw)));//yaw  greather than zero, motor run clockwise
+					pitchSpeed = PID_Motor0(Mpu6050_Pitch, 0.0);//#1 pitch
+					if(fabs(gypoMedianBoard) > MPU_GYPO_Z_BOUND)
+					{
+						//negative direction
+						yawSpeed = gypoMedianBoard;//#2 angular rate
+					}
+					else
+					{
+						yawSpeed = PID_Motor2(yawDiff, 0.0);//#1 yaw - #2 yaw
+					}
 				}
-				//printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, pidYaw);
-				//yawBoard -= pidYaw;
+				rollSpeed = PID_Motor1(Mpu6050_Roll, 0.0);//#1 roll
+
+				Motor0_Run((mdir_t)(pitchSpeed > 0), (uint16_t)(fabs(pitchSpeed)));//pitch angle greather than zero, motor run clockwise
+				Motor1_Run((mdir_t)(rollSpeed > 0), (uint16_t)(fabs(rollSpeed)));//roll angle greather than zero, motor run clockwise
+				Motor2_Run((mdir_t)(yawSpeed > 0), (uint16_t)(fabs(yawSpeed)));//yaw  greather than zero, motor run clockwise
 			}
 		}
 		else

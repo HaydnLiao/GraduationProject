@@ -45,11 +45,11 @@ float PID_Motor0(float actAngle, float expAngle)//actual angle and expected angl
 */
 	//integration separation:avoid overshoot -> variational integration:general type
 	//resisting integral saturation
-	if(fabs(et) >= 60)
+	if(fabs(et) >= 60)//ERROR_LIMIT_UPPER
 	{
 		indexICal = 0.0;
 	}
-	else if(fabs(et) <= 30)
+	else if(fabs(et) <= 30)//ERROR_LIMIT_LOWER
 	{
 		indexICal = 1.0;
 	}

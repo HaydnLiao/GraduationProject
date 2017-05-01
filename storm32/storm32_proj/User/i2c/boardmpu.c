@@ -1,6 +1,6 @@
 
 #include "boardmpu.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 uint8_t BoardMpu_ID;		//Identity of device
 float BoardMpu_Accel_X;		//Aceeleration x-axis
@@ -20,7 +20,7 @@ uint8_t BoardMpu_Init(uint16_t sampleRate, uint8_t flagDLPF)
 	Delay_ms(10);//must delay
 	if(BoardMpu_GetDevID())//mpu6050 WHO_AM_I register
 	{
-		printf("0x%x\r\n", BoardMpu_ID);
+		//printf("0x%x\r\n", BoardMpu_ID);
 		return 1;
 	}
 	if(BoardMpu_ID != BOARDMPU_ID)//verify device ID

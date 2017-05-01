@@ -20,4 +20,3 @@
 ..\output\boardmpu.o: ..\User\systick\systick.h
 ..\output\boardmpu.o: ..\User\i2c\mpu6050.h
 ..\output\boardmpu.o: ..\User\i2c\i2c2.h
-..\output\boardmpu.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
