@@ -1,4 +1,5 @@
 
+#include <stdio.h>
 #include "stm32f10x.h"
 #include "global_math.h"
 #include "led.h"
@@ -200,7 +201,7 @@ int main(void)
 
 				Motor0_Run((mdir_t)(pitchSpeed > 0), (uint16_t)(fabs(pitchSpeed)));//pitch angle greather than zero, motor run clockwise
 				Motor1_Run((mdir_t)(rollSpeed > 0), (uint16_t)(fabs(rollSpeed)));//roll angle greather than zero, motor run clockwise
-				Motor2_Run((mdir_t)(yawSpeed > 0), (uint16_t)(fabs(yawSpeed)));//yaw  greather than zero, motor run clockwise
+				Motor2_Run((mdir_t)(yawSpeed > 0), (uint16_t)(fabs(yawSpeed)));//yaw  angle difference greather than zero, motor run clockwise
 			}
 		}
 		else
