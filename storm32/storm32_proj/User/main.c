@@ -28,6 +28,15 @@
 #define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 5s
 #define MPU_GYPO_Z_BOUND	((float)(1.0))
 
+#define HANDLE_PITCH_UPPER	((float)(45.0))
+#define HANDLE_PITCH_LOWER	((float)(-45.0))
+#define HANDLE_ROLL_UPPER	((float)(90.0))
+#define HANDLE_ROLL_LOWER	((float)(-90.0))
+#define CAMERA_PITCH_UPPER	((float)(50.0))
+#define CAMERA_PITCH_LOWER	((float)(-50.0))
+#define CAMERA_YAW_UPPER	((float)(50.0))
+#define CAMERA_YAW_LOWER	((float)(-50.0))
+
 //#define MPU_YAW_BIAS_MAX	((float)(1.0))
 
 #define STEP_ONE_POS_INIT	((uint8_t)(0))
@@ -170,34 +179,40 @@ int main(void)
 				//printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, gypoMedianBoard);
 
 				//#2 pitch&roll angle clipping 
-				
-
-				if(Joystick_ObtainMode())//Manual mode
+				if(BoardMpu_Pitch > HANDLE_PITCH_UPPER || BoardMpu_Pitch < HANDLE_PITCH_LOWER
+					|| BoardMpu_Roll > HANDLE_ROLL_UPPER || BoardMpu_Roll < HANDLE_ROLL_LOWER)
 				{
-					Joystick_CalXY(JOY_CAL_WEIGHT);
-					Joystick_ConvertAngle(&joyExpPitch, &joyExpYaw);
-					//#1 expect pitch, #1-#2 yaw angle clipping 
-					//joyExpPitch = 
-					//joyExpYaw = 
-					printf("%f,%f\r\n", joyExpPitch, joyExpYaw);
-
-					pitchSpeed = PID_Motor0(Mpu6050_Pitch, joyExpPitch);//#1 pitch
-					yawSpeed = PID_Motor2(yawDiff, joyExpYaw);//#1 yaw - #2 yaw
+					pitchSpeed = rollSpeed = yawSpeed = 0.0;
 				}
-				else//Auto mode
+				else
 				{
-					pitchSpeed = PID_Motor0(Mpu6050_Pitch, 0.0);//#1 pitch
-					if(fabs(gypoMedianBoard) > MPU_GYPO_Z_BOUND)
+					if(Joystick_ObtainMode())//Manual mode
 					{
-						//negative direction
-						yawSpeed = gypoMedianBoard;//#2 angular rate
+						Joystick_CalXY(JOY_CAL_WEIGHT);
+						Joystick_ConvertAngle(&joyExpPitch, &joyExpYaw);
+						//#1 expect pitch, #1-#2 yaw angle clipping 
+						joyExpPitch = INTERVAL_CONSTRAINT(joyExpPitch, CAMERA_PITCH_UPPER, CAMERA_PITCH_LOWER);
+						joyExpYaw = INTERVAL_CONSTRAINT(joyExpYaw, CAMERA_YAW_UPPER, CAMERA_YAW_LOWER);
+						//printf("%f,%f\r\n", joyExpPitch, joyExpYaw);
+
+						pitchSpeed = PID_Motor0(Mpu6050_Pitch, joyExpPitch);//#1 pitch
+						yawSpeed = PID_Motor2(yawDiff, joyExpYaw);//#1 yaw - #2 yaw
 					}
-					else
+					else//Auto mode
 					{
-						yawSpeed = PID_Motor2(yawDiff, 0.0);//#1 yaw - #2 yaw
+						pitchSpeed = PID_Motor0(Mpu6050_Pitch, 0.0);//#1 pitch
+						if(fabs(gypoMedianBoard) > MPU_GYPO_Z_BOUND)
+						{
+							//negative direction
+							yawSpeed = gypoMedianBoard;//#2 angular rate
+						}
+						else
+						{
+							yawSpeed = PID_Motor2(yawDiff, 0.0);//#1 yaw - #2 yaw
+						}
 					}
+					rollSpeed = PID_Motor1(Mpu6050_Roll, 0.0);//#1 roll
 				}
-				rollSpeed = PID_Motor1(Mpu6050_Roll, 0.0);//#1 roll
 
 				Motor0_Run((mdir_t)(pitchSpeed > 0), (uint16_t)(fabs(pitchSpeed)));//pitch angle greather than zero, motor run clockwise
 				Motor1_Run((mdir_t)(rollSpeed > 0), (uint16_t)(fabs(rollSpeed)));//roll angle greather than zero, motor run clockwise

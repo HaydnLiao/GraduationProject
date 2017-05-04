@@ -123,7 +123,7 @@ void Joystick_CalXY(float calWeight)
 {
 	Joystick_X = (uint16_t)(calWeight*Joystick_X + (1-calWeight)*ADC1_Value[0]);
 	Joystick_Y = (uint16_t)(calWeight*Joystick_Y + (1-calWeight)*ADC1_Value[1]);
-	printf("%d,%d ", Joystick_X, Joystick_Y);
+	//printf("%d,%d ", Joystick_X, Joystick_Y);
 }
 
 /**
@@ -203,7 +203,7 @@ void Joystick_ConvertAngle(float* xAngle, float* yAngle)
 	uint16_t xCal, yCal;
 	xCal = INTERVAL_CONSTRAINT(Joystick_X - JOY_ANALOG_BIAS_X, JOY_ANALOG_UPPER, JOY_ANALOG_LOWER);
 	yCal = INTERVAL_CONSTRAINT(Joystick_Y - JOY_ANALOG_BIAS_Y, JOY_ANALOG_UPPER, JOY_ANALOG_LOWER);
-	printf("%d,%d ", xCal, yCal);
+	//printf("%d,%d ", xCal, yCal);
 	*xAngle = K_X * xCal + B_X;
 	*yAngle = K_Y * yCal + B_Y;
 }
