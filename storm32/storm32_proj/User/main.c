@@ -25,7 +25,7 @@
 #define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.5v*S 2S->7v 3S->10.5v 4S->14v
 #define JOY_CAL_WEIGHT		((float)(0.9))//old data weight
 #define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
-#define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 5s
+#define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 9s
 #define MPU_GYPO_Z_BOUND	((float)(1.0))
 
 #define HANDLE_PITCH_UPPER	((float)(45.0))
@@ -37,7 +37,10 @@
 #define CAMERA_YAW_UPPER	((float)(50.0))
 #define CAMERA_YAW_LOWER	((float)(-50.0))
 
-//#define MPU_YAW_BIAS_MAX	((float)(1.0))
+#define MPU_YAW_BIAS_MAX	((float)(-1.215))
+#define MPU_YAW_BIAS_MIN	((float)(-1.250))
+#define BOARD_YAW_BIAS_MAX	((float)(-0.420))
+#define BOARD_YAW_BIAS_MIN	((float)(-0.560))
 
 #define STEP_ONE_POS_INIT	((uint8_t)(0))
 #define STEP_TWO_MPU_CALI	((uint8_t)(1))
@@ -52,7 +55,7 @@ int main(void)
 	float gypoZBiasBoard = 0.0, gypoZBiasMpu = 0.0, gypoMedianBoard = 0.0;
 	float joyExpPitch = 0.0, joyExpYaw = 0.0;
 
-	stepRun = STEP_THREE_MAIN;	//Debug
+	stepRun = STEP_TWO_MPU_CALI;	//Debug
 
 	Led_Init();
 	Systick_Init();
@@ -148,17 +151,17 @@ int main(void)
 						gypoZBiasMpu /= MPU_CALI_TIMES;
 						gypoZBiasBoard /= MPU_CALI_TIMES;
 						//Bias clipping 
-						/**
-						if(fabs(gypoZBiasMpu) > MPU_YAW_BIAS_MAX)
+						//printf("%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard);
+						if(gypoZBiasMpu > MPU_YAW_BIAS_MAX || gypoZBiasMpu < MPU_YAW_BIAS_MIN
+							|| gypoZBiasBoard > BOARD_YAW_BIAS_MAX || gypoZBiasBoard < BOARD_YAW_BIAS_MIN)
 						{
-							gypoZBiasMpu = 0.0;
+							gypoZBiasMpu = gypoZBiasBoard = 0.0;
+							cntCalibrate = 0;
 						}
-						if(fabs(gypoZBiasBoard) > MPU_YAW_BIAS_MAX)
+						else
 						{
-							gypoZBiasBoard = 0.0;
+							stepRun = STEP_THREE_MAIN;
 						}
-						*/
-						stepRun = STEP_THREE_MAIN;
 					}
 				}
 			}
