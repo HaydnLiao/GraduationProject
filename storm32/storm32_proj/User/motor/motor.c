@@ -151,7 +151,7 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED / speed;	//faster speed shorter timeout
+			timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
 			preSpeed = speed;
 		}
 		if(cntTime < timeout)
@@ -227,7 +227,7 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED / speed;	//faster speed shorter timeout
+			timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
 			preSpeed = speed;
 		}
 
@@ -284,7 +284,7 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED / speed;	//faster speed shorter timeout
+			timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
 			preSpeed = speed;
 		}
 

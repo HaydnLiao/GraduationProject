@@ -5,13 +5,13 @@
 #include "stm32f10x.h"
 #include "global_math.h"
 
-static float pitchPPara = 1.0;
-static float pitchIPara = 0.0;
-static float pitchDPara = 8.0;
-static float rollPPara = 1.0;
-static float rollIPara = 0.0;
-static float rollDPara = 8.0;
-static float yawPPara = 1.0;
+static float pitchPPara = 40.0;
+static float pitchIPara = 0.1;
+static float pitchDPara = 10.0;
+static float rollPPara = 40.0;
+static float rollIPara = 0.1;
+static float rollDPara = 40.0;
+static float yawPPara = 10.0;
 static float yawIPara = 0.0;
 static float yawDPara = 8.0;
 

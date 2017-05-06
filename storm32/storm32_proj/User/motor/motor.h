@@ -10,7 +10,7 @@
 //#define TIM_PERIOD		((uint16_t)(256-1))		//7.96875ms
 //#define TIM_PRESCALER	((uint16_t)(2250-1))	//72MHz/2250=32kHz 31.25us
 #define TIM_DEADTIME	((uint8_t)(0x08))
-#define MOTOR_MAX_SPEED	((uint16_t)(120))	//unit: °/s
+#define MOTOR_MAX_SPEED	((uint16_t)(720))	//unit: °/s
 #define MOTOR_RUN_LIMIT	((uint16_t)(5))		//unit: °/s
 
 typedef enum {mdir_anticlk = 0, mdir_clkwise} mdir_t;
