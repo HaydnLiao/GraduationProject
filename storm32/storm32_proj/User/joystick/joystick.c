@@ -108,11 +108,11 @@ void EXTI2_IRQHandler(void)
 void JoystickPara_Init(void)
 {
 	/**
-		X 	-> yaw		4096~0	-> -55~+55 degree
+		X 	-> yaw		4096~0	-> +55~-55 degree
 		Y 	-> pitch	4096~0	-> +55~-55 degree
 	*/
-	K_X = (JOY_ANGLE_X_UPPER - JOY_ANGLE_X_LOWER) * 1.0 / (JOY_ANALOG_LOWER - JOY_ANALOG_UPPER);
-	B_X = JOY_ANGLE_X_UPPER - K_X * JOY_ANALOG_LOWER;
+	K_X = (JOY_ANGLE_X_LOWER - JOY_ANGLE_X_UPPER) * 1.0 / (JOY_ANALOG_LOWER - JOY_ANALOG_UPPER);
+	B_X = JOY_ANGLE_X_LOWER - K_X * JOY_ANALOG_LOWER;
 	K_Y = (JOY_ANGLE_Y_LOWER - JOY_ANGLE_Y_UPPER) * 1.0 / (JOY_ANALOG_LOWER - JOY_ANALOG_UPPER);
 	B_Y = JOY_ANGLE_Y_LOWER - K_Y * JOY_ANALOG_LOWER;
 	//DEBUG_PRINT("%f,%f,%f,%f ",K_X, K_Y, B_X, B_Y);
