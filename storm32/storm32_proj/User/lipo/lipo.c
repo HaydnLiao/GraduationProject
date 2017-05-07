@@ -1,6 +1,5 @@
 
 #include "lipo.h"
-#include <stdio.h>
 
 float Lipo_Voltage = 0.0;
 
@@ -95,7 +94,7 @@ void Lipo_CalVoltage(float calWeight)
 		Lipo_Voltage = 0.0;
 	}*/
 	//temp = ADC2_Value*0.0061767578125;
-	//printf("lipo:%d %f\r\n", ADC2_Value, Lipo_Voltage);
-	//printf("%f,%f\r\n", temp, Lipo_Voltage);
+	//DEBUG_PRINT("lipo:%d %f\r\n", ADC2_Value, Lipo_Voltage);
+	//DEBUG_PRINT("%f,%f\r\n", temp, Lipo_Voltage);
 }
 

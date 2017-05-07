@@ -3,6 +3,7 @@
 #define __LIPO_H
 
 #include "stm32f10x.h"
+#include "global_math.h"
 
 #define LIPO_VOL_LOWEST ((float)(0.001))
 

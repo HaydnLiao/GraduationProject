@@ -1,6 +1,5 @@
 
 #include "joystick.h"
-#include <stdio.h>
 
 uint16_t Joystick_X = 0, Joystick_Y = 0;
 __IO uint16_t Joystick_Z = 0;
@@ -116,14 +115,14 @@ void JoystickPara_Init(void)
 	B_X = JOY_ANGLE_X_UPPER - K_X * JOY_ANALOG_LOWER;
 	K_Y = (JOY_ANGLE_Y_LOWER - JOY_ANGLE_Y_UPPER) * 1.0 / (JOY_ANALOG_LOWER - JOY_ANALOG_UPPER);
 	B_Y = JOY_ANGLE_Y_LOWER - K_Y * JOY_ANALOG_LOWER;
-	//printf("%f,%f,%f,%f ",K_X, K_Y, B_X, B_Y);
+	//DEBUG_PRINT("%f,%f,%f,%f ",K_X, K_Y, B_X, B_Y);
 }
 
 void Joystick_CalXY(float calWeight)
 {
 	Joystick_X = (uint16_t)(calWeight*Joystick_X + (1-calWeight)*ADC1_Value[0]);
 	Joystick_Y = (uint16_t)(calWeight*Joystick_Y + (1-calWeight)*ADC1_Value[1]);
-	//printf("%d,%d ", Joystick_X, Joystick_Y);
+	//DEBUG_PRINT("%d,%d ", Joystick_X, Joystick_Y);
 }
 
 /**
@@ -157,7 +156,7 @@ void Joystick_CalZ(void)
 		cntKeyDown = 0;
 		Joystick_Z ^= 0x01;
 	}
-	printf("%d\r\n", Joystick_Z);
+	DEBUG_PRINT("%d\r\n", Joystick_Z);
 }
 */
 
@@ -192,7 +191,7 @@ uint8_t Joystick_ObtainMode(void)
 		cntKeyDown = 0;
 		Joystick_Z ^= 0x01;
 	}
-	//printf("%d\r\n", Joystick_Z);
+	//DEBUG_PRINT("%d\r\n", Joystick_Z);
 
 	return (Joystick_Z&0x01);
 }
@@ -203,7 +202,7 @@ void Joystick_ConvertAngle(float* xAngle, float* yAngle)
 	uint16_t xCal, yCal;
 	xCal = INTERVAL_CONSTRAINT(Joystick_X - JOY_ANALOG_BIAS_X, JOY_ANALOG_UPPER, JOY_ANALOG_LOWER);
 	yCal = INTERVAL_CONSTRAINT(Joystick_Y - JOY_ANALOG_BIAS_Y, JOY_ANALOG_UPPER, JOY_ANALOG_LOWER);
-	//printf("%d,%d ", xCal, yCal);
+	//DEBUG_PRINT("%d,%d ", xCal, yCal);
 	*xAngle = K_X * xCal + B_X;
 	*yAngle = K_Y * yCal + B_Y;
 }

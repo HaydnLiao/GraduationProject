@@ -15,6 +15,7 @@
 ..\output\boardmpu.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\boardmpu.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\boardmpu.o: ..\User\global_math.h
+..\output\boardmpu.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\boardmpu.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\boardmpu.o: ..\User\i2c\i2c1.h
 ..\output\boardmpu.o: ..\User\systick\systick.h

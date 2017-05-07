@@ -16,7 +16,7 @@ float PID_Motor0(float actAngle, float expAngle)//actual angle and expected angl
 	pitchPPara = debugPara[0];
 	pitchIPara = debugPara[1];
 	pitchDPara = debugPara[2];
-	//printf("[0]P:%f I:%f D:%f \t", pitchPPara, pitchIPara, pitchDPara);
+	//DEBUG_PRINT("[0]P:%f I:%f D:%f \t", pitchPPara, pitchIPara, pitchDPara);
 #endif
 
 	if(expAngle_old != expAngle)
@@ -93,8 +93,8 @@ float PID_Motor0(float actAngle, float expAngle)//actual angle and expected angl
 	dpid_pre = dpid;
 */
 	//dpid = INTERVAL_CONSTRAINT(dpid, PITCH_RES_UPPER, PITCH_RES_LOWER);//result limit
-	//printf("et:%f dP:%f dI:%f dD:%f dpid:%f \r\n", et, dP, dI, dD, dpid);
-	//printf("%f,%f\r\n", et, dpid);
+	//DEBUG_PRINT("et:%f dP:%f dI:%f dD:%f dpid:%f \r\n", et, dP, dI, dD, dpid);
+	//DEBUG_PRINT("%f,%f\r\n", et, dpid);
 	return dpid;
 }
 
@@ -109,7 +109,7 @@ float PID_Motor1(float actAngle, float expAngle)		//actual angle and expected an
 	rollPPara = debugPara[3];
 	rollIPara = debugPara[4];
 	rollDPara = debugPara[5];
-	//printf("[1]P:%f\tI:%f\tD:%f\r\n", rollPPara, rollIPara, rollDPara);
+	//DEBUG_PRINT("[1]P:%f\tI:%f\tD:%f\r\n", rollPPara, rollIPara, rollDPara);
 #endif
 
 	if(expAngle_old != expAngle)
@@ -156,7 +156,7 @@ float PID_Motor2(float actAngle, float expAngle)		//actual angle and expected an
 	yawPPara = debugPara[6];
 	yawIPara = debugPara[7];
 	yawDPara = debugPara[8];
-	//printf("%f,%f,%f,", yawPPara, yawIPara, yawDPara);
+	//DEBUG_PRINT("%f,%f,%f,", yawPPara, yawIPara, yawDPara);
 #endif
 
 	if(expAngle_old != expAngle)

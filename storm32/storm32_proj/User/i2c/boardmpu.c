@@ -1,6 +1,5 @@
 
 #include "boardmpu.h"
-//#include <stdio.h>
 
 uint8_t BoardMpu_ID;		//Identity of device
 float BoardMpu_Accel_X;		//Aceeleration x-axis
@@ -20,7 +19,7 @@ uint8_t BoardMpu_Init(uint16_t sampleRate, uint8_t flagDLPF)
 	Delay_ms(10);//must delay
 	if(BoardMpu_GetDevID())//mpu6050 WHO_AM_I register
 	{
-		//printf("0x%x\r\n", BoardMpu_ID);
+		//DEBUG_PRINT("0x%x\r\n", BoardMpu_ID);
 		return 1;
 	}
 	if(BoardMpu_ID != BOARDMPU_ID)//verify device ID
@@ -116,7 +115,7 @@ uint8_t BoardMpu_GetAccelData(void)
 	BoardMpu_Accel_X = AccelData[0]/FACTOR_ACCEL_RANGE_2;//¡À2g	
 	BoardMpu_Accel_Y = AccelData[1]/FACTOR_ACCEL_RANGE_2;//¡À2g	
 	BoardMpu_Accel_Z = AccelData[2]/FACTOR_ACCEL_RANGE_2;//¡À2g
-	//printf("%-5d %-5d %-5d\r\n", AccelData[0], AccelData[1], AccelData[2]);
+	//DEBUG_PRINT("%-5d %-5d %-5d\r\n", AccelData[0], AccelData[1], AccelData[2]);
 	return 0;
 }
 
@@ -129,7 +128,7 @@ uint8_t BoardMpu_GetTempData(void)
 	}
 	TempData = (buff[0] & 0x00ff)<<8 | buff[1];
 	BoardMpu_Temp = TempData/340.0 + 36.53;
-	//printf("%-8.6f\r\n", BoardMpu_Temp);
+	//DEBUG_PRINT("%-8.6f\r\n", BoardMpu_Temp);
 	return 0;
 }
 
@@ -146,8 +145,8 @@ uint8_t BoardMpu_GetGyroData(void)
 	BoardMpu_Gyro_X = GyroData[0]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
 	BoardMpu_Gyro_Y = GyroData[1]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
 	BoardMpu_Gyro_Z = GyroData[2]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
-	//printf("%-5d %-5d %-5d\r\n", GyroData[0], GyroData[1], GyroData[2]);
-	//printf("[#2]%f\r\n", BoardMpu_Gyro_Y);
+	//DEBUG_PRINT("%-5d %-5d %-5d\r\n", GyroData[0], GyroData[1], GyroData[2]);
+	//DEBUG_PRINT("[#2]%f\r\n", BoardMpu_Gyro_Y);
 	return 0;
 }
 
@@ -166,7 +165,7 @@ uint8_t BoardMpu_SetSampleRate(uint16_t sampleRate, uint8_t flagDLPF)
 		sampleRate = INTERVAL_CONSTRAINT(sampleRate, 8000, 32);
 	}
 	divider = gyroOutputRate / sampleRate - 1;
-	//printf("divider: %d \r\n", divider);
+	//DEBUG_PRINT("divider: %d \r\n", divider);
 	if(I2C1_WriteData(BOARDMPU_ADDRESS, SMPRT_DIV, &divider, 1))
 	{
 		return 1;
@@ -208,7 +207,7 @@ uint8_t BoardMpu_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 	{
 		data = 0;
 	}
-	//printf("bandWidth: %d %d \r\n", bandWidth, data);
+	//DEBUG_PRINT("bandWidth: %d %d \r\n", bandWidth, data);
 	if(I2C1_WriteData(BOARDMPU_ADDRESS, CONFIG, &data, 1))
 	{
 		return 1;

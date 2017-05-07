@@ -15,5 +15,5 @@
 ..\output\joystick.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\joystick.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\joystick.o: ..\User\global_math.h
-..\output\joystick.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\joystick.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\joystick.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h

@@ -1,7 +1,5 @@
 
 #include "usart1.h"
-//#include "stm32f10x.h"
-//#include <stdio.h>
 
 uint8_t usart1RxBuff[USART1_RX_LEN] = {0};
 volatile uint16_t cntUsart1RxBuff = 0;

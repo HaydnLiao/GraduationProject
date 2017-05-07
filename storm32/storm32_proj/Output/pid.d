@@ -15,6 +15,6 @@
 ..\output\pid.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\pid.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\pid.o: ..\User\global_math.h
+..\output\pid.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\pid.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\pid.o: ..\User\uart\usart1.h
-..\output\pid.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h

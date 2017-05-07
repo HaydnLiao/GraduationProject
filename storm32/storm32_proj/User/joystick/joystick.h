@@ -7,10 +7,10 @@
 
 #define JOY_ANALOG_UPPER	(4096)
 #define JOY_ANALOG_LOWER	(0)
-#define JOY_ANGLE_X_UPPER	(55)
-#define JOY_ANGLE_X_LOWER	(-55)
-#define JOY_ANGLE_Y_UPPER	(55)
-#define JOY_ANGLE_Y_LOWER	(-55)
+#define JOY_ANGLE_X_UPPER	(30)//yaw
+#define JOY_ANGLE_X_LOWER	(-30)
+#define JOY_ANGLE_Y_UPPER	(50)//pitch
+#define JOY_ANGLE_Y_LOWER	(-50)
 #define JOY_ANALOG_BIAS_X	(19)//static X - 2048 
 #define JOY_ANALOG_BIAS_Y	(-15)//static Y - 2048
 #define JOY_KEY_DOWN_PERIOD	(10)

@@ -1,6 +1,5 @@
 
 #include "mpu6050.h"
-//#include <stdio.h>
 
 uint8_t Mpu6050_ID;		//Identity of device
 float Mpu6050_Accel_X;	//Aceeleration x-axis
@@ -22,7 +21,7 @@ uint8_t Mpu6050_Init(uint16_t sampleRate, uint8_t flagDLPF)
 	{
 		return 1;
 	}
-	//printf("ID: 0x%x\r\n", Mpu6050_ID);
+	//DEBUG_PRINT("ID: 0x%x\r\n", Mpu6050_ID);
 	if(Mpu6050_ID != MPU6050_ID)//verify device ID
 	{
 		return 2;
@@ -100,7 +99,7 @@ uint8_t Mpu6050_GetDevID(void)
 	{
 		return 1;
 	}
-	//printf("0x%x\t", Mpu6050_ID);
+	//DEBUG_PRINT("0x%x\t", Mpu6050_ID);
 	return 0;
 }
 
@@ -117,7 +116,7 @@ uint8_t Mpu6050_GetAccelData(void)
 	Mpu6050_Accel_X = AccelData[0]/FACTOR_ACCEL_RANGE_2;//¡À2g	
 	Mpu6050_Accel_Y = AccelData[1]/FACTOR_ACCEL_RANGE_2;//¡À2g	
 	Mpu6050_Accel_Z = AccelData[2]/FACTOR_ACCEL_RANGE_2;//¡À2g
-	//printf("%-5d %-5d %-5d\r\n", AccelData[0], AccelData[1], AccelData[2]);
+	//DEBUG_PRINT("%-5d %-5d %-5d\r\n", AccelData[0], AccelData[1], AccelData[2]);
 	return 0;
 }
 
@@ -130,7 +129,7 @@ uint8_t Mpu6050_GetTempData(void)
 	}
 	TempData = (buff[0] & 0x00ff)<<8 | buff[1];
 	Mpu6050_Temp = TempData/340.0 + 36.53;
-	//printf("%-8.6f\r\n", Mpu6050_Temp);
+	//DEBUG_PRINT("%-8.6f\r\n", Mpu6050_Temp);
 	return 0;
 }
 
@@ -147,7 +146,7 @@ uint8_t Mpu6050_GetGyroData(void)
 	Mpu6050_Gyro_X = GyroData[0]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
 	Mpu6050_Gyro_Y = GyroData[1]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
 	Mpu6050_Gyro_Z = GyroData[2]/FACTOR_GYRO_RANGE_2000;//¡À2000¡ã/s
-	//printf("%-5d %-5d %-5d\r\n", GyroData[0], GyroData[1], GyroData[2]);
+	//DEBUG_PRINT("%-5d %-5d %-5d\r\n", GyroData[0], GyroData[1], GyroData[2]);
 	return 0;
 }
 
@@ -166,7 +165,7 @@ uint8_t Mpu6050_SetSampleRate(uint16_t sampleRate, uint8_t flagDLPF)
 		sampleRate = INTERVAL_CONSTRAINT(sampleRate, 8000, 32);
 	}
 	divider = gyroOutputRate / sampleRate - 1;
-	//printf("divider: %d \r\n", divider);
+	//DEBUG_PRINT("divider: %d \r\n", divider);
 	if(I2C2_WriteData(MPU6050_ADDRESS, SMPRT_DIV, &divider, 1))
 	{
 		return 1;
@@ -208,7 +207,7 @@ uint8_t Mpu6050_SetDLPF(uint16_t bandWidth, uint8_t flagDLPF)
 	{
 		data = 0;
 	}
-	//printf("bandWidth: %d %d \r\n", bandWidth, data);
+	//DEBUG_PRINT("bandWidth: %d %d \r\n", bandWidth, data);
 	if(I2C2_WriteData(MPU6050_ADDRESS, CONFIG, &data, 1))
 	{
 		return 1;
@@ -233,6 +232,6 @@ void Mpu6050_CalPitchRoll(float calWeight, float calPeriod)
 	aR = (-1)*atan2(Mpu6050_Accel_X, Mpu6050_Accel_Z)*180/MATH_PI;
 	gP = gP + Mpu6050_Gyro_X*calPeriod;
 	gR = gR + Mpu6050_Gyro_Y*calPeriod;
-	printf("%f,%f,%f,%f,%f,%f\r\n", aP, aR, gP, gR, Mpu6050_Pitch, Mpu6050_Roll);*/
+	DEBUG_PRINT("%f,%f,%f,%f,%f,%f\r\n", aP, aR, gP, gR, Mpu6050_Pitch, Mpu6050_Roll);*/
 }
 

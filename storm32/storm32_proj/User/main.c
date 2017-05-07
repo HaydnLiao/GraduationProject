@@ -1,5 +1,4 @@
 
-#include <stdio.h>
 #include "stm32f10x.h"
 #include "global_math.h"
 #include "led.h"
@@ -19,16 +18,17 @@
 #define MPU_DLPF_SWITCH		((uint8_t)(1))		//1:on 0:off
 #define MPU_ACCEL_WEIGHT	((float)(0.05))
 #define MPU_CAL_PERIOD		((float)(SYSTEM_PERIOD/1000.0))		//unit: s
-#define POS_INIT_DIFF		((float)(3.0))		//unit: degree
+#define POS_INIT_DIFF		((float)(1.0))		//unit: degree
 #define POS_INTI_SPEED		((uint16_t)(120))	//unit: degree per second
 #define POS_INIT_JUDGE		((uint16_t)(200))
 #define LIPO_CAL_WEIGHT		((float)(0.99))//old data weight
-#define LIPO_LOW_VOLTAGE	((float)(10.5))//unit: v 3.5v*S 2S->7v 3S->10.5v 4S->14v
+#define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.5v*S 2S->7v 3S->10.5v 4S->14v
 #define JOY_CAL_WEIGHT		((float)(0.9))//old data weight
 #define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
-#define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 9s
+#define MPU_CALI_TIMES		((uint16_t)(800))//800 times about 8s
 #define MPU_GYPO_Z_BOUND	((float)(0.2))
-#define YAW_AUTO_OL_FACTOR	((float)(5000))
+#define YAW_AUTO_OL_FACTOR	((float)(3000))
+#define ANGLE_MAX_SPEED		((uint16_t)(1000))	//unit: degree per second
 
 #define HANDLE_PITCH_UPPER	((float)(45.0))
 #define HANDLE_PITCH_LOWER	((float)(-45.0))
@@ -36,8 +36,8 @@
 #define HANDLE_ROLL_LOWER	((float)(-90.0))
 #define CAMERA_PITCH_UPPER	((float)(50.0))
 #define CAMERA_PITCH_LOWER	((float)(-50.0))
-#define CAMERA_YAW_UPPER	((float)(50.0))
-#define CAMERA_YAW_LOWER	((float)(-50.0))
+#define CAMERA_YAW_UPPER	((float)(30.0))
+#define CAMERA_YAW_LOWER	((float)(-30.0))
 
 #define MPU_YAW_BIAS_MAX	((float)(-1.000))
 #define MPU_YAW_BIAS_MIN	((float)(-1.250))
@@ -61,7 +61,9 @@ int main(void)
 
 	Led_Init();
 	Systick_Init();
+#ifdef DEBUG_P0
 	Usart1_Init(115200);	//conflict with RC0 and RC1
+#endif
 
 	LED0_ON;
 	LED1_ON;
@@ -72,14 +74,14 @@ int main(void)
 	rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
-		printf("Error-mpu6050-%d\r\n", rtnValue);
+		DEBUG_PRINT("Error-mpu6050-%d\r\n", rtnValue);
 		Delay_ms(200);
 		rtnValue = Mpu6050_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	}
 	rtnValue = BoardMpu_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	while(rtnValue)
 	{
-		printf("Error-boardmpu-%d\r\n", rtnValue);
+		DEBUG_PRINT("Error-boardmpu-%d\r\n", rtnValue);
 		Delay_ms(200);
 		rtnValue = BoardMpu_Init(MPU_SAMPLE_RATE, MPU_DLPF_SWITCH);//sample rate 50Hz enable DLPF
 	}
@@ -93,7 +95,7 @@ int main(void)
 			LED0_TOGGLE;
 		}
 		Lipo_CalVoltage(LIPO_CAL_WEIGHT);//when the voltage is low voltage sampling stops
-		//printf("lipo:%fv\r\n", Lipo_Voltage);
+		//DEBUG_PRINT("lipo:%fv\r\n", Lipo_Voltage);
 		if(flagVoltageLow == 0 && Lipo_Voltage > LIPO_LOW_VOLTAGE)
 		{
 			LED1_ON;
@@ -108,7 +110,7 @@ int main(void)
 				LED1_TOGGLE;
 				BUZZER_TOGGLE;
 				flagVoltageLow = 1;//must power off and restart
-				printf("LiPo:%f\r\n", Lipo_Voltage);
+				DEBUG_PRINT("WARNING:%fv\r\n", Lipo_Voltage);
 			}
 		}
 
@@ -119,7 +121,7 @@ int main(void)
 			if(stepRun == STEP_ONE_POS_INIT)
 			{
 				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//get pitch and roll angle
-				printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+				DEBUG_PRINT("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
 				/**if(fabs(Mpu6050_Roll) > POS_INIT_DIFF)
 				{
 					Motor1_Run((mdir_t)(Mpu6050_Roll < 0), POS_INTI_SPEED);//roll angle greather than zero, motor run anticlockwise
@@ -163,7 +165,7 @@ int main(void)
 						gypoZBiasMpu /= MPU_CALI_TIMES;
 						gypoZBiasBoard /= MPU_CALI_TIMES;
 						//Bias clipping 
-						printf("%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard);
+						DEBUG_PRINT("%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard);
 						if(gypoZBiasMpu > MPU_YAW_BIAS_MAX || gypoZBiasMpu < MPU_YAW_BIAS_MIN
 							|| gypoZBiasBoard > BOARD_YAW_BIAS_MAX || gypoZBiasBoard < BOARD_YAW_BIAS_MIN)
 						{
@@ -184,15 +186,16 @@ int main(void)
 			#endif
 
 				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//#1 pitch roll
-				printf("[#1]%f,%f ", Mpu6050_Pitch, Mpu6050_Roll);
+				DEBUG_PRINT("[#1]%f,%f ", Mpu6050_Pitch, Mpu6050_Roll);
 				BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//#2 pitch roll
-				printf("[#2]%f,%f ", BoardMpu_Pitch, BoardMpu_Roll);
+				DEBUG_PRINT("[#2]%f,%f ", BoardMpu_Pitch, BoardMpu_Roll);
 				yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu) / (1000 / SYSTEM_PERIOD);//#1 yaw
 				yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard) / (1000 / SYSTEM_PERIOD);//#2 yaw
 				yawDiff = yawMpu - yawBoard;//#1 yaw - #2 yaw
+				DEBUG_PRINT("%f ", yawDiff);
 				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z-gypoZBiasBoard);//#2 angular rate
-				//printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, gypoMedianBoard);
-				//printf("%f,%f,%f ", yawMpu, yawBoard, gypoMedianBoard);
+				//DEBUG_PRINT("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, gypoMedianBoard);
+				//DEBUG_PRINT("%f,%f,%f ", yawMpu, yawBoard, gypoMedianBoard);
 
 				//#2 pitch&roll angle clipping 
 				if(BoardMpu_Pitch > HANDLE_PITCH_UPPER || BoardMpu_Pitch < HANDLE_PITCH_LOWER
@@ -209,7 +212,7 @@ int main(void)
 						//#1 expect pitch, #1-#2 yaw angle clipping 
 						joyExpPitch = INTERVAL_CONSTRAINT(joyExpPitch, CAMERA_PITCH_UPPER, CAMERA_PITCH_LOWER);
 						joyExpYaw = INTERVAL_CONSTRAINT(joyExpYaw, CAMERA_YAW_UPPER, CAMERA_YAW_LOWER);
-						//printf("%f,%f\r\n", joyExpPitch, joyExpYaw);
+						//DEBUG_PRINT("%f,%f\r\n", joyExpPitch, joyExpYaw);
 
 						pitchSpeed = PID_Motor0(Mpu6050_Pitch, joyExpPitch);//#1 pitch
 						yawSpeed = PID_Motor2(yawDiff, joyExpYaw);//#1 yaw - #2 yaw
@@ -230,12 +233,12 @@ int main(void)
 					}
 					rollSpeed = PID_Motor1(Mpu6050_Roll, 0.0);//#1 roll
 				}
-				printf("%f,%f,%f\r\n", pitchSpeed, rollSpeed, yawSpeed);
-				/**
-				pitchSpeed = INTERVAL_CONSTRAINT(pitchSpeed, MOTOR_MAX_SPEED, MOTOR_MAX_SPEED*(-1));
-				rollSpeed = INTERVAL_CONSTRAINT(rollSpeed, MOTOR_MAX_SPEED, MOTOR_MAX_SPEED*(-1));
-				yawSpeed = INTERVAL_CONSTRAINT(yawSpeed, MOTOR_MAX_SPEED, MOTOR_MAX_SPEED*(-1));
-*/
+				DEBUG_PRINT("%f,%f,%f\r\n", pitchSpeed, rollSpeed, yawSpeed);
+
+				pitchSpeed = INTERVAL_CONSTRAINT(pitchSpeed, ANGLE_MAX_SPEED, ANGLE_MAX_SPEED*(-1));
+				rollSpeed = INTERVAL_CONSTRAINT(rollSpeed, ANGLE_MAX_SPEED, ANGLE_MAX_SPEED*(-1));
+				yawSpeed = INTERVAL_CONSTRAINT(yawSpeed, ANGLE_MAX_SPEED, ANGLE_MAX_SPEED*(-1));
+
 				Motor0_Run((mdir_t)(pitchSpeed > 0), (uint16_t)(fabs(pitchSpeed)));//pitch angle greather than zero, motor run clockwise
 				Motor1_Run((mdir_t)(rollSpeed < 0), (uint16_t)(fabs(rollSpeed)));//roll angle greather than zero, motor run anticlockwise
 				Motor2_Run((mdir_t)(yawSpeed > 0), (uint16_t)(fabs(yawSpeed)));//yaw  angle difference greather than zero, motor run clockwise

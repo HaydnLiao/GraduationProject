@@ -1,5 +1,4 @@
 ..\output\main.o: ..\User\main.c
-..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\main.o: ..\Libraries\CMSIS\stm32f10x.h
 ..\output\main.o: ..\Libraries\CMSIS\core_cm3.h
 ..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdint.h
@@ -15,6 +14,7 @@
 ..\output\main.o: ..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\output\main.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\main.o: ..\User\global_math.h
+..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\main.o: D:\Program Files (x86)\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\output\main.o: ..\User\led\led.h
 ..\output\main.o: ..\User\systick\systick.h
