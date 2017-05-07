@@ -137,6 +137,7 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	static uint16_t preSpeed = 0;
 	static uint16_t timeout = 0;
 	static uint16_t cntTime = 0;
+	static uint16_t growthFactor = 0;
 /**
 	if(speed <= MOTOR_RUN_LIMIT)
 	{
@@ -151,7 +152,16 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+			if(speed < MOTOR_MAX_SPEED)
+			{
+				timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+				growthFactor = 1;
+			}
+			else
+			{
+				timeout = 0;
+				growthFactor = speed / MOTOR_MAX_SPEED;
+			}
 			preSpeed = speed;
 		}
 		if(cntTime < timeout)
@@ -169,9 +179,9 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 			//TIM_Cmd(TIM3, ENABLE);
 		
 			//uint16_t has not negative so add sineArraySize
-			mPitch.stepA = (mPitch.stepA + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
-			mPitch.stepB = (mPitch.stepB + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
-			mPitch.stepC = (mPitch.stepC + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
+			mPitch.stepA = (mPitch.stepA + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
+			mPitch.stepB = (mPitch.stepB + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
+			mPitch.stepC = (mPitch.stepC + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
 			//printf("%d %d %d\r\n", pwmSin[mPitch.stepA], pwmSin[mPitch.stepB], pwmSin[mPitch.stepC]);
 		}
 	}
@@ -212,6 +222,7 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	static uint16_t preSpeed = 0;
 	static uint16_t timeout = 0;
 	static uint16_t cntTime = 0;
+	static uint16_t growthFactor = 0;
 
 /**
 	if(speed <= MOTOR_RUN_LIMIT)
@@ -227,7 +238,16 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+			if(speed < MOTOR_MAX_SPEED)
+			{
+				timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+				growthFactor = 1;
+			}
+			else
+			{
+				timeout = 0;
+				growthFactor = speed / MOTOR_MAX_SPEED;
+			}
 			preSpeed = speed;
 		}
 
@@ -242,9 +262,9 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 			Motor1_SetPWM();
 		
 			//uint16_t has not negative so add sineArraySize
-			mRoll.stepA = (mRoll.stepA + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
-			mRoll.stepB = (mRoll.stepB + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
-			mRoll.stepC = (mRoll.stepC + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
+			mRoll.stepA = (mRoll.stepA + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
+			mRoll.stepB = (mRoll.stepB + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
+			mRoll.stepC = (mRoll.stepC + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
 			//printf("%d %d %d\r\n", pwmSin[mRoll.stepA], pwmSin[mRoll.stepB], pwmSin[mRoll.stepC]);
 		}
 	}
@@ -269,7 +289,8 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	static uint16_t preSpeed = 0;
 	static uint16_t timeout = 0;
 	static uint16_t cntTime = 0;
-	
+	static uint16_t growthFactor = 0;
+
 /**
 	if(speed <= MOTOR_RUN_LIMIT)
 	{
@@ -284,7 +305,16 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+			if(speed < MOTOR_MAX_SPEED)
+			{
+				timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+				growthFactor = 1;
+			}
+			else
+			{
+				timeout = 0;
+				growthFactor = speed / MOTOR_MAX_SPEED;
+			}
 			preSpeed = speed;
 		}
 
@@ -299,9 +329,9 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 			Motor2_SetPWM();
 		
 			//uint16_t has not negative so add sineArraySize
-			mYaw.stepA = (mYaw.stepA + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
-			mYaw.stepB = (mYaw.stepB + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
-			mYaw.stepC = (mYaw.stepC + sineArraySize + mdir_cal_factor[mdir]) % sineArraySize;
+			mYaw.stepA = (mYaw.stepA + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
+			mYaw.stepB = (mYaw.stepB + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
+			mYaw.stepC = (mYaw.stepC + sineArraySize + mdir_cal_factor[mdir]*growthFactor) % sineArraySize;
 			//printf("%d %d %d\r\n", pwmSin[mYaw.stepA], pwmSin[mYaw.stepB], pwmSin[mYaw.stepC]);
 		}
 	}

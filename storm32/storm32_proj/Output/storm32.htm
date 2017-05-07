@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\storm32.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\storm32.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Sat May 06 21:34:35 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Sun May 07 14:51:30 2017
 <BR><P>
 <H3>Maximum Stack Usage =        432 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -854,8 +854,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
 <P><STRONG><a name="[71]"></a>Delay_us</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, systick.o(i.Delay_us))
-<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Stop
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Start
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_SendByte
@@ -869,13 +868,13 @@ Global Symbols
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Start
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendByte
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendACK
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
 </UL>
 
 <P><STRONG><a name="[77]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MotorPWM_Init
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MotorPWM_Init
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Init
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_RecvByte
@@ -886,19 +885,19 @@ Global Symbols
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JoystickGPIO_Init
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LipoGPIO_Init
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WaitACK
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
 </UL>
 
 <P><STRONG><a name="[80]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
-<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_RecvByte
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Joystick_ObtainMode
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WaitACK
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
 </UL>
 
 <P><STRONG><a name="[78]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Stop
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Start
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_SendByte
@@ -911,11 +910,11 @@ Global Symbols
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Start
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendByte
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendACK
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
 </UL>
 
 <P><STRONG><a name="[79]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Init
+<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Init
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_WaitACK
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Stop
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Start
@@ -929,6 +928,7 @@ Global Symbols
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Start
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendByte
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendACK
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
 </UL>
 
 <P><STRONG><a name="[81]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_WriteBit))
@@ -1062,12 +1062,12 @@ Global Symbols
 <P><STRONG><a name="[83]"></a>I2C2_ReadData</STRONG> (Thumb, 148 bytes, Stack size 24 bytes, i2c2.o(i.I2C2_ReadData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = I2C2_ReadData &rArr; I2C2_RecvByte &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WaitACK
+<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WaitACK
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Stop
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_Start
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendByte
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_SendACK
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_RecvByte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mpu6050_GetDevID
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mpu6050_GetAccelData
@@ -1314,7 +1314,7 @@ Global Symbols
 <P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.MemManage_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[ac]"></a>Motor0_Run</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, motor.o(i.Motor0_Run))
+<P><STRONG><a name="[ac]"></a>Motor0_Run</STRONG> (Thumb, 218 bytes, Stack size 16 bytes, motor.o(i.Motor0_Run))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Motor0_Run &rArr; Motor0_SetPWM
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor0_SetPWM
@@ -1341,7 +1341,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b3]"></a>Motor1_Run</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, motor.o(i.Motor1_Run))
+<P><STRONG><a name="[b3]"></a>Motor1_Run</STRONG> (Thumb, 218 bytes, Stack size 16 bytes, motor.o(i.Motor1_Run))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Motor1_Run &rArr; Motor1_SetPWM
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor1_SetPWM
@@ -1368,7 +1368,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b7]"></a>Motor2_Run</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, motor.o(i.Motor2_Run))
+<P><STRONG><a name="[b7]"></a>Motor2_Run</STRONG> (Thumb, 218 bytes, Stack size 16 bytes, motor.o(i.Motor2_Run))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Motor2_Run &rArr; Motor2_SetPWM
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor2_SetPWM
@@ -1974,7 +1974,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 1530 bytes, Stack size 88 bytes, main.o(i.main))
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 1568 bytes, Stack size 88 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 432<LI>Call Chain = main &rArr; Motor_Init &rArr; SineArray_Init &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits

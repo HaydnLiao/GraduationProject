@@ -23,7 +23,7 @@
 #define POS_INTI_SPEED		((uint16_t)(120))	//unit: degree per second
 #define POS_INIT_JUDGE		((uint16_t)(200))
 #define LIPO_CAL_WEIGHT		((float)(0.99))//old data weight
-#define LIPO_LOW_VOLTAGE	((float)(7.0))//unit: v 3.5v*S 2S->7v 3S->10.5v 4S->14v
+#define LIPO_LOW_VOLTAGE	((float)(10.5))//unit: v 3.5v*S 2S->7v 3S->10.5v 4S->14v
 #define JOY_CAL_WEIGHT		((float)(0.9))//old data weight
 #define MPU_CALI_DELAY		((uint16_t)(1000))	//unit: ms
 #define MPU_CALI_TIMES		((uint16_t)(1000))//1000 times about 9s
@@ -42,7 +42,7 @@
 #define MPU_YAW_BIAS_MAX	((float)(-1.000))
 #define MPU_YAW_BIAS_MIN	((float)(-1.250))
 #define BOARD_YAW_BIAS_MAX	((float)(-0.450))
-#define BOARD_YAW_BIAS_MIN	((float)(-5.000))
+#define BOARD_YAW_BIAS_MIN	((float)(-5.500))
 
 #define STEP_ONE_POS_INIT	((uint8_t)(0))
 #define STEP_TWO_MPU_CALI	((uint8_t)(1))
@@ -184,15 +184,15 @@ int main(void)
 			#endif
 
 				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//#1 pitch roll
-				//printf("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
+				printf("[#1]%f,%f ", Mpu6050_Pitch, Mpu6050_Roll);
 				BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//#2 pitch roll
-				//printf("[#2]pitch: %f roll: %f\r\n", BoardMpu_Pitch, BoardMpu_Roll);
+				printf("[#2]%f,%f ", BoardMpu_Pitch, BoardMpu_Roll);
 				yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu) / (1000 / SYSTEM_PERIOD);//#1 yaw
 				yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard) / (1000 / SYSTEM_PERIOD);//#2 yaw
 				yawDiff = yawMpu - yawBoard;//#1 yaw - #2 yaw
 				gypoMedianBoard = MedianFilter(BoardMpu_Gyro_Z-gypoZBiasBoard);//#2 angular rate
 				//printf("%f,%f,%f,%f,%f\r\n", gypoZBiasMpu, gypoZBiasBoard, yawMpu, yawBoard, gypoMedianBoard);
-				printf("%f,%f,%f ", yawMpu, yawBoard, gypoMedianBoard);
+				//printf("%f,%f,%f ", yawMpu, yawBoard, gypoMedianBoard);
 
 				//#2 pitch&roll angle clipping 
 				if(BoardMpu_Pitch > HANDLE_PITCH_UPPER || BoardMpu_Pitch < HANDLE_PITCH_LOWER
