@@ -31,10 +31,10 @@
 #define ANGLE_MAX_SPEED		((uint16_t)(1000))	//unit: degree per second
 #define YAW_MAX_SPEED		((uint16_t)(800))	//unit: degree per second
 
-#define HANDLE_PITCH_UPPER	((float)(45.0))
-#define HANDLE_PITCH_LOWER	((float)(-45.0))
-#define HANDLE_ROLL_UPPER	((float)(90.0))
-#define HANDLE_ROLL_LOWER	((float)(-90.0))
+#define HANDLE_PITCH_UPPER	((float)(55.0))
+#define HANDLE_PITCH_LOWER	((float)(-55.0))
+#define HANDLE_ROLL_UPPER	((float)(50.0))
+#define HANDLE_ROLL_LOWER	((float)(-50.0))
 #define CAMERA_PITCH_UPPER	((float)(50.0))
 #define CAMERA_PITCH_LOWER	((float)(-50.0))
 #define CAMERA_YAW_UPPER	((float)(30.0))
