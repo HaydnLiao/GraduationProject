@@ -29,6 +29,7 @@
 #define MPU_GYPO_Z_BOUND	((float)(0.2))
 #define YAW_AUTO_OL_FACTOR	((float)(3000))
 #define ANGLE_MAX_SPEED		((uint16_t)(1000))	//unit: degree per second
+#define YAW_MAX_SPEED		((uint16_t)(800))	//unit: degree per second
 
 #define HANDLE_PITCH_UPPER	((float)(45.0))
 #define HANDLE_PITCH_LOWER	((float)(-45.0))
@@ -237,7 +238,7 @@ int main(void)
 
 				pitchSpeed = INTERVAL_CONSTRAINT(pitchSpeed, ANGLE_MAX_SPEED, ANGLE_MAX_SPEED*(-1));
 				rollSpeed = INTERVAL_CONSTRAINT(rollSpeed, ANGLE_MAX_SPEED, ANGLE_MAX_SPEED*(-1));
-				yawSpeed = INTERVAL_CONSTRAINT(yawSpeed, ANGLE_MAX_SPEED, ANGLE_MAX_SPEED*(-1));
+				yawSpeed = INTERVAL_CONSTRAINT(yawSpeed, YAW_MAX_SPEED, YAW_MAX_SPEED*(-1));
 
 				Motor0_Run((mdir_t)(pitchSpeed > 0), (uint16_t)(fabs(pitchSpeed)));//pitch angle greather than zero, motor run clockwise
 				Motor1_Run((mdir_t)(rollSpeed < 0), (uint16_t)(fabs(rollSpeed)));//roll angle greather than zero, motor run anticlockwise

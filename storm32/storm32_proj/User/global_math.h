@@ -9,7 +9,7 @@
 #define MATH_PI				((3.141592653589793))
 #define INTERVAL_CONSTRAINT(x, max, min)	((x)>(max)?(max):((x)<(min)?(min):(x)))
 
-//#define DEBUG_P0
+#define DEBUG_P0
 #ifdef DEBUG_P0
 #define DEBUG_PRINT(format, ...)			printf(format, ##__VA_ARGS__)
 #else

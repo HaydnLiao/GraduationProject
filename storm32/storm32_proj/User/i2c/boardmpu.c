@@ -225,6 +225,6 @@ void BoardMpu_CalPitchRoll(float calWeight, float calPeriod)
 	//BoardMpu_Roll = atan2(BoardMpu_Accel_Y, BoardMpu_Accel_Z)*180/MATH_PI;//range -PI~PI
 	//the first-order complementary filter algorithm    data fusion
 	BoardMpu_Pitch = calWeight*atan2(BoardMpu_Accel_Y, BoardMpu_Accel_Z)*180/MATH_PI + (1-calWeight)*(BoardMpu_Pitch+BoardMpu_Gyro_X*calPeriod);
-	BoardMpu_Roll = calWeight*(-1)*atan2(BoardMpu_Accel_X, BoardMpu_Accel_Z)*180/MATH_PI + (1-calWeight)*(BoardMpu_Roll+BoardMpu_Gyro_Y*calPeriod);
+	BoardMpu_Roll = calWeight*atan2(BoardMpu_Accel_X, BoardMpu_Accel_Z)*180/MATH_PI + (1-calWeight)*(BoardMpu_Roll+BoardMpu_Gyro_Y*calPeriod);
 }
 
