@@ -11,7 +11,7 @@ void Motor_Init(void)
 void SineArray_Init(void)
 {
 	uint16_t cntL = 0;
-	sineArraySize = 1000 / SYSTEM_PERIOD / (MOTOR_MAX_SPEED/360.0);//360.0 avoid divisor become zero
+	sineArraySize = 1000 / SYSTEM_PERIOD / (MOTOR_BASIC_SPEED/360.0);//360.0 avoid divisor become zero
 	phaseShift = sineArraySize / 3;
 
 	mPitch.stepA = 0;
@@ -151,15 +151,15 @@ void Motor0_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			if(speed < MOTOR_MAX_SPEED)
+			if(speed < MOTOR_BASIC_SPEED)
 			{
-				timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+				timeout = MOTOR_BASIC_SPEED / speed - 1;	//faster speed shorter timeout
 				growthFactor = 1;
 			}
 			else
 			{
 				timeout = 0;
-				growthFactor = speed / MOTOR_MAX_SPEED;
+				growthFactor = speed / MOTOR_BASIC_SPEED;
 			}
 			preSpeed = speed;
 		}
@@ -237,15 +237,15 @@ void Motor1_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			if(speed < MOTOR_MAX_SPEED)
+			if(speed < MOTOR_BASIC_SPEED)
 			{
-				timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+				timeout = MOTOR_BASIC_SPEED / speed - 1;	//faster speed shorter timeout
 				growthFactor = 1;
 			}
 			else
 			{
 				timeout = 0;
-				growthFactor = speed / MOTOR_MAX_SPEED;
+				growthFactor = speed / MOTOR_BASIC_SPEED;
 			}
 			preSpeed = speed;
 		}
@@ -304,15 +304,15 @@ void Motor2_Run(mdir_t mdir, uint16_t speed)		//speed unit: °/s
 	{
 		if(speed != preSpeed)
 		{
-			if(speed < MOTOR_MAX_SPEED)
+			if(speed < MOTOR_BASIC_SPEED)
 			{
-				timeout = MOTOR_MAX_SPEED / speed - 1;	//faster speed shorter timeout
+				timeout = MOTOR_BASIC_SPEED / speed - 1;	//faster speed shorter timeout
 				growthFactor = 1;
 			}
 			else
 			{
 				timeout = 0;
-				growthFactor = speed / MOTOR_MAX_SPEED;
+				growthFactor = speed / MOTOR_BASIC_SPEED;
 			}
 			preSpeed = speed;
 		}

@@ -123,19 +123,19 @@ int main(void)
 			{
 				Mpu6050_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//get pitch and roll angle
 				DEBUG_PRINT("[#1]pitch: %f roll: %f\r\n", Mpu6050_Pitch, Mpu6050_Roll);
-				/**if(fabs(Mpu6050_Roll) > POS_INIT_DIFF)
+				if(fabs(Mpu6050_Roll) > POS_INIT_DIFF)
 				{
 					Motor1_Run((mdir_t)(Mpu6050_Roll < 0), POS_INTI_SPEED);//roll angle greather than zero, motor run anticlockwise
 				}
 				else if(fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
 				{
 					Motor0_Run((mdir_t)(Mpu6050_Pitch > 0), POS_INTI_SPEED);//pitch angle greather than zero, motor run clockwise
-				}*/
-				if(fabs(Mpu6050_Roll) > POS_INIT_DIFF || fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
+				}
+				/**if(fabs(Mpu6050_Roll) > POS_INIT_DIFF || fabs(Mpu6050_Pitch) > POS_INIT_DIFF)
 				{
 					Motor1_Run((mdir_t)(Mpu6050_Roll < 0), POS_INTI_SPEED);//roll angle greather than zero, motor run anticlockwise
 					Motor0_Run((mdir_t)(Mpu6050_Pitch > 0), POS_INTI_SPEED);//pitch angle greather than zero, motor run clockwise
-				}
+				}*/
 				else
 				{
 					cntPosInit += 1;
@@ -190,6 +190,16 @@ int main(void)
 				DEBUG_PRINT("[#1]%f,%f ", Mpu6050_Pitch, Mpu6050_Roll);
 				BoardMpu_CalPitchRoll(MPU_ACCEL_WEIGHT, MPU_CAL_PERIOD);//#2 pitch roll
 				DEBUG_PRINT("[#2]%f,%f ", BoardMpu_Pitch, BoardMpu_Roll);
+
+				if(fabs(Mpu6050_Pitch) < 0.25)
+				{
+					Mpu6050_Pitch = 0.0;
+				}
+				if(fabs(Mpu6050_Roll) < 0.25)
+				{
+					Mpu6050_Roll = 0.0;
+				}
+
 				yawMpu +=  (Mpu6050_Gyro_Z-gypoZBiasMpu) / (1000 / SYSTEM_PERIOD);//#1 yaw
 				yawBoard += (BoardMpu_Gyro_Z-gypoZBiasBoard) / (1000 / SYSTEM_PERIOD);//#2 yaw
 				yawDiff = yawMpu - yawBoard;//#1 yaw - #2 yaw
